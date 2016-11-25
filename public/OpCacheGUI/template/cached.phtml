@@ -1,0 +1,99 @@
+<?php
+$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
+
+$directories = [];
+foreach($status->getCachedScripts() as $data) {
+    $directories[dirname($data['full_path'])][basename($data['full_path'])] = $data;
+}
+?>
+
+<section id="cached-scripts-tabs" class="tabs">
+    <nav id="sub-nav">
+        <ul>
+            <li class="sna"><a href="#" data-tab="cached-scripts"><?= $this->translator->translate('scripts.title'); ?></a></li>
+            <li><a href="#" data-tab="overview-scripts"><?= $this->translator->translate('scripts.overview.title'); ?></a></li>
+        </ul>
+    </nav>
+    <section data-content="cached-scripts">
+        <?php if (!count($status->getCachedScripts())) { ?>
+            <br />
+            <p><?= $this->translator->translate('scripts.empty'); ?></p>
+        <?php } else { ?>
+            <table>
+                <?php $i = 0; ?>
+                <?php foreach ($directories as $directory => $scripts) { ?>
+                    <tr>
+                        <td>
+                            <p><a href="#"><span class="fa fa-plus"></span><?= htmlspecialchars($directory) . sprintf($this->translator->translate('scripts.directory.script_count'), count($scripts)); ?> </a></p>
+                            <div class="cs-data-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th><?= $this->translator->translate('scripts.full_path'); ?></th>
+                                            <th><?= $this->translator->translate('scripts.hits'); ?></th>
+                                            <th><?= $this->translator->translate('scripts.memory_consumption'); ?></th>
+                                            <th><?= $this->translator->translate('scripts.last_used_timestamp'); ?></th>
+                                            <th><?= $this->translator->translate('scripts.timestamp'); ?></th>
+                                            <th><?= $this->translator->translate('scripts.actions'); ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($scripts as $filename => $script) { ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($filename); ?></td>
+                                                <td><?= $script['hits']; ?></td>
+                                                <td><?= $script['memory_consumption']; ?></td>
+                                                <td><?= $script['last_used_timestamp']; ?></td>
+                                                <td><?= $script['timestamp']; ?></td>
+                                                <td>
+                                                    <form action="<?= $this->url->get('invalidate'); ?>" method="post">
+                                                        <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+                                                        <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
+                                                        <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('script.invalidate'); ?>"><?= $this->translator->translate('script.invalidate'); ?></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+    </section>
+    <section data-content="overview-scripts">
+        <div class="show-cs-table cs-table-overview">
+            <input type="search" name="filter" placeholder="<?= $this->translator->translate('scripts.filter.placeholder'); ?>" autofocus>
+            <table>
+                <thead>
+                    <tr>
+                        <th><?= $this->translator->translate('scripts.full_path'); ?></th>
+                        <th><?= $this->translator->translate('scripts.hits'); ?></th>
+                        <th><?= $this->translator->translate('scripts.memory_consumption'); ?></th>
+                        <th><?= $this->translator->translate('scripts.last_used_timestamp'); ?></th>
+                        <th><?= $this->translator->translate('scripts.actions'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($status->getCachedScriptsForOverview(new \OpCacheGUI\Format\Prefix) as $script) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($script['full_path']); ?></td>
+                            <td><?= $script['hits']; ?></td>
+                            <td><?= $script['memory_consumption']; ?></td>
+                            <td><?= $script['last_used_timestamp']; ?></td>
+                            <td>
+                                <form action="<?= $this->url->get('invalidate'); ?>" method="post">
+                                    <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+                                    <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
+                                    <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('script.invalidate'); ?>"><?= $this->translator->translate('script.invalidate'); ?></button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

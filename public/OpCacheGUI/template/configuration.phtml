@@ -1,0 +1,39 @@
+<?php $config = new OpCacheGUI\OpCache\Configuration($this->byteFormatter, opcache_get_configuration()); ?>
+<section id="configuration-tabs" class="tabs">
+    <nav id="sub-nav">
+        <ul>
+            <li class="sna"><a href="#" data-tab="configuration"><?= $this->translator->translate('config.title'); ?></a></li>
+            <li><a href="#" data-tab="blacklist"><?= $this->translator->translate('blacklist.title'); ?></a></li>
+        </ul>
+    </nav>
+    <section data-content="configuration">
+        <table>
+            <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('config.' . $key); ?></td>
+                    <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.inherited_hack', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.load_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
+                        <td><span class="<?= $directiveItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php } else { ?>
+                        <td><?= htmlspecialchars($directiveItem); ?></td>
+                    <?php } ?>
+                    <td><p><?= $this->translator->translate('config.' . $key . '.description'); ?></p></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </section>
+    <section data-content="blacklist">
+        <?php if (!count($config->getBlackList())) { ?>
+            <br />
+            <p><?= $this->translator->translate('blacklist.empty'); ?></p>
+        <?php } else { ?>
+            <table>
+                <?php foreach ($config->getBlackList() as $key => $blacklistedItem) { ?>
+                    <tr>
+                        <td><?= htmlspecialchars($blacklistedItem); ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+    </section>
+</section>
+</section>

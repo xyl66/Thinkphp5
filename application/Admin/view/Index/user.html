@@ -1,0 +1,168 @@
+{extend name="./Template/Public/admin_layout.html" /}
+{block name="title"}Home{/block}
+{block name="css"}
+	<link href="__CSS__/lines.css" rel='stylesheet' type='text/css' />
+	<!-- Nav CSS -->
+	<link href="__CSS__/custom.css" rel="stylesheet">
+	<link href="__CSS__/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+{/block}
+<!-- jQuery -->
+{block name="headjs"}
+	<script src="__JS__/home/bootStrap/bootstrap-paginator.min.js"></script>
+	<script type="text/javascript">
+		var upUserURL='{:Url("Admin/Index/userUp","","")}';
+		var indexURL='{:Url("Admin/Index/user","","")}',geturlURL='{:Url("Home/Index/getUrl","","")}';
+	</script>
+{/block}
+{block name="content"}
+<div id="wrapper">
+     <!-- Navigation -->
+        <div id="page-wrapper">
+        <div class="graphs" id="app">
+			<input id="currentPage" hidden v-model="currentPage">
+		    <div class="col_1">
+				<div class="col-md-12 span_3">
+					<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color: #ffc107;border-color: #fdd835;">
+						<div class="navbar-form navbar-left">
+							<input type="text" class="form-control search" value="" v-model="search"  placeholder="请输入用户名进行检索">
+							<span class="label label-primary">{{filteredList.length }}条</span>
+						</div>
+					</nav>
+				  <div class="bs-example1" data-example-id="contextual-table">
+					  <div class="col-md-11"></div>
+					  <table class="table table-hover table-bordered table-striped">
+						  <thead>
+						  <tr class="warning">
+							  <th>序号</th>
+							  <th>用户名</th>
+							  <th>用户组 <span class="label label-default"></span></th>
+							  <th>创建时间</th>
+							  <th>操作</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						  <tr v-for="(index,todo) in todos|filterBy search in 'account'">
+							  <th scope="row" class="col-md-1">{{index+1}}</th>
+							  <td class="col-md-3">{{todo.account}}</a></td>
+							  <td class="col-md-4">
+								  {{todo.title}}
+							  </td>
+							  <td class="col-md-2">
+								  {{todo.creat_time|unix_to_datetime}}
+							  </td>
+							  <td class="col-md-2" v-bind:group_id="todo.id">
+								  <div class="row">
+									  <div class="col-md-5"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" >编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
+									  <!--<div class="col-md-7"><button v-on:click="setstatus(index,todo.status)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>-->
+								  </div>
+							  </td>
+						  </tr>
+						  </tbody>
+					  </table>
+
+					  <div class="bs-example2 bs-example-padded-bottom">
+						  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+							  <div class="modal-dialog">
+								  <div class="modal-content">
+									  <div class="modal-header">
+										  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										  <h2 class="modal-title">用户编辑</h2>
+									  </div>
+									  <div class="modal-body">
+										  <div class="form-group">
+											  <label class="control-label">账号：</label>
+											  <input disabled type="text" v-on:focus="warn.title=0"  v-model="user_edit.account"  class="form-control1 ">
+											  <div v-show="warn.name" class="coursewarn alert alert-warning">警告！账号不能为空。</div>
+										  </div>
+										  <div class="form-group">
+											  <label class="control-label">账号：</label>
+											  <div v-on:click="editpwd"><input id="uppassword" disabled type="password"   v-model="user_edit.password"  class="form-control1 "></div>
+											  <div v-show="warn.name" class="coursewarn alert alert-warning">警告！密码不能为空。</div>
+										  </div>
+										  <div class="form-group">
+											  <label class="control-label normal">用户组：</label></br>
+											  <select class="form-control1 ng-invalid ng-invalid-required" v-model="user_edit.group_id" required="">
+												  <option value="0" style="color: #b6b6b6" disabled selected>请选择</option>
+												  <option v-for="(index,vo) in grouplist" value="{{vo.id}}">{{vo.title}}</option>
+											  </select>
+										  </div>
+									  </div>
+									  <div class="modal-footer">
+										  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										  <button  type="button" v-on:click="check_null" class="btn btn-primary">保存</button>
+									  </div>
+								  </div><!-- /.modal-content -->
+							  </div><!-- /.modal-dialog -->
+						  </div>
+					  </div>
+				  </div>
+					<ul id ="example"></ul>
+				  </div>
+			  </div>
+				<div class="clearfix"> </div>
+			  <!----Calender -------->
+			  <link rel="stylesheet" href="__CSS__/clndr.css" type="text/css" />
+			  <script src="__JS__/underscore-min.js" type="text/javascript"></script>
+			  <script src= "__JS__/moment-with-locales.min.js" type="text/javascript"></script>
+			  <script src="__JS__/clndr.js" type="text/javascript"></script>
+			  <script src="__JS__/site.js" type="text/javascript"></script>
+			  <!----End Calender -------->
+		  </div>
+		</div>
+       </div>
+      <!-- /#page-wrapper -->
+   </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="__JS__/bootstrap.min.js"></script>
+{/block}
+{block name="bodyjs"}
+	<script src="__JS__/admin/user.js"></script>
+	<script type="text/javascript" src="__JS__/home/bootStrap/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="__JS__/home/bootStrap/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		function getLocalTime(nS) {
+			var d = new Date();
+			d.setTime(nS);
+			return d.toLocaleString().replace(/:\d{1,2}$/,' ');
+		}
+		$('.form_datetime_start').datetimepicker({
+			format:'yyyy-mm-dd hh:ii',
+			language:  'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1
+		});
+		$('.form_datetime_start').datetimepicker().on('changeDate', function(ev){
+			var q=getLocalTime(ev.date.valueOf());
+			$('.form_datetime_end').val('').datetimepicker('setStartDate', q);
+		});
+		$('.form_datetime_end').datetimepicker({
+			format:'yyyy-mm-dd hh:ii',
+			language:  'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 1,
+			minView: 0,
+			forceParse: 0,
+			showMeridian: 1
+		});
+		$('.form_datetime_end').click(function(){
+			$('.warntime').hide();
+		});
+		$('.form_datetime_end').datetimepicker().on('changeDate', function(ev){
+			var q=ev.date.valueOf(),t=Date.parse($('.form_datetime_start').val());
+			var m=q<t;
+			if(m){
+				$('.warntime').show();
+			}
+		});
+	</script>
+{/block}
+</html>

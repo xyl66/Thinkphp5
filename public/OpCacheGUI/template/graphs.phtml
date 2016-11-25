@@ -1,0 +1,38 @@
+<?php
+$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
+
+$memoryInfo = $status->getMemoryInfo();
+$statsInfo  = $status->getStatsInfo();
+?>
+
+<section id="graphs" class="tabs">
+    <ul>
+        <li>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.memory.title'); ?></h2>
+                <canvas id="memory" width="230" height="230"></canvas>
+                <div id="memDataChartLegend"></div>
+            </div>
+        </li>
+        <li>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.keys.title'); ?></h2>
+                <canvas id="keys" width="230" height="230"></canvas>
+                <div id="keysDataChartLegend"></div>
+            </div>
+        </li>
+        <li>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.hits.title'); ?></h2>
+                <canvas id="hits" width="230" height="230"></canvas>
+                <div id="hitsDataChartLegend"></div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+<script>
+    var memData  = <?= $status->getGraphMemoryInfo(); ?>;
+    var keysData = <?= $status->getGraphKeyStatsInfo(); ?>;
+    var hitsData = <?= $status->getGraphHitStatsInfo(); ?>;
+</script>

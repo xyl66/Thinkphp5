@@ -1,0 +1,7 @@
+<?php
+
+if (!$this->csrfToken->validate($_POST['csrfToken']) || !opcache_invalidate($_POST['key'], true)) {
+    return json_encode(['result' => 'failed']);
+}
+
+return json_encode(['result' => $this->result]);
