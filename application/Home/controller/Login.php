@@ -7,6 +7,9 @@
  */
 
 namespace app\Home\controller;
+use app\Home\model\AuthGroup;
+use app\Home\model\AuthGroupAccess;
+use app\Home\model\User;
 use think\Db;
 use think\Request;
 class Login extends \think\Controller
@@ -24,7 +27,7 @@ class Login extends \think\Controller
             if($user['pwd']==''){
                 return array('status'=>'error','msg'=>'密码不能为空！');
             }
-            $User=Db::name('user');
+            $User=new User();
             $admin=$User->where(array('account'=>$user['account']))->find();
             if($admin==Null){
                 return array('status'=>'error','msg'=>'用户名不存在！');
@@ -69,8 +72,8 @@ class Login extends \think\Controller
             $this->error('你没有权限');
         }
         if(Request::instance()->isAjax()){
-            $User=db('User');
-            $Auth_group_access=db('Auth_group_access');
+            $User=new User();
+            $Auth_group_access=new AuthGroupAccess();
             $aid=is_admin();
             $isad=$User->where(array('admin_id'=>$aid))->find();
             if($isad==Null||$isad['account']!='admin'){
@@ -96,22 +99,24 @@ class Login extends \think\Controller
             $user['creat_time']=time();
             $data['group_id']=$user['group'];
             unset($user['group']);
-            $uid=$User->insertGetId($user);
+            $User->data($user);
+            $User->save();
+            $uid=$User->admin_id;
             if($uid){
                 $data['uid']=$uid;
-                if($Auth_group_access->insert($data)){
+                if($Auth_group_access->data($data)->save()){
                return array('status'=>'success','msg'=>'创建成功');
                 }
             }
         }
-        $Admin_Group=Db::name('Auth_group');
+        $Admin_Group=new AuthGroup();
         $group_list=$Admin_Group->select();
         return view('creatAccount',['grouplist'=>$group_list]);
     }
     //更改密码
     public function updateAccount(){
         if(Request::instance()->isAjax()){
-            $User=Db::name('user');
+            $User=new User();
             $aid=is_admin();
             $acount=$User->where(array('admin_id'=>$aid))->find();
             if($acount==Null){
@@ -134,7 +139,7 @@ class Login extends \think\Controller
                 return array('status'=>'error','msg'=>'新密码不一致！');
             }
             $data['password']=$user['npassword1'];
-            $uid=$User->where(array('admin_id'=>$aid))->update($data);
+            $uid=$User->save($data,array('admin_id'=>$aid));
             if($uid){
                 return array('status'=>'success','msg'=>'修改成功！');
             }

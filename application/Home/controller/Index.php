@@ -1,5 +1,7 @@
 <?php
 namespace app\Home\controller;
+use app\Home\model\Course;
+use app\Home\model\Sign;
 use think\Request;
 use think\Db;
 class Index extends \think\Controller
@@ -22,7 +24,7 @@ class Index extends \think\Controller
     }
     //首页
     public function index(){
-        $Course=Db::name('Course');
+        $Course=new Course;
         $course_list= array();
         if(Request::instance()->isAjax()){
             $course_time=input('post.course_time');;
@@ -40,22 +42,22 @@ class Index extends \think\Controller
         if(Request::instance()->isAjax()){
             $course=input('post.course/a');
             if(empty($course['name'])){
-                return array('status'=>'erro','message'=>'更新失败,课程名不能为空');
+                return array('status'=>'erro','msg'=>'更新失败,课程名不能为空');
             };
             if(empty($course['course_time_start'])||empty($course['course_time_end'])){
-               return array('status'=>'erro','message'=>'更新失败,课程日期不能为空');
+               return array('status'=>'erro','msg'=>'更新失败,课程日期不能为空');
             }
             if($course['course_time_start']>$course['course_time_end']){
-               return array('status'=>'erro','message'=>'更新失败,课程日期范围错误');
+               return array('status'=>'erro','msg'=>'更新失败,课程日期范围错误');
             }
             $course['course_time_start']=strpos($course['course_time_start'],'-')!==false?strtotime($course['course_time_start']):$course['course_time_start'];
             $course['course_time_end']=strpos($course['course_time_end'],'-')!==false?strtotime($course['course_time_end']):$course['course_time_end'];
-            $Course=Db::name('Course');
-            $result=$Course->update($course);
+            $Course=new Course;
+            $result=$Course->save($course,['course_id'=>intval($course['course_id'])]);
             if($result===false){
-                return array('status'=>'erro','message'=>'更新失败');
+                return array('status'=>'erro','msg'=>'更新失败');
             }
-            return array('status'=>'success','message'=>'更新成功');
+            return array('status'=>'success','msg'=>'更新成功');
         }
     }
     //创建课程
@@ -63,24 +65,26 @@ class Index extends \think\Controller
         if(Request::instance()->isAjax()){
             $course=input('course/a');
             if(empty($course['name'])){
-                return array('status'=>'error','message'=>'新增失败,课程名不能为空！');
+                return array('status'=>'error','msg'=>'新增失败,课程名不能为空！');
             };
             if(empty($course['course_time_start'])||empty($course['course_time_end'])){
-                return array('status'=>'error','message'=>'新增失败,课程日期不能为空！');
+                return array('status'=>'error','msg'=>'新增失败,课程日期不能为空！');
             }
             if($course['course_time_start']>$course['course_time_end']){
-                return array('status'=>'error','message'=>'新增失败,课程日期范围错误！');
+                return array('status'=>'error','msg'=>'新增失败,课程日期范围错误！');
             }
             $course['course_time_start']=strtotime($course['course_time_start']);
             $course['course_time_end']=strtotime($course['course_time_end']);
             $course['creat_time']= time();
-            $Course=Db::name('Course');
+            $Course=new Course;
             if($course['name']!=''||$course['course_time_start']!=''){
-                $cid=$Course->insert($course);
+                $Course->data($course);
+                $Course->save();
+                $cid=$Course->course_id;
                 if($cid){
                     $sin_id=$cid.rand(100,999);
-                    $Course->where(array('course_id'=>$cid))->update(array('course_sign_id'=>$sin_id));
-                    return array('status'=>'success','message'=>'新增成功');
+                    $Course->save(array('course_sign_id'=>$sin_id),array('course_id'=>$cid));
+                    return array('status'=>'success','msg'=>'新增成功');
                 }
             }
         }
@@ -89,13 +93,13 @@ class Index extends \think\Controller
     //获取课程二维码
     public function signQrcode(){
         $cid=input('courseid');
-        $Course=Db::name('Course');
+        $Course=new Course;
         $course=$Course->where(array('course_id'=>$cid))->find();
         $course_time=date('Y-m-d',$course['course_time_start']);
         $course_sign_id=$course['course_sign_id'];
         if(!$course_sign_id||empty($course_sign_id)){
             $course_sign_id=$cid.rand(100,999);
-            $Course->where(array('course_id'=>$cid))->update(array('course_sign_id'=>$course_sign_id));
+            $Course->save(array('course_sign_id'=>$course_sign_id),array('course_id'=>$cid));
         }
         $path = "./Upload/images/".$course_time;//文件夹路径
         if(!file_exists($path)){
@@ -133,12 +137,12 @@ class Index extends \think\Controller
     //获取课程地址
     public function getUrl(){
         $cid=input('courseid');
-        $Course=DB::name('Course');
+        $Course=new Course;
         $course=$Course->where(array('course_id'=>$cid))->find();
         $course_sign_id=$course['course_sign_id'];
         if(empty($course_sign_id)||!$course_sign_id){
             $course_sign_id=$cid.rand(100,999);
-            $Course->where(array('course_id'=>$cid))->update(array('course_sign_id'=>$course_sign_id));
+            $Course->save(array('course_sign_id'=>$course_sign_id),array('course_id'=>$cid));
         }
         $url=$_SERVER['HTTP_ORIGIN'].Url('Sign/sign',['cid'=>$course_sign_id]);
         if (strpos($url, 'http')===false) {
@@ -150,7 +154,7 @@ class Index extends \think\Controller
         $request = Request::instance();
         if($request->isAjax()){
             $course_id=input('post.courseid');
-            $Sign=DB::name('Sign');
+            $Sign=new Sign();
             $result=$Sign->where(array('course_id'=>$course_id))->find();
             if(empty($result)){
                 return array('status'=>'error','msg'=>'不存在数据');

@@ -7,6 +7,7 @@
  */
 
 namespace app\Home\controller;
+use app\Home\model\Course;
 use think\Request;
 use think\Db;
 class Sign extends \think\Controller
@@ -17,7 +18,7 @@ class Sign extends \think\Controller
     //签到页面
     public function sign(){
         $course_sign_id=input('cid');
-        $Course=Db::name('Course');
+        $Course=new Course();
         $course=$Course->where(array('course_sign_id'=>$course_sign_id))->find();
         $request=request::instance();
         if($request->isPost()){
@@ -38,12 +39,12 @@ class Sign extends \think\Controller
             if(time()<($course['course_time_start']-30*60)||time()>($course['course_time_end']+30*60)) {
                 return array('status'=>'error','msg'=>'超出课程签到时间范围：课程前30分钟至课程后30内');
             }
-            $Sign=Db::name('Sign');
+            $Sign=new \app\Home\model\Sign();
             $signed=$Sign->where(array('course_id'=>$sign['course_id'],'user_id'=>$sign['user_id']))->find();
             if($signed==Null){
                 $sign['creat_time']=time();
                 $sign['sign_ip']=getIP();
-                $Sign->insert($sign);
+                $Sign->data($sign)->save();
                 return array('status'=>'success','msg'=>'签到成功');
             }
             else{
