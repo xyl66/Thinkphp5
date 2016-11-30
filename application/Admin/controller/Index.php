@@ -1,5 +1,6 @@
 <?php
 namespace app\Admin\controller;
+use app\Home\model\AuthGroup;
 use think\Request;
 use think\Db;
 class Index extends \think\Controller
@@ -116,6 +117,22 @@ class Index extends \think\Controller
             return array('status'=>'error','msg'=>'更新失败！');;
         }
     }
+    //修改用户组状态
+    public function groupstatusup(){
+        $Auth_group=new AuthGroup();
+        if(Request::instance()->isAjax()){
+            $group=input('group/a');//获取客户端传过来的参数
+            if($group['status']==='false'){
+                $group['status']=0;
+            }
+            if($group['status']==='true'){
+                $group['status']=1;
+            }
+            $Auth_group->allowField(['status'])->save($group,['id'=>$group['id']]);
+            return array('status'=>'success','msg'=>'更新成功！');
+        }
+
+    }
     //添加用户组
     public function groupAdd(){
         $Auth_group=db('Auth_group');
@@ -135,7 +152,7 @@ class Index extends \think\Controller
                 $arr=getGroupList();//添加成功刷新页面
                 return array('status'=>'success','data'=>$arr);
             }
-            return array('status'=>'error','msg'=>'添加失败！');;
+            return array('status'=>'error','msg'=>'添加失败！');
         }
     }
 

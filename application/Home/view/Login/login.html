@@ -40,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="app-cam" id="lgapp">
 	  <form>
           <input hidden v-model="rmpwd" id="rmpwd">
-          <input type="text" v-model="user.account" class="text" >
-          <input type="password" v-model="user.pwd" >
+          <input type="text" v-model="user.account" class="text" placeholder="请输入用户名">
+          <input type="password" v-model="user.pwd" placeholder="请输入密码">
           <div class="switch" data-on="success" data-off="warning" style="float: right;margin-bottom: 1em">
               <input type="checkbox" name="my-checkbox" data-on-color="success" data-off-color="warning" v-bind:checked="rmpwd|getstatus"/>
           </div>
