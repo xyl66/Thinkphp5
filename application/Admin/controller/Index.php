@@ -1,6 +1,8 @@
 <?php
 namespace app\Admin\controller;
 use app\Home\model\AuthGroup;
+use app\Home\model\AuthRule;
+use app\Home\model\User;
 use think\Request;
 use think\Db;
 class Index extends \think\Controller
@@ -16,7 +18,7 @@ class Index extends \think\Controller
         $user = session('ke_user_auth');
         if($user['account']!='admin'){
         //权限认证
-         $auth=new \Auth\Auth();
+         $auth=new \Auth\Auth();//权限认证Auth类
          $request = Request::instance();
          if(!$auth->check($request->module().'-'.$request->controller().'-'.$request->action(),SID)){// 第一个参数是规则名称,第二个参数是用户UID
              /* return array('status'=>'error','msg'=>'有权限！');*/
@@ -27,7 +29,8 @@ class Index extends \think\Controller
     //权限
     public function rule(){
         if(Request::instance()->isAjax()){
-            $rulelist=getRuleList();
+            $Auth_rule=new AuthRule();
+            $rulelist=$Auth_rule->getRuleList();
             return json($rulelist);
         }
         return view('rule');
@@ -42,7 +45,7 @@ class Index extends \think\Controller
             if(empty($rule['title'])){
                return array('status'=>'erro','msg'=>'更新失败,权限名不能为空');
             }
-            $Auth_rule=Db::name('Auth_rule');
+            $Auth_rule=new AuthRule();
             $result=$Auth_rule->update($rule);
             if($result===false){
                 return array('status'=>'erro','msg'=>'更新失败');
@@ -59,7 +62,7 @@ class Index extends \think\Controller
         if($rule['status']==='true'){
             $rule['status']=1;
         }
-        $Auth_rule=Db::name('Auth_rule');
+        $Auth_rule=new AuthRule();
         $result=$Auth_rule->update($rule);
         if($result===false){
             return array('status'=>'erro','msg'=>'状态修改失败');
@@ -76,10 +79,10 @@ class Index extends \think\Controller
             if(empty($rule['title'])){
                 return array('status'=>'error','msg'=>'添加失败,规则名不能为空！');
             }
-            $Auth_rule=Db::name('Auth_rule');
-            $result=$Auth_rule->insert($rule);
+            $Auth_rule=new AuthRule();
+            $result=$Auth_rule->data($rule)->save();
             if($result){
-                $rulelist=getRuleList();
+                $rulelist=$Auth_rule->getRuleList();
                 return array('status'=>'success','data'=>$rulelist);
             }
             return array('status'=>'erro','msg'=>'添加失败');
@@ -90,15 +93,16 @@ class Index extends \think\Controller
     //用户组
     public function group(){
         if(Request::instance()->isAjax()){
-            $arr=getGroupList();
+            $Auth_group=new AuthGroup();
+            $arr=$Auth_group->getGroupList();
             return json($arr);
         }
         return view('group');
     }
     //修改用户组权限
     public function groupUp(){
-        $Auth_group=db('Auth_group');
-        $Auth_rule=db('Auth_rule');
+        $Auth_group=new AuthGroup();
+        $Auth_rule=new AuthRule();
         if(Request::instance()->isAjax()) {
             $group=input('group/a');//获取客户端传过来的参数
             $rulelist = $Auth_rule->select();//获取权限列表
@@ -135,8 +139,8 @@ class Index extends \think\Controller
     }
     //添加用户组
     public function groupAdd(){
-        $Auth_group=db('Auth_group');
-        $Auth_rule=db('Auth_rule');
+        $Auth_group=new AuthGroup();
+        $Auth_rule=new AuthRule();
         if(Request::instance()->isAjax()) {
             $group=input('group/a');//获取客户端传过来的参数
             $rulelist = $Auth_rule->select();//获取权限列表
@@ -148,19 +152,34 @@ class Index extends \think\Controller
                 }
             }
             $newgroup['rules']=$str;
-            if($Auth_group->insert($newgroup)) {
-                $arr=getGroupList();//添加成功刷新页面
+            if($Auth_group->data($newgroup)->save()) {
+                $arr=$Auth_group->getGroupList();//添加成功刷新页面
                 return array('status'=>'success','data'=>$arr);
             }
             return array('status'=>'error','msg'=>'添加失败！');
         }
     }
-
+    //删除用户组
+    public function groupDelete(){
+        if(Request::instance()->isAjax()) {
+            $group = input('group/a');//获取客户端传过来的参数
+            if(!empty($group['id'])){
+                AuthGroup::destroy($group['id']);
+                $Auth_group=new AuthGroup;
+                $arr=$Auth_group->getGroupList();//添加成功刷新页面
+                return array('status'=>'success','data'=>$arr);
+            }
+            else{
+                return array('status'=>'error','msg'=>'删除失败，数据为空！');
+            }
+        }
+    }
 
     //用户
     public function user(){
         if(Request::instance()->isAjax()){
-            $arr=getUserList();
+            $User=new User();
+            $arr=$User->getUserList();
             return json($arr);
         }
         return view('user');
