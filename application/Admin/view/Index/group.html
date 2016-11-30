@@ -11,7 +11,7 @@
 	<script src="__JS__/home/bootStrap/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
 		var upGroupURL='{:Url("Admin/Index/groupUp","","")}',upGroupStatusURL='{:Url("Admin/Index/groupStatusUp","","")}',addGroupURL='{:Url("Admin/Index/groupAdd","","")}';
-		var indexURL='{:Url("Admin/Index/group","","")}',geturlURL='{:Url("Home/Index/getUrl","","")}';
+		var indexURL='{:Url("Admin/Index/group","","")}',deleteURL='{:Url("Admin/Index/groupDelete","","")}';
 	</script>
 {/block}
 {block name="content"}
@@ -54,8 +54,9 @@
 							  </td>
 							  <td class="col-md-2" v-bind:group_id="todo.id">
 								  <div class="row">
-									  <div class="col-md-5"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" >编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
-									  <div class="col-md-7"><button v-on:click="setstatus(index,todo.status)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>
+									  <div class="col-md-4"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" >编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
+									  <div class="col-md-4"><button v-on:click="setstatus(index,todo.status)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" >{{todo.status|getStatusBtn}}</button></div>
+									  <div class="col-md-4"><button v-on:click="delete_group_btn(index)"  type="button" class="edit btn-sm btn-danger"  data-toggle="modal">删除</button></div>
 								  </div>
 							  </td>
 						  </tr>
