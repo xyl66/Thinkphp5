@@ -197,7 +197,7 @@ var vm=new Vue({
             }
         },
         editpwd:function(event){
-            if(event.target.disabled){
+            if(event.target.disabled){ //不能选中时弹出是否确认修改框
                 $.alert({
                     title: '课程签到系统',
                     type: 'red',
