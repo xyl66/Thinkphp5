@@ -30,8 +30,12 @@ class Index extends \think\Controller
             $course_time=input('post.course_time');;
             $course_time_start=$course_time-8*3600;
             $course_time_end=$course_time+16*3600;
-            $map['course_time_start']=array(array('egt',$course_time_start),array('elt',$course_time_end));
-            $course=$Course->where($map)->select();
+            $map['a.course_time_start']=array(array('egt',$course_time_start),array('elt',$course_time_end));
+            $join = [
+                ['tp_sign b','a.course_id=b.course_id','LEFT'],
+            ];
+            $course=$Course->alias('a')->join($join)->where($map)->field('a.*,count(b.course_id) AS sign_count')->group('a.course_id')->select();
+            $t=$Course->getLastsql();
             return json($course);
         }
         $this->assign('course_list',$course_list);
@@ -53,7 +57,7 @@ class Index extends \think\Controller
             $course['course_time_start']=strpos($course['course_time_start'],'-')!==false?strtotime($course['course_time_start']):$course['course_time_start'];
             $course['course_time_end']=strpos($course['course_time_end'],'-')!==false?strtotime($course['course_time_end']):$course['course_time_end'];
             $Course=new Course;
-            $result=$Course->save($course,['course_id'=>intval($course['course_id'])]);
+            $result=$Course->allowField(true)->save($course,['course_id'=>intval($course['course_id'])]);
             if($result===false){
                 return array('status'=>'erro','msg'=>'更新失败');
             }
@@ -150,6 +154,7 @@ class Index extends \think\Controller
         }
         return array('status'=>'success','url'=>$url);
     }
+    //导出签到列表
     public function export_file_excel(){
         $request = Request::instance();
         if($request->isAjax()){
@@ -164,5 +169,15 @@ class Index extends \think\Controller
         }
         $course_id=input('course_id');
         exprot_file($course_id);
+    }
+    //获取签到列表
+    public function getSignList(){
+        $cid=input('courseid');
+        if(empty($cid)){
+            return array('status'=>'erro','msg'=>'数据不存在');
+        }
+        $Sign=new Sign();
+        $signlist=$Sign->where(['course_id'=>$cid])->select();
+        return array('status'=>'success','data'=>$signlist);
     }
 }

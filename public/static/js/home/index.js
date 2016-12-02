@@ -80,14 +80,44 @@ Vue.filter('after_today',function(datetime){
     return datetime>=course_time?true:false;
 })
 //编辑组件
-Vue.component('my-component', {
-    template: '<div>A custom component!</div>'
+var CourseList=Vue.extend({
+    props: ['ctodos'],
+    template: '<table class="table table-hover table-bordered table-striped">'+
+    '<thead>'+
+    '<tr class="warning">'+
+    '<th>序号</th>'+
+    '<th>课程信息</th>'+
+    '<th>课程日期 <span class="label label-default"></span></th>'+
+    '<th>地点</th>'+
+    '<th>操作</th>'+
+    '</tr>'+
+    '</thead>'+
+    '<tbody>'+
+    '<tr  v-for="(index,todo) in ctodos|filterBy search " >'+
+    '<th scope="row" class="col-md-1">{{index+1}}</th>'+
+    '<td class="col-md-3">'+
+    '<a v-on:click="geturl(index)">{{todo.name}}</a>'+
+    '<span v-if="todo.sign_count" class="label label-success">已签{{todo.sign_count}}</span>'+
+    '</td>'+
+    '<td class="col-md-3">{{todo.course_time_start|unix_to_datetime}}至{{todo.course_time_end|unix_to_datetime}} </td>'+
+    '<td class="col-md-3">{{todo.course_place}}</td>'+
+    '<td class="col-md-2" v-bind:course_id="todo.course_id">'+
+    '<div class="row">'+
+    '<div class="col-md-4"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" v-show="todo.course_time_start|after_today">编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->'+
+    '<div class="col-md-4"><button v-on:click="qrcode(index)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" data-target="#myModal2">导出二维码</button></div>'+
+    '<div class="col-md-4"><button v-on:click="export_file(index)" class="exportexcel btn-sm btn-success warning_3" v-show="todo.course_time_start|before_today">导出签到表</button></div>'+
+    '</div>'+
+    '</td>'+
+    '</tr>'+
+    '</tbody>'+
+    '</table>',
 })
 var vm=new Vue({
     el: '#app',
     data: {
         selectdate: parseInt(new Date().valueOf()/1000),
         search:"",//搜索
+        SignList:{},
         currentPage:1,
         pageSize:10,//每页显示个数
         isget:0,
@@ -420,8 +450,47 @@ var vm=new Vue({
                     }
                 }
             });
-        }
-    }
+        },
+        getSignList:function(index_id){
+            index_id=this.currentPage>1?(this.currentPage-1)*10+index_id:index_id;
+            var course=this.filteredList[index_id];
+            $.confirm({
+                title:'课程签到系统',
+                content: function () {
+                    var self = this;
+                    return $.ajax({
+                        url: getSignListURL,
+                        type: 'post',
+                        dataType:'json',
+                        data: {
+                            'courseid': course.course_id,
+                        },
+                    }).done(function (result) {
+                        if(result.status=='success'){
+                            vm.$data['SignList']=result.data;
+                            self.setContent('<p>温馨提示：</p>');
+                            self.setContentAppend('<p style="padding-left: 56px;">查看签到信息</p>');
+                        }
+                        else{
+                            self.setContent('<p>温馨提示：</p>');
+                            self.setContentAppend('<p style="padding-left: 56px;">获取签到地址失败：'+result.msg+'</p>');
+                        }
+                    }).fail(function () {
+                        self.setContent('<p>温馨提示：</p>');
+                        self.setContentAppend('<p style="padding-left: 56px;">服务器响应失败.</p>');
+                    });
+                },
+                buttons: {
+                    '确定':{
+                        btnClass: 'btn-info',
+                        action:function () {
+                            $('#showSign').click();
+                        }
+                    }
+                }
+            });
+        },
+    },
 })
 
 
