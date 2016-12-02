@@ -173,6 +173,8 @@ var vm=new Vue({
                             },
                         }).done(function (result) {
                             if(result.status=='success'){
+                                vm.$data['userlist'] = result.data.userlist;
+                                vm.$data['grouplist'] = result.data.grouplist;
                                 self.setContent('<p>温馨提示：</p>');
                                 self.setContentAppend('<p style="padding-left: 56px;">保存成功！</p>');
                             }

@@ -184,20 +184,24 @@ class Index extends \think\Controller
         }
         return view('user');
     }
-    //更该用户
+    //更该用户信息
     public function userUp(){
         if(Request::instance()->isAjax()){
             $user=input('user/a');
+            $admin_user = session('ke_user_auth');
             Db::startTrans();
             try{
                 Db::name('Auth_group_access')->where(array('uid'=>$user['admin_id']))->update(array('group_id'=>$user['group_id']));
-                Db::name('User')->where(array('admin_id'=>$user['admin_id']))->update(array('password'=>$user['password']));
+                $data=array('password'=>$user['password'],'handler'=>$admin_user['account'],'update_time'=>time());
+                Db::name('User')->where(array('admin_id'=>$user['admin_id']))->update($data);
                 Db::commit();
-                return array('status'=>'success','保存成功！');
+                $User=new User();
+                $arr=$User->getUserList();
+                return array('status'=>'success','data'=>$arr);
             } catch (\Exception $e) {
                 // 回滚事务
                 Db::rollback();
-                return array('status'=>'error','保存失败！');
+                return array('status'=>'error','msg'=>'保存失败！');
             }
         }
     }

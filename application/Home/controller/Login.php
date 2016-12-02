@@ -96,6 +96,7 @@ class Login extends \think\Controller
             if($account){
                 return array('status'=>'error','msg'=>'用户名已存在！');
             }
+            $user['handler']=$isad['account'];
             $user['creat_time']=time();
             $data['group_id']=$user['group'];
             unset($user['group']);
@@ -139,6 +140,8 @@ class Login extends \think\Controller
                 return array('status'=>'error','msg'=>'新密码不一致！');
             }
             $data['password']=$user['npassword1'];
+            $data['handler']=$acount['account'];
+            $data['update_time']=time();
             $uid=$User->save($data,array('admin_id'=>$aid));
             if($uid){
                 return array('status'=>'success','msg'=>'修改成功！');
