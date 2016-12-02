@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2016-11-25 17:57:41
+Date: 2016-12-02 10:34:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +42,7 @@ CREATE TABLE `tp_auth_group` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `rules` char(80) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_auth_group
@@ -51,6 +51,7 @@ INSERT INTO `tp_auth_group` VALUES ('1', '账号管理员', '1', '1,2,3,6,7,8,9,
 INSERT INTO `tp_auth_group` VALUES ('2', '课程管理员', '1', '1,3,6,7,8,9,10,');
 INSERT INTO `tp_auth_group` VALUES ('3', '课程查看员', '1', '1,6,8,9,10,');
 INSERT INTO `tp_auth_group` VALUES ('4', '新加组', '1', '1,6,');
+INSERT INTO `tp_auth_group` VALUES ('7', '新加组2', '1', '1,');
 
 -- ----------------------------
 -- Table structure for tp_auth_group_access
@@ -67,7 +68,7 @@ CREATE TABLE `tp_auth_group_access` (
 -- ----------------------------
 -- Records of tp_auth_group_access
 -- ----------------------------
-INSERT INTO `tp_auth_group_access` VALUES ('1', '4');
+INSERT INTO `tp_auth_group_access` VALUES ('1', '2');
 INSERT INTO `tp_auth_group_access` VALUES ('2', '1');
 INSERT INTO `tp_auth_group_access` VALUES ('3', '3');
 INSERT INTO `tp_auth_group_access` VALUES ('4', '3');
@@ -78,6 +79,7 @@ INSERT INTO `tp_auth_group_access` VALUES ('8', '3');
 INSERT INTO `tp_auth_group_access` VALUES ('9', '2');
 INSERT INTO `tp_auth_group_access` VALUES ('10', '3');
 INSERT INTO `tp_auth_group_access` VALUES ('11', '3');
+INSERT INTO `tp_auth_group_access` VALUES ('12', '3');
 
 -- ----------------------------
 -- Table structure for tp_auth_rule
@@ -119,17 +121,17 @@ CREATE TABLE `tp_course` (
   `course_place` varchar(255) DEFAULT NULL COMMENT '上课地点',
   `course_sign_id` bigint(19) unsigned DEFAULT NULL COMMENT '课程验证号',
   PRIMARY KEY (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_course
 -- ----------------------------
-INSERT INTO `tp_course` VALUES ('1', '天天向上', '1478161626', '1478131200', null, null, '1542');
+INSERT INTO `tp_course` VALUES ('1', '天天向上', '1478161626', '1478131200', null, null, '1334');
 INSERT INTO `tp_course` VALUES ('2', '新课程1', '1478161626', '1478217600', null, null, '2254');
 INSERT INTO `tp_course` VALUES ('3', '课程1', '1478229768', '1478131200', null, null, '3980');
 INSERT INTO `tp_course` VALUES ('4', '课程2', '1478229768', '1478131200', null, null, '0');
-INSERT INTO `tp_course` VALUES ('5', '课程3', '1478229768', '1478131200', null, null, '0');
-INSERT INTO `tp_course` VALUES ('6', '课程4', '1478229768', '1478131200', null, null, '0');
+INSERT INTO `tp_course` VALUES ('5', '课程3', '1478229768', '1478131200', null, null, '5807');
+INSERT INTO `tp_course` VALUES ('6', '课程4', '1478229768', '1478131200', null, null, '6212');
 INSERT INTO `tp_course` VALUES ('7', '课程5', '1478229768', '1478131200', null, null, '7751');
 INSERT INTO `tp_course` VALUES ('8', '课程6', '1478229768', '1478131200', null, null, '8834');
 INSERT INTO `tp_course` VALUES ('9', '课程7', '1478229768', '1478131200', null, null, '9764');
@@ -184,6 +186,10 @@ INSERT INTO `tp_course` VALUES ('57', '新建课程2016-11-21', '1479700816', '1
 INSERT INTO `tp_course` VALUES ('58', 'xi', '1479708813', '1479708600', '1479709800', 'xi', '58245');
 INSERT INTO `tp_course` VALUES ('59', 'xin', '1479710465', '1479710100', '1479711600', 'li', null);
 INSERT INTO `tp_course` VALUES ('60', '22日上午课程', '1479781714', '1479798900', '1479800400', 'win7', '60104');
+INSERT INTO `tp_course` VALUES ('61', 'php7', '1480315188', '1480323900', '1480325400', '财会资讯办公室', '61363');
+INSERT INTO `tp_course` VALUES ('62', 'test', '1480315538', '1480474500', '1480492500', 'test', '62173');
+INSERT INTO `tp_course` VALUES ('63', '使用模型新增', '1480324260', '1480324200', '1480325400', 'win7', '63279');
+INSERT INTO `tp_course` VALUES ('64', 'test', '1480570425', '1480586400', '1480597200', '台北虎躍阿基米德', '64189');
 
 -- ----------------------------
 -- Table structure for tp_sign
@@ -199,7 +205,7 @@ CREATE TABLE `tp_sign` (
   `sign_ip` varchar(255) DEFAULT NULL COMMENT '登陆ip',
   `sign_place` varchar(255) DEFAULT NULL COMMENT '签到地点',
   PRIMARY KEY (`sign_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_sign
@@ -222,6 +228,8 @@ INSERT INTO `tp_sign` VALUES ('15', '51', '1479201136', 'F3233253', '向玉龙',
 INSERT INTO `tp_sign` VALUES ('16', '53', '1479284089', 'F3233253', '向玉龙', '123', '0.0.0.0', '123');
 INSERT INTO `tp_sign` VALUES ('17', '60', '1479782352', 'F3233253', '向玉龙', '财会资讯', '127.0.0.1', 'D13办公室');
 INSERT INTO `tp_sign` VALUES ('18', '60', '1479783189', 'F3210511', '雄哥', '财会咨询', '10.134.155.114', 'D13');
+INSERT INTO `tp_sign` VALUES ('19', '62', '1480474551', 'F3233253', '向玉龙', '财会资讯', '127.0.0.1', 'Win7');
+INSERT INTO `tp_sign` VALUES ('20', '64', '1480588568', 'f123', '123', '123', '10.130.2.251', '');
 
 -- ----------------------------
 -- Table structure for tp_user
@@ -232,20 +240,23 @@ CREATE TABLE `tp_user` (
   `account` varchar(64) NOT NULL COMMENT '登陆账号',
   `password` char(32) NOT NULL COMMENT '密码',
   `creat_time` int(10) unsigned DEFAULT NULL COMMENT '账号创建时间',
+  `handler` varchar(64) DEFAULT NULL COMMENT '编辑者',
+  `update_time` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_user
 -- ----------------------------
-INSERT INTO `tp_user` VALUES ('1', 'F3233253', '123', null);
-INSERT INTO `tp_user` VALUES ('2', 'admin', 'admin', null);
-INSERT INTO `tp_user` VALUES ('3', '123', '123', null);
-INSERT INTO `tp_user` VALUES ('4', 'F123', '123456', null);
-INSERT INTO `tp_user` VALUES ('5', 'F123456', '123', '1479785044');
-INSERT INTO `tp_user` VALUES ('6', 'F1234567', '123', '1479785090');
-INSERT INTO `tp_user` VALUES ('7', 'F123456789', '123', '1479868483');
-INSERT INTO `tp_user` VALUES ('8', 'F11', '123', '1479963326');
-INSERT INTO `tp_user` VALUES ('9', 'hruser', '123456', '1479977182');
-INSERT INTO `tp_user` VALUES ('10', 'F10', '123', '1479981696');
-INSERT INTO `tp_user` VALUES ('11', 'F12', '123', '1479981725');
+INSERT INTO `tp_user` VALUES ('1', 'F3233253', '123456', null, null, null);
+INSERT INTO `tp_user` VALUES ('2', 'admin', 'admin', null, null, null);
+INSERT INTO `tp_user` VALUES ('3', '123', '123', null, null, null);
+INSERT INTO `tp_user` VALUES ('4', 'F123', '123456', null, null, null);
+INSERT INTO `tp_user` VALUES ('5', 'F123456', '123', '1479785044', null, null);
+INSERT INTO `tp_user` VALUES ('6', 'F1234567', '123', '1479785090', null, null);
+INSERT INTO `tp_user` VALUES ('7', 'F123456789', '123', '1479868483', null, null);
+INSERT INTO `tp_user` VALUES ('8', 'F11', '123', '1479963326', null, null);
+INSERT INTO `tp_user` VALUES ('9', 'hruser', '123456', '1479977182', null, null);
+INSERT INTO `tp_user` VALUES ('10', 'F10', '123', '1479981696', null, null);
+INSERT INTO `tp_user` VALUES ('11', 'F12', '123', '1479981725', null, null);
+INSERT INTO `tp_user` VALUES ('12', 'xinjian', '12345', '1480326643', 'admin', '1480645107');
