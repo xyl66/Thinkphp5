@@ -59,7 +59,7 @@ new Vue({
                     }
                     else {
                         $.alert({
-                            title: 'warn',
+                            title: '课程签到系统',
                             type: 'red',
                             content: result.msg,
                         });
