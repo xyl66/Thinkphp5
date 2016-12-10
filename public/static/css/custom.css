@@ -10,7 +10,7 @@
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
+        margin: 0 0 0 150px;
         /*--padding: 0 30px;--*/
         border-left: 1px solid #e7e7e7;
     }
@@ -97,7 +97,7 @@
     border-bottom: 0!important;
 }
 
-.sidebar .nav-second-level li a {
+.sidebar.sidebar .nav-second-level li a {
     padding-left: 37px;
 }
 
@@ -109,7 +109,7 @@
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 250px;
+        width: 150px;
         margin-top: 51px;
     }
 

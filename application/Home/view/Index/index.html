@@ -24,11 +24,11 @@
 			<input id="isget" hidden v-model="isget">
 			<button data-toggle="modal" data-target="#myModal3" hidden id="showSign"></button>
 		    <div class="col_1">
-				<div class="col-md-12 span_7">
+				<div class="col-md-4 span_7">
 				  <div class="cal1 cal_2"><div class="clndr"><div class="clndr-controls"><div class="clndr-control-button"><p class="clndr-previous-button">previous</p></div><div class="month">July 2015</div><div class="clndr-control-button rightalign"><p class="clndr-next-button">next</p></div></div><table class="clndr-table" border="0" cellspacing="0" cellpadding="0"><thead><tr class="header-days"><td class="header-day">S</td><td class="header-day">M</td><td class="header-day">T</td><td class="header-day">W</td><td class="header-day">T</td><td class="header-day">F</td><td class="header-day">S</td></tr></thead><tbody><tr><td class="day adjacent-month last-month calendar-day-2015-06-28"><div class="day-contents">28</div></td><td class="day adjacent-month last-month calendar-day-2015-06-29"><div class="day-contents">29</div></td><td class="day adjacent-month last-month calendar-day-2015-06-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-01"><div class="day-contents">1</div></td><td class="day calendar-day-2015-07-02"><div class="day-contents">2</div></td><td class="day calendar-day-2015-07-03"><div class="day-contents">3</div></td><td class="day calendar-day-2015-07-04"><div class="day-contents">4</div></td></tr><tr><td class="day calendar-day-2015-07-05"><div class="day-contents">5</div></td><td class="day calendar-day-2015-07-06"><div class="day-contents">6</div></td><td class="day calendar-day-2015-07-07"><div class="day-contents">7</div></td><td class="day calendar-day-2015-07-08"><div class="day-contents">8</div></td><td class="day calendar-day-2015-07-09"><div class="day-contents">9</div></td><td class="day calendar-day-2015-07-10"><div class="day-contents">10</div></td><td class="day calendar-day-2015-07-11"><div class="day-contents">11</div></td></tr><tr><td class="day calendar-day-2015-07-12"><div class="day-contents">12</div></td><td class="day calendar-day-2015-07-13"><div class="day-contents">13</div></td><td class="day calendar-day-2015-07-14"><div class="day-contents">14</div></td><td class="day calendar-day-2015-07-15"><div class="day-contents">15</div></td><td class="day calendar-day-2015-07-16"><div class="day-contents">16</div></td><td class="day calendar-day-2015-07-17"><div class="day-contents">17</div></td><td class="day calendar-day-2015-07-18"><div class="day-contents">18</div></td></tr><tr><td class="day calendar-day-2015-07-19"><div class="day-contents">19</div></td><td class="day calendar-day-2015-07-20"><div class="day-contents">20</div></td><td class="day calendar-day-2015-07-21"><div class="day-contents">21</div></td><td class="day calendar-day-2015-07-22"><div class="day-contents">22</div></td><td class="day calendar-day-2015-07-23"><div class="day-contents">23</div></td><td class="day calendar-day-2015-07-24"><div class="day-contents">24</div></td><td class="day calendar-day-2015-07-25"><div class="day-contents">25</div></td></tr><tr><td class="day calendar-day-2015-07-26"><div class="day-contents">26</div></td><td class="day calendar-day-2015-07-27"><div class="day-contents">27</div></td><td class="day calendar-day-2015-07-28"><div class="day-contents">28</div></td><td class="day calendar-day-2015-07-29"><div class="day-contents">29</div></td><td class="day calendar-day-2015-07-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-31"><div class="day-contents">31</div></td><td class="day adjacent-month next-month calendar-day-2015-08-01"><div class="day-contents">1</div></td></tr></tbody></table></div></div>
 				</div>
-				<div class="col-md-12 span_3">
-					<nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color: #ffc107;border-color: #fdd835;">
+				<div class="col-md-8 span_3">
+					<nav class="top1 navbar navbar-default" role="navigation" style="margin-bottom: 0;background-color: #ffc107;border-color: #fdd835;">
 						<div class="navbar-form navbar-left">
 							<input type="text" class="form-control search" value="" v-model="search"  placeholder="请输入课程名进行检索">
 							<span class="label label-primary">{{filteredList.length }}条</span>
@@ -39,9 +39,9 @@
 						  <thead>
 						  <tr class="warning">
 							  <th>序号</th>
-							  <th>课程信息</th>
+							  <th>课程名称</th>
 							  <th>课程日期 <span class="label label-default">{{selectdate|getWeek}}</span></th>
-							  <th>地点</th>
+							  <th>主会场</th>
 							  <th>操作</th>
 						  </tr>
 						  </thead>
@@ -60,9 +60,9 @@
 							  </td>
 							  <td class="col-md-2" v-bind:course_id="todo.course_id">
 								  <div class="row">
-								  <div class="col-md-4"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" v-show="todo.course_time_start|after_today">编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
-								  <div class="col-md-4"><button v-on:click="qrcode(index)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" data-target="#myModal2">导出二维码</button></div>
-								  <div class="col-md-4"><button v-on:click="export_file(index)" class="exportexcel btn-sm btn-success warning_3" v-show="todo.course_time_start|before_today">导出签到表</button></div>
+								  <div class="col-md-12"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" v-show="todo.course_time_start|after_today">编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
+								  <div class="col-md-12"><button v-on:click="qrcode(index)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" data-target="#myModal2">导出二维码</button></div>
+								  <div class="col-md-12"><button v-on:click="export_file(index)" class="exportexcel btn-sm btn-success warning_3" v-show="todo.course_time_start|before_today">导出签到表</button></div>
 								  </div>
 							  </td>
 						  </tr>

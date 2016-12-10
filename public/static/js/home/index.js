@@ -119,7 +119,7 @@ var vm=new Vue({
         search:"",//搜索
         SignList:{},
         currentPage:1,
-        pageSize:10,//每页显示个数
+        pageSize:5,//每页显示个数
         isget:0,
         course:{},
         todos:{},

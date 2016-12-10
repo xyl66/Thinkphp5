@@ -36,19 +36,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="login-logo">
     <a href="#"><img src="__IMG__/logo.png" alt=""/></a>
   </div>
-  <h2 class="form-heading">login</h2>
+  <h2 class="form-heading">登陆</h2>
   <div class="app-cam" id="lgapp">
 	  <form>
           <input hidden v-model="rmpwd" id="rmpwd">
           <input type="text" v-model="user.account" class="text" placeholder="请输入用户名">
           <input type="password" v-model="user.pwd" placeholder="请输入密码">
           <div class="switch" data-on="success" data-off="warning" style="float: right;margin-bottom: 1em">
+              <span>记住密码</span>
               <input type="checkbox" name="my-checkbox" data-on-color="success" data-off-color="warning" v-bind:checked="rmpwd|getstatus"/>
           </div>
-          <div class="submit"><input v-on:click="login" type="button"  value="Login"></div>
+          <div class="submit"><input v-on:click="login" type="button"  value="登陆"></div>
 		<ul class="new">
-			<li class="new_left"><p><a href="#" v-on:click="fprgotpwd">Forgot Password ?</a></p></li>
-			<li class="new_right"><p class="sign">New here ?<a href="#" v-on:click="regit"> Sign Up</a></p></li>
+			<li class="new_left"><p><a href="#" v-on:click="fprgotpwd">忘记密码?</a></p></li>
+			<li class="new_right"><p class="sign">新用户?<a href="#" v-on:click="regit">注册</a></p></li>
 			<div class="clearfix"></div>
 		</ul>
 	</form>
