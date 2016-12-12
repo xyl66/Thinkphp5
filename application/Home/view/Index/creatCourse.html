@@ -30,10 +30,15 @@
                   <div hidden  class="alert alert-warning warntime" >警告！结束时间不能小于开始时间。</div>
             </div>
              <div class="form-group">
-                  <label class="control-label">地点：</label>
+                  <label class="control-label">主会场：</label>
                   <input type="text" v-on:focus="warn.place=0" name="courseplace" v-model="course.course_place"  class="form-control1 " required="">
-                  <div v-show="warn.place" class="coursewarn alert alert-warning">警告！课程地点不能为空。</div>
+                  <div v-show="warn.place" class="coursewarn alert alert-warning">警告！主会场不能为空。</div>
              </div>
+              <div class="form-group">
+                  <label class="control-label">主讲人：</label>
+                  <input type="text" v-on:focus="warn.speaker=0"  v-model="course.course_speaker"  class="form-control1 " required="">
+                  <div v-show="warn.speaker" class="coursewarn alert alert-warning">警告！主讲人不能为空。</div>
+              </div>
             <div class="form-group">
               <button type="button" v-on:click="check_null" class="btn btn-primary">Submit</button>
               <button type="reset" class="btn btn-default">Reset</button>

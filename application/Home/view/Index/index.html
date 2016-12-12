@@ -42,28 +42,30 @@
 							  <th>课程名称</th>
 							  <th>课程日期 <span class="label label-default">{{selectdate|getWeek}}</span></th>
 							  <th>主会场</th>
+							  <th>主讲人</th>
 							  <th>操作</th>
 						  </tr>
 						  </thead>
 						  <tbody>
 						  <tr  v-for="(index,todo) in todos|filterBy search in 'name'" >
 							  <th scope="row" class="col-md-1">{{index+1}}</th>
-							  <td class="col-md-3">
+							  <td class="col-md-2">
 								  <a v-on:click="geturl(index)">{{todo.name}}</a>
 								  <span v-if="todo.sign_count" v-on:click="getSignList(index)" class="label label-success">已签{{todo.sign_count}}</span>
 							  </td>
 							  <td class="col-md-3">
 								  {{todo.course_time_start|unix_to_datetime}}至{{todo.course_time_end|unix_to_datetime}}
 							  </td>
-							  <td class="col-md-3">
+							  <td class="col-md-2">
 								  {{todo.course_place}}
 							  </td>
+							  <td class="col-md-2">
+								  {{todo.course_speaker}}
+							  </td>
 							  <td class="col-md-2" v-bind:course_id="todo.course_id">
-								  <div class="row">
 								  <div class="col-md-12"><button v-on:click="setvalue(index)"  type="button" class="edit btn-sm btn-info"  data-toggle="modal" data-target="#myModal" v-show="todo.course_time_start|after_today">编辑</button></div> <!--v-show="todo.course_time_start|after_today"-->
 								  <div class="col-md-12"><button v-on:click="qrcode(index)" class="exportqrcode btn-sm btn-primary" data-toggle="modal" data-target="#myModal2">导出二维码</button></div>
 								  <div class="col-md-12"><button v-on:click="export_file(index)" class="exportexcel btn-sm btn-success warning_3" v-show="todo.course_time_start|before_today">导出签到表</button></div>
-								  </div>
 							  </td>
 						  </tr>
 						  </tbody>

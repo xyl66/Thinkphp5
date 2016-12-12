@@ -3,87 +3,92 @@
 {block name="headjs"}
 <!-- Bootstrap Core JavaScript -->
 <script src="__JS__/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        var signURL='{:Url("Home/Sign/sign","","")}';
-    </script>
+<script type="text/javascript">
+    var signURL = '{:Url("Home/Sign/sign","","")}';
+</script>
 {/block}
 {block name="content"}
 <div id="wrapper">
-     <!-- Navigation -->
-        <div id="page-wrapper">
+    <!-- Navigation -->
+    <div id="page-wrapper">
         <div class="col-md-12 graphs">
-	   <div class="xs">
-  	    <h3>{$course_name}</h3>
-  	        <div class="well1 white" id="signApp">
-                <form action="" class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern" novalidate="novalidate" ng-submit="submit()">
-                    <input name="cid" hidden value={$course_id} v-model="sign.course_id">
+            <div class="xs">
+                <h3>{$course_name}<span class="label label-default"><label class="control-label">主讲人：{$course_speaker}</label></span></h3>
+                <div class="well1 white" id="signApp">
+                    <form action=""
+                          class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern"
+                          novalidate="novalidate" ng-submit="submit()">
+                        <input name="cid" hidden value={$course_id} v-model="sign.course_id">
                         <fieldset>
-                        <div class="form-group">
-                          <label class="control-label">课程时间</label>
-                          <input disabled type="text" class="form-control1" value="{$course_time.start}至{$course_time.end}">
-                            <input  hidden value="{$course_time.start}" v-model="course_time.start">
-                            <input  hidden value="{$course_time.end}" v-model="course_time.end">
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label">工号</label>
-                          <input type="text" class="form-control1"  v-model="sign.user_id" required="">
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label">姓名</label>
-                          <input type="text" class="form-control1"  v-model="sign.user_name" required="">
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label">部门</label>
-                          <input type="text" class="form-control1"  v-model="sign.user_department" required="">
-                        </div>
-                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label">课程时间</label>
+                                <input disabled type="text" class="form-control1"
+                                       value="{$course_time.start}至{$course_time.end}">
+                                <input hidden value="{$course_time.start}" v-model="course_time.start">
+                                <input hidden value="{$course_time.end}" v-model="course_time.end">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">工号</label>
+                                <input type="text" class="form-control1" v-model="sign.user_id" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">姓名</label>
+                                <input type="text" class="form-control1" v-model="sign.user_name" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">部门</label>
+                                <input type="text" class="form-control1" v-model="sign.user_department" required="">
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label">地点</label>
-                                <input type="text" class="form-control1"  v-model="sign.sign_place" required="">
-                        </div>
-                        <!--<div class="form-group">
-                          <label class="control-label">Number</label>
-                          <input type="text" class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched" ng-model="model.number" ng-pattern="/[0-9]/" required="">
-                          <p class="help-block hint-block">Numeric values from 0-***</p>
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label normal">Date</label>
-                          <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" required="">
-                        </div>
-                        <div class="form-group">
-                          <div class="checkbox1">
-                            <label>
-                              <input type="checkbox" ng-model="model.winner" required="" class="ng-invalid ng-invalid-required">
-                              Are you a winner?
-                            </label>
-                          </div>
-                        </div>
-                        <div class="form-group filled">
-                          <label class="control-label">Select</label>
-                          <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
-                            <option value="Select a pirate">Select a pirate</option>
-                            <option value="Monkey D. Luffy">Monkey D. Luffy</option>
-                            <option value="Roronoa Zoro">Roronoa Zoro</option>
-                            <option value="Tony Tony Chopper">Tony Tony Chopper</option>
-                            <option value="Nico Robin">Nico Robin</option>
-                            <option value="Bon Clay">Bon Clay</option>
-                          </select>
-                        </div>-->
-                        <div class="form-group">
-                          <button v-on:click="signsave" type="button" class="btn btn-primary" >签到</button>
-                          <button type="reset" class="btn btn-default">Reset</button>
-                        </div>
-                      </fieldset>
-                </form>
+                                <input type="text" class="form-control1" v-model="sign.sign_place" required="">
+                            </div>
+                            <!--<div class="form-group">
+                              <label class="control-label">Number</label>
+                              <input type="text" class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched" ng-model="model.number" ng-pattern="/[0-9]/" required="">
+                              <p class="help-block hint-block">Numeric values from 0-***</p>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label normal">Date</label>
+                              <input type="date" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" required="">
+                            </div>
+                            <div class="form-group">
+                              <div class="checkbox1">
+                                <label>
+                                  <input type="checkbox" ng-model="model.winner" required="" class="ng-invalid ng-invalid-required">
+                                  Are you a winner?
+                                </label>
+                              </div>
+                            </div>
+                            <div class="form-group filled">
+                              <label class="control-label">Select</label>
+                              <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select" required=""><option value="? undefined:undefined ?"></option>
+                                <option value="Select a pirate">Select a pirate</option>
+                                <option value="Monkey D. Luffy">Monkey D. Luffy</option>
+                                <option value="Roronoa Zoro">Roronoa Zoro</option>
+                                <option value="Tony Tony Chopper">Tony Tony Chopper</option>
+                                <option value="Nico Robin">Nico Robin</option>
+                                <option value="Bon Clay">Bon Clay</option>
+                              </select>
+                            </div>-->
+                            <div class="form-group">
+                                <button v-on:click="signsave" type="button" class="btn btn-primary">签到</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="copy_layout">
+                <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a
+                        href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
+                        href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
             </div>
         </div>
-    <div class="copy_layout">
-      <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-   </div>
-   </div>
-      </div>
-      <!-- /#page-wrapper -->
-   </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
 {/block}
 {block name="bodyjs"}
-    <script src="__JS__/home/Sign/sign.js"></script>
+<script src="__JS__/home/Sign/sign.js"></script>
 {/block}

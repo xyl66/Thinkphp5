@@ -19,12 +19,14 @@ new Vue({
             course_time_start: "",
             course_time_end:"",
             course_place:"",
+            course_speaker:"",
         },
         warn:{
             name:false,
             time_start:false,
             time_end:false,
             place:false,
+            speaker:false,
         },
     },
     methods:{
@@ -34,7 +36,8 @@ new Vue({
             this.warn.time_start=course.course_time_start.length<=0?true:false;
             this.warn.time_end=course.course_time_end.length<=0?true:false;
             this.warn.place=course.course_place.length<=0?true:false;
-            if(!this.warn.name&&!this.warn.time_start&&!this.warn.time_end&&!this.warn.place){
+            this.warn.speaker=course.course_speaker.length<=0?true:false;
+            if(!this.warn.name&&!this.warn.time_start&&!this.warn.time_end&&!this.warn.place&&!this.warn.speaker){
                 //$('form').submit();
                 $.confirm({
                     title:'课程签到系统',
