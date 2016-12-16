@@ -1,8 +1,8 @@
 <?php
-namespace app\Admin\controller;
-use app\Home\model\AuthGroup;
-use app\Home\model\AuthRule;
-use app\Home\model\User;
+namespace app\admin\controller;
+use app\home\model\AuthGroup;
+use app\home\model\AuthRule;
+use app\home\model\User;
 use think\Request;
 use think\Db;
 class Index extends \think\Controller

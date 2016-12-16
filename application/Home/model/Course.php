@@ -6,7 +6,7 @@
  * Time: 下午 04:45
  */
 
-namespace app\Home\model;
+namespace app\home\model;
 
 use think\Model;
 class Course extends Model

@@ -6,10 +6,10 @@
  * Time: 上午 10:55
  */
 
-namespace app\Home\controller;
-use app\Home\model\AuthGroup;
-use app\Home\model\AuthGroupAccess;
-use app\Home\model\User;
+namespace app\home\controller;
+use app\home\model\AuthGroup;
+use app\home\model\AuthGroupAccess;
+use app\home\model\User;
 use think\Db;
 use think\Request;
 class Login extends \think\Controller
@@ -38,7 +38,7 @@ class Login extends \think\Controller
             $time = $this->request->time();
             $auth = array('aid' => $admin['admin_id'], 'last_time' => $time,'account'=>$admin['account']);
             session('ke_user_auth', $auth);
-            return array('status' => 1, 'url' => Url('Home/Index/index'));
+            return array('status' => 1, 'url' => Url('home/index/index'));
         }
         if (is_login()) {
             $rurl=get_redirect_url();
@@ -46,7 +46,7 @@ class Login extends \think\Controller
                 redirect($rurl);
             }
             else {
-                $this->redirect('Index/index');
+                $this->redirect('index/index');
             }
         }
         return view();

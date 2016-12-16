@@ -6,7 +6,7 @@
  * Time: 上午 10:55
  */
 
-namespace app\Admin\controller;
+namespace app\admin\controller;
 use think\Db;
 use think\Request;
 class Login extends \think\Controller

@@ -6,8 +6,8 @@
  * Time: 上午 09:58
  */
 
-namespace app\Home\controller;
-use app\Home\model\Course;
+namespace app\home\controller;
+use app\home\model\Course;
 use think\Request;
 use think\Db;
 class Sign extends \think\Controller
@@ -39,7 +39,7 @@ class Sign extends \think\Controller
             if(time()<($course['course_time_start']-30*60)||time()>($course['course_time_end']+30*60)) {
                 return array('status'=>'error','msg'=>'超出课程签到时间范围：课程前30分钟至课程后30内');
             }
-            $Sign=new \app\Home\model\Sign();
+            $Sign=new \app\home\model\Sign();
             $signed=$Sign->where(array('course_id'=>$sign['course_id'],'user_id'=>$sign['user_id']))->find();
             if($signed==Null){
                 $sign['creat_time']=time();

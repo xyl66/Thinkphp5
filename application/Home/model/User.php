@@ -6,7 +6,7 @@
  * Time: 下午 05:42
  */
 
-namespace app\Home\model;
+namespace app\home\model;
 
 
 use think\Model;
