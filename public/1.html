@@ -1,525 +1,746 @@
+<!DOCTYPE html>
+<html>
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- </head>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+    <meta charset="UTF-8">
+    <title>系统发生错误</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <style>
+        /* Base */
+        body {
+            color: #333;
+            font: 16px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0 20px 20px;
+        }
+        h1{
+            margin: 10px 0 0;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 32px;
+        }
+        h2{
+            color: #4288ce;
+            font-weight: 400;
+            padding: 6px 0;
+            margin: 6px 0 0;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        h3{
+            margin: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        abbr{
+            cursor: help;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        a{
+            color: #868686;
+            cursor: pointer;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        .line-error{
+            background: #f8cbcb;
+        }
 
-<h1>本机php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>5.343 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>187.18</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>83.35 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    5</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   38</td><td bgcolor=white>  511</td><td bgcolor=white> 2308</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   38</td><td bgcolor=white>  511</td><td bgcolor=white> 2313</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        .echo table {
+            width: 100%;
+        }
 
-<h1>本机php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>5.070 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>197.26</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>87.84 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   36</td><td bgcolor=white>  488</td><td bgcolor=white> 1370</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   36</td><td bgcolor=white>  488</td><td bgcolor=white> 1373</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        .echo pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border: 0;
+            border-radius: 3px;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
 
-<h1>本机php5 缓存开启第一次访问</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>35.557 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>28.12</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>12.52 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>   26</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white> 1230</td><td bgcolor=white> 3466</td><td bgcolor=white> 7182</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white> 1230</td><td bgcolor=white> 3466</td><td bgcolor=white> 7208</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        .echo pre > pre {
+            padding: 0;
+            margin: 0;
+        }
+    
+        /* Exception Info */
+        .exception {
+            margin-top: 20px;
+        }
+        .exception .message{
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-bottom: 0 none;
+            line-height: 18px;
+            font-size:16px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
 
-<h1>本机php5 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>32.540 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>30.73</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>13.68 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    1</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white> 1662</td><td bgcolor=white> 3170</td><td bgcolor=white> 5093</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white> 1662</td><td bgcolor=white> 3170</td><td bgcolor=white> 5094</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        .exception .code{
+            float: left;
+            text-align: center;
+            color: #fff;
+            margin-right: 12px;
+            padding: 16px;
+            border-radius: 4px;
+            background: #999;
+        }
+        .exception .source-code{
+            padding: 6px;
+            border: 1px solid #ddd;
 
-<h1>本机php5 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>32.438 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>30.83</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>13.73 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    4</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white> 1714</td><td bgcolor=white> 3161</td><td bgcolor=white> 4471</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white> 1714</td><td bgcolor=white> 3161</td><td bgcolor=white> 4475</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+            background: #f9f9f9;
+            overflow-x: auto;
 
-<h1>本机php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>5.333 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>187.53</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>83.51 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>   23</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  230</td><td bgcolor=white>  509</td><td bgcolor=white> 1215</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  230</td><td bgcolor=white>  509</td><td bgcolor=white> 1238</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        }
+        .exception .source-code pre{
+            margin: 0;
+        }
+        .exception .source-code pre ol{
+            margin: 0;
+            color: #4288ce;
+            display: inline-block;
+            min-width: 100%;
+            box-sizing: border-box;
+        font-size:14px;
+            font-family: "Century Gothic",Consolas,"Liberation Mono",Courier,Verdana;
+            padding-left: 64px;
+        }
+        .exception .source-code pre li{
+            border-left: 1px solid #ddd;
+            height: 18px;
+            line-height: 18px;
+        }
+        .exception .source-code pre code{
+            color: #333;
+            height: 100%;
+            display: inline-block;
+            border-left: 1px solid #fff;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace{
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-top: 0 none;
+            line-height: 16px;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace ol{
+            margin: 12px;
+        }
+        .exception .trace ol li{
+            padding: 2px 4px;
+        }
+        .exception div:last-child{
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
 
-<h1>本机php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>7.537 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>132.68</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>59.09 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    1</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   35</td><td bgcolor=white>  475</td><td bgcolor=white> 3322</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   35</td><td bgcolor=white>  475</td><td bgcolor=white> 3323</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        /* Exception Variables */
+        .exception-var table{
+            width: 100%;
+            margin: 12px 0;
+            box-sizing: border-box;
+            table-layout:fixed;
+            word-wrap:break-word;            
+        }
+        .exception-var table caption{
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 0;
+        }
+        .exception-var table caption small{
+            font-weight: 300;
+            display: inline-block;
+            margin-left: 10px;
+            color: #ccc;
+        }
+        .exception-var table tbody{
+            font-size: 13px;
+            font-family: Consolas,"Liberation Mono",Courier,"微软雅黑";
+        }
+        .exception-var table td{
+            padding: 0 6px;
+            vertical-align: top;
+            word-break: break-all;
+        }
+        .exception-var table td:first-child{
+            width: 28%;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .exception-var table td pre{
+            margin: 0;
+        }
 
-<h1>本机php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>127.0.0.1</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>6.838 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>146.25</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>65.13 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    0</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   55</td><td bgcolor=white>  543</td><td bgcolor=white> 4472</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   55</td><td bgcolor=white>  543</td><td bgcolor=white> 4475</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        /* Copyright Info */
+        .copyright{
+            margin-top: 24px;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+        }
 
-<h1>服务器php7 缓存开启</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>1.646 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>607.47</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>270.52 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    4</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   42</td><td bgcolor=white>  153</td><td bgcolor=white>  207</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   42</td><td bgcolor=white>  154</td><td bgcolor=white>  211</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        /* SPAN elements with the classes below are added by prettyprint. */
+        pre.prettyprint .pln { color: #000 }  /* plain text */
+        pre.prettyprint .str { color: #080 }  /* string content */
+        pre.prettyprint .kwd { color: #008 }  /* a keyword */
+        pre.prettyprint .com { color: #800 }  /* a comment */
+        pre.prettyprint .typ { color: #606 }  /* a type name */
+        pre.prettyprint .lit { color: #066 }  /* a literal value */
+        /* punctuation, lisp open bracket, lisp close bracket */
+        pre.prettyprint .pun, pre.prettyprint .opn, pre.prettyprint .clo { color: #660 }
+        pre.prettyprint .tag { color: #008 }  /* a markup tag name */
+        pre.prettyprint .atn { color: #606 }  /* a markup attribute name */
+        pre.prettyprint .atv { color: #080 }  /* a markup attribute value */
+        pre.prettyprint .dec, pre.prettyprint .var { color: #606 }  /* a declaration; a variable name */
+        pre.prettyprint .fun { color: red }  /* a function name */
+    </style>
+</head>
+<body>
+    <div class="echo">
+            </div>
+        <div class="exception">
+    <div class="message">
+        
+            <div class="info">
+                <div>
+                    <h2>[0] <abbr title="Endroid\QrCode\Exceptions\FreeTypeLibraryMissingException">FreeTypeLibraryMissingException</abbr> in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/extend/Endroid/QrCode/QrCode.php line 1412">QrCode.php line 1412</a></h2>
+                </div>
+                <div><h1>QRCode: missing function &quot;imagettfbbox&quot;. Did you install the FreeType library?</h1></div>
+            </div>
+        
+    </div>
+	        <div class="source-code">
+            <pre class="prettyprint lang-php"><ol start="1403"><li class="line-1403"><code>                throw new ImageSizeTooLargeException('QRCode: image size too large');
+</code></li><li class="line-1404"><code>            }
+</code></li><li class="line-1405"><code>        }
+</code></li><li class="line-1406"><code>
+</code></li><li class="line-1407"><code>        $image_width = $this-&gt;size + $this-&gt;padding * 2;
+</code></li><li class="line-1408"><code>        $image_height = $this-&gt;size + $this-&gt;padding * 2;
+</code></li><li class="line-1409"><code>
+</code></li><li class="line-1410"><code>        if (!empty($this-&gt;label)) {
+</code></li><li class="line-1411"><code>            if (!function_exists('imagettfbbox')) {
+</code></li><li class="line-1412"><code>                throw new FreeTypeLibraryMissingException('QRCode: missing function &quot;imagettfbbox&quot;. Did you install the FreeType library?');
+</code></li><li class="line-1413"><code>            }
+</code></li><li class="line-1414"><code>            $font_box = imagettfbbox($this-&gt;label_font_size, 0, $this-&gt;label_font_path, $this-&gt;label);
+</code></li><li class="line-1415"><code>            $label_width = (int) $font_box[2] - (int) $font_box[0];
+</code></li><li class="line-1416"><code>            $label_height = (int) $font_box[0] - (int) $font_box[7];
+</code></li><li class="line-1417"><code>
+</code></li><li class="line-1418"><code>            if ($this-&gt;label_valign == self::LABEL_VALIGN_MIDDLE) {
+</code></li><li class="line-1419"><code>                $image_height += $label_height + $this-&gt;padding;
+</code></li><li class="line-1420"><code>            } else {
+</code></li><li class="line-1421"><code>                $image_height += $label_height;
+</code></li></ol></pre>
+        </div>
+	        <div class="trace">
+            <h2>Call Stack</h2>
+            <ol>
+                <li>in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/extend/Endroid/QrCode/QrCode.php line 1412">QrCode.php line 1412</a></li>
+                                <li>
+                at <abbr title="Endroid\QrCode\QrCode">QrCode</abbr>->create() in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/extend/Endroid/QrCode/QrCode.php line 773">QrCode.php line 773</a>                </li>
+                                <li>
+                at <abbr title="Endroid\QrCode\QrCode">QrCode</abbr>->render('<a class="toggle" title="./Upload/images/2016-12-10/66773.png">./Upload/images/2016...</a>') in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/application/home/controller/Index.php line 146">Index.php line 146</a>                </li>
+                                <li>
+                at <abbr title="app\home\controller\Index">Index</abbr>->signQrcode()                </li>
+                                <li>
+                at <abbr title="ReflectionMethod">ReflectionMethod</abbr>->invokeArgs(<em>object</em>(<abbr title="app\home\controller\Index">Index</abbr>), []) in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/thinkphp/library/think/App.php line 226">App.php line 226</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::invokeMethod([<em>object</em>(<abbr title="app\home\controller\Index">Index</abbr>), 'signqrcode']) in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/thinkphp/library/think/App.php line 359">App.php line 359</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::module(['Home', 'index', 'signqrcode'], ['app_namespace' => 'app', 'app_debug' => <em>true</em>, 'app_trace' => <em>false</em>, ...], <em>true</em>) in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/thinkphp/library/think/App.php line 134">App.php line 134</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::run() in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/thinkphp/start.php line 18">start.php line 18</a>                </li>
+                                <li>
+                at require('<a class="toggle" title="/data/www/CourseSign/Thinkphp5/thinkphp/start.php">/data/www/CourseSign...</a>') in <a class="toggle" title="/data/www/CourseSign/Thinkphp5/public/index.php line 17">index.php line 17</a>                </li>
+                            </ol>
+        </div>
+    </div>
+        
+    
+        <div class="exception-var">
+        <h2>Environment Variables</h2>
+                <table>
+                        <caption>GET Data<small>empty</small></caption>
+                    </table>
+                <table>
+                        <caption>POST Data</caption>
+            <tbody>
+                                <tr>
+                    <td>courseid</td>
+                    <td>
+                        66                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+                <table>
+                        <caption>Files<small>empty</small></caption>
+                    </table>
+                <table>
+                        <caption>Cookies</caption>
+            <tbody>
+                                <tr>
+                    <td>PHPSESSID</td>
+                    <td>
+                        30bt8j6d6aaho4pjjfnui4l490                    </td>
+                </tr>
+                                <tr>
+                    <td>ke_redirect_url</td>
+                    <td>
+                        /                    </td>
+                </tr>
+                                <tr>
+                    <td>think_var</td>
+                    <td>
+                        zh-cn                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+                <table>
+                        <caption>Session</caption>
+            <tbody>
+                                <tr>
+                    <td>think</td>
+                    <td>
+                        {
+    &quot;ke_user_auth&quot;: {
+        &quot;aid&quot;: 2,
+        &quot;last_time&quot;: 1482735322,
+        &quot;account&quot;: &quot;admin&quot;
+    }
+}                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+                <table>
+                        <caption>Server/Request Data</caption>
+            <tbody>
+                                <tr>
+                    <td>REDIRECT_STATUS</td>
+                    <td>
+                        200                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_HOST</td>
+                    <td>
+                        esn.foxconn.com                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_CONNECTION</td>
+                    <td>
+                        keep-alive                    </td>
+                </tr>
+                                <tr>
+                    <td>CONTENT_LENGTH</td>
+                    <td>
+                        11                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_ACCEPT</td>
+                    <td>
+                        application/json, text/javascript, */*; q=0.01                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_ORIGIN</td>
+                    <td>
+                        http://esn.foxconn.com                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_X_REQUESTED_WITH</td>
+                    <td>
+                        XMLHttpRequest                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_USER_AGENT</td>
+                    <td>
+                        Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36                    </td>
+                </tr>
+                                <tr>
+                    <td>CONTENT_TYPE</td>
+                    <td>
+                        application/x-www-form-urlencoded; charset=UTF-8                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_REFERER</td>
+                    <td>
+                        http://esn.foxconn.com/Home/index/index.html                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_ACCEPT_ENCODING</td>
+                    <td>
+                        gzip, deflate                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_ACCEPT_LANGUAGE</td>
+                    <td>
+                        zh-CN,zh;q=0.8                    </td>
+                </tr>
+                                <tr>
+                    <td>HTTP_COOKIE</td>
+                    <td>
+                        PHPSESSID=30bt8j6d6aaho4pjjfnui4l490; ke_redirect_url=%2F; think_var=zh-cn                    </td>
+                </tr>
+                                <tr>
+                    <td>PATH</td>
+                    <td>
+                        /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin                    </td>
+                </tr>
+                                <tr>
+                    <td>LD_LIBRARY_PATH</td>
+                    <td>
+                        /usr/local/apache/lib                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_SIGNATURE</td>
+                    <td>
+                                            </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_SOFTWARE</td>
+                    <td>
+                        Apache/2.4.23 (Unix) PHP/7.0.13                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_NAME</td>
+                    <td>
+                        esn.foxconn.com                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_ADDR</td>
+                    <td>
+                        10.191.19.147                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_PORT</td>
+                    <td>
+                        80                    </td>
+                </tr>
+                                <tr>
+                    <td>REMOTE_ADDR</td>
+                    <td>
+                        10.130.2.95                    </td>
+                </tr>
+                                <tr>
+                    <td>DOCUMENT_ROOT</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public                    </td>
+                </tr>
+                                <tr>
+                    <td>REQUEST_SCHEME</td>
+                    <td>
+                        http                    </td>
+                </tr>
+                                <tr>
+                    <td>CONTEXT_PREFIX</td>
+                    <td>
+                                            </td>
+                </tr>
+                                <tr>
+                    <td>CONTEXT_DOCUMENT_ROOT</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_ADMIN</td>
+                    <td>
+                        you@example.com                    </td>
+                </tr>
+                                <tr>
+                    <td>SCRIPT_FILENAME</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/index.php                    </td>
+                </tr>
+                                <tr>
+                    <td>REMOTE_PORT</td>
+                    <td>
+                        56999                    </td>
+                </tr>
+                                <tr>
+                    <td>REDIRECT_URL</td>
+                    <td>
+                        /Home/index/signqrcode                    </td>
+                </tr>
+                                <tr>
+                    <td>GATEWAY_INTERFACE</td>
+                    <td>
+                        CGI/1.1                    </td>
+                </tr>
+                                <tr>
+                    <td>SERVER_PROTOCOL</td>
+                    <td>
+                        HTTP/1.1                    </td>
+                </tr>
+                                <tr>
+                    <td>REQUEST_METHOD</td>
+                    <td>
+                        POST                    </td>
+                </tr>
+                                <tr>
+                    <td>QUERY_STRING</td>
+                    <td>
+                                            </td>
+                </tr>
+                                <tr>
+                    <td>REQUEST_URI</td>
+                    <td>
+                        /Home/index/signqrcode                    </td>
+                </tr>
+                                <tr>
+                    <td>SCRIPT_NAME</td>
+                    <td>
+                        /index.php                    </td>
+                </tr>
+                                <tr>
+                    <td>PATH_INFO</td>
+                    <td>
+                        /Home/index/signqrcode                    </td>
+                </tr>
+                                <tr>
+                    <td>PATH_TRANSLATED</td>
+                    <td>
+                        redirect:/index.php/Home/index/signqrcode/index/signqrcode                    </td>
+                </tr>
+                                <tr>
+                    <td>PHP_SELF</td>
+                    <td>
+                        /index.php/Home/index/signqrcode                    </td>
+                </tr>
+                                <tr>
+                    <td>REQUEST_TIME_FLOAT</td>
+                    <td>
+                        1482738377.494                    </td>
+                </tr>
+                                <tr>
+                    <td>REQUEST_TIME</td>
+                    <td>
+                        1482738377                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+                <table>
+                        <caption>Environment Variables<small>empty</small></caption>
+                    </table>
+                <table>
+                        <caption>ThinkPHP Constants</caption>
+            <tbody>
+                                <tr>
+                    <td>APP_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../application/                    </td>
+                </tr>
+                                <tr>
+                    <td>THINK_VERSION</td>
+                    <td>
+                        5.0.0                    </td>
+                </tr>
+                                <tr>
+                    <td>THINK_START_TIME</td>
+                    <td>
+                        1482738377.4963                    </td>
+                </tr>
+                                <tr>
+                    <td>THINK_START_MEM</td>
+                    <td>
+                        386920                    </td>
+                </tr>
+                                <tr>
+                    <td>EXT</td>
+                    <td>
+                        .php                    </td>
+                </tr>
+                                <tr>
+                    <td>DS</td>
+                    <td>
+                        /                    </td>
+                </tr>
+                                <tr>
+                    <td>THINK_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/thinkphp/                    </td>
+                </tr>
+                                <tr>
+                    <td>LIB_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/thinkphp/library/                    </td>
+                </tr>
+                                <tr>
+                    <td>CORE_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/thinkphp/library/think/                    </td>
+                </tr>
+                                <tr>
+                    <td>TRAIT_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/thinkphp/library/traits/                    </td>
+                </tr>
+                                <tr>
+                    <td>ROOT_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../                    </td>
+                </tr>
+                                <tr>
+                    <td>EXTEND_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../extend/                    </td>
+                </tr>
+                                <tr>
+                    <td>VENDOR_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../vendor/                    </td>
+                </tr>
+                                <tr>
+                    <td>RUNTIME_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../runtime/                    </td>
+                </tr>
+                                <tr>
+                    <td>LOG_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../runtime/log/                    </td>
+                </tr>
+                                <tr>
+                    <td>CACHE_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../runtime/cache/                    </td>
+                </tr>
+                                <tr>
+                    <td>TEMP_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../runtime/temp/                    </td>
+                </tr>
+                                <tr>
+                    <td>CONF_PATH</td>
+                    <td>
+                        /data/www/CourseSign/Thinkphp5/public/../application/                    </td>
+                </tr>
+                                <tr>
+                    <td>CONF_EXT</td>
+                    <td>
+                        .php                    </td>
+                </tr>
+                                <tr>
+                    <td>ENV_PREFIX</td>
+                    <td>
+                        PHP_                    </td>
+                </tr>
+                                <tr>
+                    <td>IS_CLI</td>
+                    <td>
+                        false                    </td>
+                </tr>
+                                <tr>
+                    <td>IS_WIN</td>
+                    <td>
+                        false                    </td>
+                </tr>
+                                <tr>
+                    <td>SID</td>
+                    <td>
+                        2                    </td>
+                </tr>
+                            </tbody>
+                    </table>
+            </div>
+    
+    <div class="copyright">
+        <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
+        <span>V5.0.0</span> 
+        <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
+    </div>
+        <script>
+        var LINE = 1412;
 
-<h1>服务器php7 缓存关闭</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>4.426 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>225.92</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>100.60 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  144</td><td bgcolor=white>  414</td><td bgcolor=white> 1071</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  144</td><td bgcolor=white>  415</td><td bgcolor=white> 1074</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        function $(selector, node){
+            var elements;
 
-<h1>服务器php7 缓存关闭</h1>
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>4.243 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>235.66</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>104.94 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  137</td><td bgcolor=white>  397</td><td bgcolor=white> 1110</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  137</td><td bgcolor=white>  398</td><td bgcolor=white> 1113</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+            node = node || document;
+            if(document.querySelectorAll){
+                elements = node.querySelectorAll(selector);
+            } else {
+                switch(selector.substr(0, 1)){
+                    case '#':
+                        elements = [node.getElementById(selector.substr(1))];
+                        break;
+                    case '.':
+                        if(document.getElementsByClassName){
+                            elements = node.getElementsByClassName(selector.substr(1));
+                        } else {
+                            elements = get_elements_by_class(selector.substr(1), node);
+                        }
+                        break;
+                    default:
+                        elements = node.getElementsByTagName();
+                }
+            }
+            return elements;
 
+            function get_elements_by_class(search_class, node, tag) {
+                var elements = [], eles, 
+                    pattern  = new RegExp('(^|\\s)' + search_class + '(\\s|$)');
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>4.776 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>209.38</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>93.24 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  126</td><td bgcolor=white>  424</td><td bgcolor=white> 2062</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  126</td><td bgcolor=white>  425</td><td bgcolor=white> 2065</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+                node = node || document;
+                tag  = tag  || '*';
 
+                eles = node.getElementsByTagName(tag);
+                for(var i = 0; i < eles.length; i++) {
+                    if(pattern.test(eles[i].className)) {
+                        elements.push(eles[i])
+                    }
+                }
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>4.756 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>210.26</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>93.63 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  132</td><td bgcolor=white>  387</td><td bgcolor=white> 1460</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  132</td><td bgcolor=white>  388</td><td bgcolor=white> 1463</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+                return elements;
+            }
+        }
 
+        $.getScript = function(src, func){
+            var script = document.createElement('script');
+            
+            script.async  = 'async';
+            script.src    = src;
+            script.onload = func || function(){};
+            
+            $('head')[0].appendChild(script);
+        }
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>2.913 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>343.29</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>152.87 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    6</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   58</td><td bgcolor=white>  159</td><td bgcolor=white> 1553</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   58</td><td bgcolor=white>  160</td><td bgcolor=white> 1559</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+        ;(function(){
+            var files = $('.toggle');
+            var ol    = $('ol', $('.prettyprint')[0]);
+            var li    = $('li', ol[0]);   
 
+            // 短路径和长路径变换
+            for(var i = 0; i < files.length; i++){
+                files[i].ondblclick = function(){
+                    var title = this.title;
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>2.324 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>430.29</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>191.61 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   54</td><td bgcolor=white>  148</td><td bgcolor=white> 1300</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   54</td><td bgcolor=white>  149</td><td bgcolor=white> 1303</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+                    this.title = this.innerHTML;
+                    this.innerHTML = title;
+                }
+            }
 
+            // 设置出错行
+            var err_line = $('.line-' + LINE, ol[0])[0];
+            err_line.className = err_line.className + ' line-error';
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>3.883 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>257.53</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>114.68 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    5</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   48</td><td bgcolor=white>  167</td><td bgcolor=white> 2497</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   48</td><td bgcolor=white>  168</td><td bgcolor=white> 2502</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
+            $.getScript('//cdn.bootcss.com/prettify/r298/prettify.min.js', function(){
+                prettyPrint();
 
+                // 解决Firefox浏览器一个很诡异的问题
+                // 当代码高亮后，ol的行号莫名其妙的错位
+                // 但是只要刷新li里面的html重新渲染就没有问题了
+                if(window.navigator.userAgent.indexOf('Firefox') >= 0){
+                    ol[0].innerHTML = ol[0].innerHTML;
+                }
+            });
 
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>3.225 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>310.08</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>138.08 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    3</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   44</td><td bgcolor=white>  152</td><td bgcolor=white> 2012</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   44</td><td bgcolor=white>  153</td><td bgcolor=white> 2015</td></tr>
-</table>
-<p>
- This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1748469 $&gt;</i><br>
- Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
- Licensed to The Apache Software Foundation, http://www.apache.org/<br>
-</p>
-<p>
-
-
-<table >
-<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>Apache/2.4.23</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>10.134.158.150</td></tr>
-<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/index.php</td></tr>
-<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
-<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>5.625 seconds</td></tr>
-<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
-<tr ><th colspan=2 bgcolor=white>Non-2xx responses:</th><td colspan=2 bgcolor=white>1000</td></tr>
-<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>456000 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>0 bytes</td></tr>
-<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>177.78</td></tr>
-<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>79.17 kb/s received</td></tr>
-<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
-<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
-<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    1</td><td bgcolor=white>    4</td></tr>
-<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>   41</td><td bgcolor=white>  175</td><td bgcolor=white> 4177</td></tr>
-<tr ><th bgcolor=white>Total:</th><td bgcolor=white>   41</td><td bgcolor=white>  176</td><td bgcolor=white> 4181</td></tr>
-</table>
+        })();
+    </script>
+    </body>
+</html>
