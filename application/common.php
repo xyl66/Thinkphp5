@@ -51,7 +51,7 @@ function exprot_file($course_id)
     $course_time=date('Y-m-d',$course['course_time_start']);
     $title='课程签到表_'.$course_time.'_'.$course['name'];
     $total = $Sign->where(array('course_id'=>$course_id))->count();
-    require(EXTEND_PATH .'Excel\PHPExcel.php');
+    require(EXTEND_PATH .'Excel/PHPExcel.php');
     $objPHPExcel = new \PHPExcel();
     $objPHPExcel->getProperties()->setCreator('courseSign')->setLastModifiedBy('courseSign')->setTitle($title)->setSubject($title)->setDescription($title)->setKeywords('课程,签到,列表')->setCategory($title);
     $objPHPExcel->setActiveSheetIndex(0);
