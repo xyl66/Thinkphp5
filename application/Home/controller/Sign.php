@@ -57,9 +57,7 @@ class Sign extends \think\Controller
         $course_time['start']=date("Y-m-d H:i:s",$course['course_time_start']);
         $course_time['end']=date("Y-m-d H:i:s",$course['course_time_end']);
         $this->assign('course',$course);
-        $this->assign('course_speaker',$course['course_speaker']);
         $this->assign('course_id',$course['course_id']);
-        $this->assign('course_name',$course['name']);
         $this->assign('course_time',$course_time);
         return view();
     }
