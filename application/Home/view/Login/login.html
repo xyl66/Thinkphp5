@@ -30,6 +30,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript">
         var verifyURL='{:Url("Home/Public/verify","","")}';
         var loginURL='{:Url("Home/Login/login","","")}';
+        /*判断IE浏览器版本*/
+        function detectBrowser()
+        {
+            var browser = navigator.appName
+            if(navigator.userAgent.indexOf("MSIE")>0){
+                var b_version = navigator.appVersion
+                var version = b_version.split(";");
+                var trim_Version = version[1].replace(/[ ]/g,"");
+                if ((browser=="Netscape"||browser=="Microsoft Internet Explorer"))
+                {
+                    if(trim_Version == 'MSIE9.0' ||trim_Version == 'MSIE8.0' || trim_Version == 'MSIE7.0' || trim_Version == 'MSIE6.0'){
+                        alert('请使用IE10.0版本以上进行访问');
+                        return;
+                    }
+                }
+            }
+        }
+        detectBrowser();
     </script>
 </head>
 <body id="login">
@@ -55,7 +73,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</form>
   </div>
    <div class="copy_layout login">
-
    </div>
   <script src="__JS__/home/Login/login.js"></script>
 </body>
