@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ad82d62-e2a8-4480-9f8b-f56b3282c1ec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/Admin/view/Login/login.html" afterPath="$PROJECT_DIR$/application/Admin/view/Login/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/Home/view/Login/login.html" afterPath="$PROJECT_DIR$/application/Home/view/Login/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/1.html" afterPath="$PROJECT_DIR$/public/1.html" />
-    </list>
+    <list default="true" id="9ad82d62-e2a8-4480-9f8b-f56b3282c1ec" name="Default" comment="" />
     <ignored path="Thinkphp5.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -30,7 +25,7 @@
       <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/controller/Login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
+            <state relative-caret-position="594">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="e#127#140#0#PHP" expanded="true" />
@@ -42,7 +37,7 @@
       <file leaf-file-name="QrCode.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extend/Endroid/QrCode/QrCode.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
+            <state relative-caret-position="37746">
               <caret line="1410" column="46" selection-start-line="1410" selection-start-column="34" selection-end-line="1410" selection-end-column="46" />
               <folding />
             </state>
@@ -52,7 +47,7 @@
       <file leaf-file-name="Image.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/topthink/think-image/src/Image.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="13122">
               <caret line="495" column="28" selection-start-line="495" selection-start-column="16" selection-end-line="495" selection-end-column="28" />
               <folding />
             </state>
@@ -62,7 +57,7 @@
       <file leaf-file-name="gd.php" pinned="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/gd.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="43578">
               <caret line="1614" column="9" selection-start-line="1614" selection-start-column="9" selection-end-line="1614" selection-end-column="9" />
               <folding />
             </state>
@@ -72,7 +67,7 @@
       <file leaf-file-name="sign_layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/Template/Public/sign_layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1772">
+            <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -82,7 +77,7 @@
       <file leaf-file-name="sign.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/home/view/sign/sign.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
+            <state relative-caret-position="2187">
               <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
               <folding />
             </state>
@@ -92,28 +87,28 @@
       <file leaf-file-name="common.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/common.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="1215">
               <caret line="53" column="23" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/thinkphp/base.php">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/home/view/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="22" column="57" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="57" />
+            <state relative-caret-position="315">
+              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Response.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Response.php">
+      <file leaf-file-name="base.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thinkphp/base.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2187">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="24" column="77" selection-start-line="24" selection-start-column="77" selection-end-line="24" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -195,7 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -231,6 +225,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -291,17 +286,18 @@
       <workItem from="1481877949299" duration="2497000" />
       <workItem from="1482282426014" duration="1257000" />
       <workItem from="1482735920599" duration="1224000" />
+      <workItem from="1482924480719" duration="31000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4978000" />
+    <option name="totallyTimeSpent" value="5009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="0" width="1598" height="860" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.260078" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.263329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -330,19 +326,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4104">
-          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/thinkphp/library/think/exception/Handle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3753">
           <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -374,7 +361,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -560,9 +546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="1437" column="0" selection-start-line="1437" selection-start-column="0" selection-end-line="1437" selection-end-column="0" />
-          <folding>
-            <marker date="1474271791255" expanded="true" signature="9023:9063" placeholder="SELECT * FRO... ${$this-&gt;getTable()}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -584,7 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -608,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3213">
           <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4104">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -624,7 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3753">
           <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -653,7 +632,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/controller/Login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="594">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="e#127#140#0#PHP" expanded="true" />
@@ -663,7 +642,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/extend/Endroid/QrCode/QrCode.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="37746">
           <caret line="1410" column="46" selection-start-line="1410" selection-start-column="34" selection-end-line="1410" selection-end-column="46" />
           <folding />
         </state>
@@ -671,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/topthink/think-image/src/Image.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="13122">
           <caret line="495" column="28" selection-start-line="495" selection-start-column="16" selection-end-line="495" selection-end-column="28" />
           <folding />
         </state>
@@ -679,7 +658,7 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/gd.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="43578">
           <caret line="1614" column="9" selection-start-line="1614" selection-start-column="9" selection-end-line="1614" selection-end-column="9" />
           <folding />
         </state>
@@ -687,7 +666,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/Template/Public/sign_layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1772">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -695,7 +674,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/home/view/sign/sign.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
+        <state relative-caret-position="2187">
           <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
           <folding />
         </state>
@@ -703,7 +682,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/common.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="1215">
           <caret line="53" column="23" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="23" />
           <folding />
         </state>
@@ -711,8 +690,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/thinkphp/base.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="22" column="57" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="57" />
+        <state relative-caret-position="270">
+          <caret line="24" column="77" selection-start-line="24" selection-start-column="77" selection-end-line="24" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/home/view/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
           <folding />
         </state>
       </provider>
