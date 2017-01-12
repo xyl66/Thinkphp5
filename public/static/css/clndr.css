@@ -134,7 +134,7 @@
 .cal1 .clndr .clndr-table tr .adjacent-month {
   width: 100%;
   height: inherit;
-  color: #989898;
+  color: #e8e8e8;
   font-weight: 300;
 }
 @media all and (max-width:1024px){
