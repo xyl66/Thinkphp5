@@ -85,7 +85,7 @@ function exprot_file($course_id)
         }
     }
 
-    $filename = iconv('UTF-8', 'GB2312', $title . '.xls');
+    $filename = iconv('UTF-8', 'GBK', $title . '.xls');
     header('Content-Type: application/vnd.ms-excel');
     header('Content-Disposition: attachment;filename=' . $filename);
     header('Cache-Control: max-age=0');
