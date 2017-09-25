@@ -8,7 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
+use think\Route;
+Route::rule(':version/coursesign/getCourseInfo','api/:version.courseSign/getCourseInfo');
+Route::rule(':version/coursesign/sign','api/:version.courseSign/sign');
+Route::rule(':version/getCourseList','api/:version.courseBase/getCourseList');
 return [
     '__pattern__' => [
         'name' => '\w+',
