@@ -125,7 +125,7 @@ class Index extends \think\Controller
         $filePath = '/Upload/images/' . $course_time . '/' . $course_sign_id . '.png';
         $filePath = str_replace('index.php/', '', $filePath);
         if (!file_exists($fileName)) {
-            $url = $_SERVER['HTTP_ORIGIN'] . Url('home/sign/sign', ['cid' => $course_sign_id]);
+            $url = $_SERVER['HTTP_ORIGIN'] . Url('/VueSign', ['#/csign' => $course_sign_id]);
             if (strpos($url, 'http') === false) {
                 $url = 'http:/' . $url;
             }
@@ -160,7 +160,7 @@ class Index extends \think\Controller
             $course_sign_id = $cid . rand(100, 999);
             $Course->save(array('course_sign_id' => $course_sign_id), array('course_id' => $cid));
         }
-        $url = $_SERVER['HTTP_ORIGIN'] . Url('sign/sign', ['cid' => $course_sign_id]);
+        $url = $_SERVER['HTTP_ORIGIN'] . Url('/VueSign', ['#/csign' => $course_sign_id]);
         if (strpos($url, 'http') === false) {
             $url = 'http:/' . $url;
         }
