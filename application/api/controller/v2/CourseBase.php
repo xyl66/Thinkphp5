@@ -74,8 +74,25 @@ class CourseBase
                 ['tp_sign b', 'a.course_id=b.course_id', 'LEFT'],
             ];
             $course = $Course->alias('a')->join($join)->where($map)->field('a.*,count(b.course_id) AS sign_count')->group('a.course_id')->select();
-            $t = $Course->getLastsql();
-            return json($course);
+            foreach ($course as $key => $value) {
+                $course[$key]['course_time_start']=date("Y-m-d H:i:s",$value['course_time_start']);
+                $course[$key]['course_time_end']=date("Y-m-d H:i:s",$value['course_time_end']);
+            }
+            return json(array('status'=>1,'msg'=>'成功','data'=>$course));
+        }
+    }
+    public function getAllCourseList(){
+        $Course = new Course;
+        if (Request::instance()->isGet()) {
+            $join = [
+                ['tp_sign b', 'a.course_id=b.course_id', 'LEFT'],
+            ];
+            $course = $Course->alias('a')->join($join)->field('a.*,count(b.course_id) AS sign_count')->group('a.course_id')->select();
+            foreach ($course as $key => $value) {
+                $course[$key]['course_time_start']=date("Y-m-d H:i:s",$value['course_time_start']);
+                $course[$key]['course_time_end']=date("Y-m-d H:i:s",$value['course_time_end']);
+            }
+            return json(array('status'=>1,'msg'=>'成功','data'=>$course));
         }
     }
 }
