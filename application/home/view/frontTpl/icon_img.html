@@ -1,0 +1,42 @@
+<script type="text/j-template" id="icon_imgPicker">
+	<div id="icon-container">
+		<div class="albums-title clearfix">
+			<span class="fl">选择图片</span>
+			<a href="javascript:;" class="fr" id="Jclose" title="关闭">
+				<i class="gicon-remove"></i>
+			</a>
+		</div>
+		<div class="albums-container">
+			<div class="albums-cr-actions noborder">
+				<a href="javascript:;" data-style="style1" class="btn btn-primary mgl10 cur">风格一<i></i></a>
+				<a href="javascript:;" data-style="style2" class="btn btn-primary mgl10">风格二<i></i></a>
+				<a href="javascript:;" data-style="style3" class="btn btn-primary mgl10">风格三<i></i></a>
+			</div>
+			<div class="albums-color-tab">
+				<h2><a href="javascript:;" class="btn btn-primary mgl10">选择颜色</a><span>(小图标下面的文字仅供参考,背景色可自行修改)</span></h2>
+				<ul class="clearfix">
+					<li data-color="color0"><span class="color color0"></span><span>黑色</span></li>
+					<li data-color="color1"><span class="color color1"></span><span>白色</span></li>
+					<li data-color="color2"><span class="color color2"></span><span>灰色</span></li>
+					<li data-color="color3"><span class="color color3"></span><span>红色</span></li>
+					<li data-color="color4"><span class="color color4"></span><span>黄色</span></li>
+					<li data-color="color5"><span class="color color6"></span><span>蓝色</span></li>
+					<li data-color="color6"><span class="color color5"></span><span>绿色</span></li>
+					<li data-color="color7"><span class="color color7"></span><span>紫色</span></li>
+					<li data-color="color8"><span class="color color8"></span><span>橙色</span></li>
+				</ul>
+			</div>
+			<div class="albums-icon-tab"></div>
+			<div class="albums-cr-ctrls clearfix">
+				<a href="javascript:;" id="j-useIcon" class="btn btn-primary fl">使用选中的图片</a>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/j-template" id="icon_imglist">
+	<ul class="clearfix">
+		<% _.each(data,function(item){ %>
+			<li><img src="<%= item %>" width="80" alt=""><span><i></i></span></li>
+		<% }) %>
+	</ul>
+</script>

@@ -1,0 +1,200 @@
+<!-- Header_style5 tpl start-->
+<script type="text/j-template" id="tpl_diy_con_typeHeader_style5">
+	<div class="Header_style_panel" style="background-image:url(<%= content.bg %>)">
+		<div class="membersbox pad50">
+			<div class="homeCpay" style="top:<%= content.button.top %>px"><a href="<%= content.button.link %>"><%= content.button.showtitle %></a></div>
+			<div class="homeCmargin"></div>
+			<div class="homeCtitle" style="color:<%= content.titleColor %>"><%= content.title %></div>
+			<div class="homeCcon" style="color:<%= content.subTitleColor %>"><%= content.subTitle %></div>
+
+			<% if(content.dataset.length){%>
+			<div class="homeCnav">
+				<div class="homeCnavbox swiper-container">
+					<ul class="swiper-wrapper" style="width:99999px;">
+						<% _.each(content.dataset,function(item){ %>
+						<li class="swiper-slide" style="width:80px;border-left:#000 solid 1px;">
+							<a href="<%= item.link %>">						
+								<img src="<%= item.pic %>" width="31" height="26">
+								<h2><%= item.showtitle %></h2>
+							</a>
+						</li>	
+						<% }) %>					
+					</ul>
+				</div>
+			</div>
+			<% } %>	
+
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_style5">
+	<div class="formitems">  
+		<label class="fi-name">背景图片：</label>
+		<div class="form-controls">
+			<div class="homepage-header-bg style2">
+				<img src="<%= content.bg %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-bg">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">最佳尺寸：640 x 1080 像素。</span>
+			<p class="colorGray">尺寸不匹配时，图片将被压缩或拉伸以铺满画面。</p>
+		</div>
+	</div>
+
+	<div class="formitems">  
+		<label class="fi-name">标题名：</label>
+		<div class="form-controls">
+			<input type="text" name="title" class="input" value="<%= content.title %>">
+			<span class="colorPanel j-titleClp" data-name="title" data-color="<%= content.titleColor %>" id="j_clp_title" style="background-color:<%= content.titleColor %>"></span>
+			<span class="fi-help-text"></span>
+		</div>
+	</div>
+
+	<div class="formitems">  
+		<label class="fi-name">副标题名：</label>
+		<div class="form-controls">
+			<input type="text" name="subTitle" class="input" value="<%= content.subTitle %>">
+			<span class="colorPanel j-titleClp" data-name="subTitle" data-color="<%= content.subTitleColor %>" id="j_clp_subTitle" style="background-color:<%= content.subTitleColor %>"></span>
+			<span class="fi-help-text"></span>
+		</div>
+	</div>
+
+	<div class="formitems">  
+		<label class="fi-name">按钮文字：</label>
+		<div class="form-controls">
+			<input type="text" name="buttonTxt" class="input" value="<%= content.button.showtitle %>">
+			<span class="fi-help-text"></span>
+		</div>
+	</div>
+
+	<div class="formitems">  
+		<label class="fi-name">按钮链接：</label>
+		<div class="form-controls">
+	    	<% if(content.button.linkType && content.button.linkType!=11){ %>
+		    	<a href="<%= content.button.link %>" target="_blank" class="badge badge-success" title="<%= content.button.title %>">
+		    		<span><%= HYD.linkType[content.button.linkType] %></span>
+		    		<em class="badge-link ovfEps"><%= content.button.title %></em>
+		    	</a>
+	    	<%}%>
+
+	    	<% if(content.button.linkType==11){ %>
+	    		<input type="text" name="btncustomlink" class="input" value="<%= content.button.link %>">
+	    	<% } %>
+	    	
+	    	<div class="droplist j-btnDplist">
+				<a href="javascript:;" class="droplist-title j-droplist-toggle">
+					<% if(content.button.linkType==0){ %>
+						<span>请选择</span>
+					<%}else{%>
+						<span>修改</span>
+					<%}%>
+					<i class="gicon-chevron-down mgl5"></i>
+				</a>
+				<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+				</ul>
+			</div>
+			<input type="hidden" class="j-verify" name="item_id" value="">
+	    	<% if(content.button.linkType==11){ %>
+	    		<span class="fi-help-text">外链请加上 http:// 前缀</span>
+	    	<% } %>
+	    	<span class="fi-help-text j-verify-linkType"></span>
+	    </div>
+	</div>
+
+	<div class="formitems">  
+		<label class="fi-name">按钮离顶部：</label>
+		<div class="form-controls">
+			<div id="slider" class="fl"></div>
+			<span class="fl mgl10 mgt5 ftsize14 j-ctrl-showBtnTop"><%= content.button.top %>px</span>
+		</div>
+	</div>
+	
+	<h3 class="cst_h3 mgt15">导航链接</h3>
+	<ul class="ctrl-item-list mgt10">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+			    <label class="fi-name">链接到：</label>  
+			    <div class="form-controls">
+			    	<% if(item.linkType && item.linkType!=11){ %>
+				    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+				    		<span><%= HYD.linkType[item.linkType] %></span>
+				    		<em class="badge-link ovfEps"><%= item.title %></em>
+				    	</a>
+			    	<%}%>
+
+			    	<% if(item.linkType==11){ %>
+			    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+			    	<% } %>
+			    	
+			    	<div class="droplist j-navDplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+
+			    	<% if(item.linkType==11){ %>
+			    		<span class="fi-help-text">外链请加上 http:// 前缀</span>
+			    	<% } %>
+			    	<span class="fi-help-text j-verify-linkType"></span>
+			    </div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">导航名称：</label>
+				<div class="form-controls">
+					<input type="text" name="navtitle" class="input xlarge" value="<%= item.showtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">小图标：</label>
+				<div class="form-controls">
+					<div class="header_style2_dataset_pic inline-block">
+						<img src="<%= item.pic %>">
+					</div>
+					<a href="javascript:;" class="btn btn-primary btn-small j-navModifyIcon">修改</a>
+					<span class="fi-help-text">建议尺寸：60 * 60 像素</span>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+	</ul>
+</script>
+<!-- Header_style5 tpl end-->

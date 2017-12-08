@@ -111,3 +111,65 @@ function getIP(){
 function getStatus($t){
     return $t?'是':'否';
 }
+//导出申请表
+function exprot_job_file()
+{
+    $Job=db('Job');
+    $title='校招申请表'.date("Y-m-d");
+    $total = $Job->count();
+    require(EXTEND_PATH .'Excel/PHPExcel.php');
+    $objPHPExcel = new \PHPExcel();
+    $objPHPExcel->getProperties()->setCreator('jobList')->setLastModifiedBy('jobList')->setTitle($title)->setSubject($title)->setDescription($title)->setKeywords('招聘,申请,列表')->setCategory($title);
+    $objPHPExcel->setActiveSheetIndex(0);
+    $objPHPExcel->getActiveSheet(0)->setTitle($title);
+    $objPHPExcel->getActiveSheet()->getDefaultColumnDimension()->setWidth(15);
+    $objPHPExcel->getActiveSheet()->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);//设置水平居中
+    $objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setName('Arial');
+    $objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(10);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+    $objPHPExcel->getActiveSheet(0)->setCellValue('A1', '姓名');
+    $objPHPExcel->getActiveSheet(0)->setCellValue('B1', '性别');
+    $objPHPExcel->getActiveSheet(0)->setCellValue('C1', '电话');    
+    $objPHPExcel->getActiveSheet(0)->setCellValue('D1', '学校');
+    $objPHPExcel->getActiveSheet(0)->setCellValue('E1', '专业');
+    $objPHPExcel->getActiveSheet(0)->setCellValue('F1', '班级');
+    $per_time = 100;
+    $times = ceil($total / $per_time);
+    $i = 2;
+    for ($j = 0; $j < $times; $j++) {
+        $arr = $Job->limit($j * $per_time, $per_time)->select();
+        foreach ($arr as $key => $value) {
+            $objPHPExcel->getActiveSheet(0)->setCellValueExplicit('A' . $i, $value['user_name'], PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet(0)->setCellValue('B' . $i, getSex($value['user_sex']),PHPExcel_Cell_DataType::TYPE_STRING);            
+            $objPHPExcel->getActiveSheet(0)->setCellValue('C' . $i, $value['user_tel'],PHPExcel_Cell_DataType::TYPE_STRING);            
+            $objPHPExcel->getActiveSheet(0)->setCellValue('D' . $i, $value['user_school'],PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet(0)->setCellValue('E' . $i, $value['user_special'],PHPExcel_Cell_DataType::TYPE_STRING);
+            $objPHPExcel->getActiveSheet(0)->setCellValue('F' . $i, $value['user_classes'], PHPExcel_Cell_DataType::TYPE_STRING);
+            $i++;
+        }
+    }
+
+    $filename = iconv('UTF-8', 'GBK', $title . '.xls');
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename=' . $filename);
+    header('Cache-Control: max-age=0');
+    ob_clean();
+    flush();
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    //$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
+    $objWriter->save('php://output');
+}
+function getSex($val){
+    return $val=="woman"?'女':'男';
+}
+function xss_filter($content)
+{
+    $content = preg_replace('/<script[^>]*?>.*?<\\/script>/si', '', $content);
+    $content = preg_replace('/&lt;script[^(&gt;)]*?&gt;.*?&lt;\\/script&gt;/si', '', $content);
+    $content = preg_replace('/<img[^>]*?onerror[^>]*?>/si', '', $content);
+    $content = preg_replace('/&lt;img[^(&gt;)]*?onerror[^(&gt;)]*?&gt;/si', '', $content);
+    $content = preg_replace('/<input[^>]*?on[^>]*?>/si', '', $content);
+    $content = preg_replace('/&lt;input[^(&gt;)]*?on[^(&gt;)]*?&gt;/si', '', $content);
+    return $content;
+}

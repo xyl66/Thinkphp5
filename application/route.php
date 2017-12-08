@@ -13,6 +13,7 @@ Route::rule(':version/coursesign/getCourseInfo','api/:version.courseSign/getCour
 Route::rule(':version/coursesign/sign','api/:version.courseSign/sign');
 Route::rule(':version/getCourseList','api/:version.courseBase/getCourseList');
 Route::rule(':version/getAllCourseList','api/:version.courseBase/getAllCourseList');
+Route::rule(':version/jobsign/sign','api/:version.jobSign/sign');
 return [
     '__pattern__' => [
         'name' => '\w+',

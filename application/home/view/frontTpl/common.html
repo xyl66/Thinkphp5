@@ -1,0 +1,38 @@
+<script type="text/j-template" id="tpl_tooltips">
+	<div class="tooltips" style="display:none;">
+	    <span class="tooltips-arrow tooltips-arrow-<%= placement %>"><em>◆</em><i>◆</i></span>
+	    <%= content %>
+	</div>
+</script>
+<!-- end tooltips -->
+
+<script type="text/j-template" id="tpl_hint">
+	<div class="hint hint-<%= type %>"><%= content %></div>
+</script>
+<!-- end hint -->
+
+<script type="text/j-template" id="tpl_jbox_simple">
+	<div class="mgt30"><%= content %></div>
+</script>
+<!-- end tpl_jbox_simple -->
+
+<script type="text/j-template" id="tpl_qrcode">
+	<div id="qrcode">
+		<img src="<%= src %>">
+		<a href="javascript:;" class="qrcode-btn j-closeQrcode"><i class="gicon-remove white"></i></a>
+	</div>
+</script>
+<!-- end qrcode -->
+<script type="text/javascript">
+	var System_verifyHandelURL='{:Url("Home/System/verifySetHandle","","")}';
+</script>
+<script type="text/j-template" id="tpl_verify_set">
+	
+	<div class="tabs clearfix mgt15" id="verify-set-tabs">    
+	    <a href="javascript:;" class="tabs_a fl active">商城信息设置</a>
+	    <a href="javascript:;" class="tabs_a fl">微信设置</a>
+	    <a href="javascript:;" class="tabs_a fl">提成设置</a>
+	</div>  
+
+</script>
+

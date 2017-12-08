@@ -1,0 +1,48 @@
+<if condition="(ACTION_NAME neq 'push') AND (ACTION_NAME neq 'sms_send')">
+<div class="formitems">
+	<label class="fi-name"><span class="colorRed">*</span>类型：</label> 
+	<div class="form-controls">
+		<div class="radio-group ptrd_box">
+			<label><input type="radio" name="message_type" class="j-sendType" data-type="1" value="1" <if condition="(!$followType or $followType==1)">checked</if>><span><i class="pt_ico wenb act"></i><br/>文本内容</span></label>
+			<label><input type="radio" name="message_type" class="j-sendType" data-type="2" value="2" <if condition="$followType == 2">checked</if>><span><i class="pt_ico onewenb"></i><br/>单条图文</span></label>
+			<label><input type="radio" name="message_type" class="j-sendType" data-type="3" value="3" <if condition="$followType == 3">checked</if>><span><i class="pt_ico morewenb"></i><br/>多条图文</span></label>
+			
+        </div>
+		<span class="fi-help-text"></span>
+	</div>
+</div>
+</if>
+<div class="formitems">
+	<div class="form-controls j-sendTypeCon" data-type="1" style="display:block;">
+    	<input name="content" type="hidden" id="j-materialText" value='{$mContent->content}'/>
+    	<div id="js_editorArea"></div>
+    	<if condition="(CONTROLLER_NAME eq 'PubMarketing' AND ACTION_NAME eq 'first') OR ((CONTROLLER_NAME eq 'Ump') AND ((ACTION_NAME eq 'push') OR (ACTION_NAME eq 'sms_send')))">
+			<label for="" class="Jfastbtn" data-con="{插入昵称}">{插入昵称}</label>
+			<label for="" class="Jfastbtn" data-con="{插入商城}">{插入商城}</label>
+			<label for="" class="Jfastbtn" data-con="{插入会员个数}">{插入会员个数}</label>
+            <label for="" class="Jfastbtn" data-con="{插入ID号}">{插入ID号}</label>
+		</if>
+    	<!--<label class="fi-name"><span class="colorRed">*</span>内容：</label>
+		<textarea name="content" class="textarea" id="j-materialText">{$mContent->content}</textarea>
+		<span class="fi-help-text"></span>-->
+	</div>
+	<!-- end 文本内容 -->
+
+	<div class="form-controls j-sendTypeCon pdt5" data-type="2" style="display:none;">
+		<!--<a href="javascript:;" class="btn btn-primary btn-small" id="j-selectMaterialSingle">重新选择图文素材</a>-->
+		<!--<a href="/MaterialOne/add" class="btn btn-success btn-small" target="_blank">添加单条图文</a>-->
+	</div>
+	<!-- end 单条图文 -->
+
+	<div class="form-controls j-sendTypeCon pdt5" data-type="3" style="display:none;">
+		<!--<a href="javascript:;" class="btn btn-primary btn-small" id="j-selectMaterialMutil">重新选择图文素材</a>-->
+		<!--<a href="/MaterialMore/add" class="btn btn-success btn-small" target="_blank">添加多条图文</a>-->
+	</div>
+	<!-- end 多条图文 -->
+
+	<input type="hidden" id="j-initDataID" value="{$mFollow->material_id}" name="material_id"><!-- 用于储存选中的图文消息的id -->
+	<input type="hidden" id="material_id" value="{$mFollow->material_id}"><!-- 用于储存选中的图文消息的id -->
+
+</div>
+
+

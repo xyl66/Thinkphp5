@@ -1,0 +1,118 @@
+{extend name="../application/home/view/Disnic/layout.html" /}
+
+{block name="head_title"}<if condition="$Is eq 'update'">编辑商品<else/>发布商品</if>{/block}
+{block name="title"}<if condition="$Is eq 'update'">编辑商品<else/>发布商品</if>{/block}
+
+{block name="css"}
+	{include file="../application/home/view/frontTpl/diy/filepath_css.html" /}
+	<style>
+	.goods-details-block {
+		padding: 30px 0;
+		background: #e5e5e5;
+		text-align: center;
+		color: #666;
+		}
+	.goods-details-block h4 {
+		margin: 0;
+		font-size: 16px;
+		line-height: 24px;
+	}
+	.goods-details-block p {
+		margin: 0;
+		font-size: 14px;
+		line-height: 24px;
+	}
+	</style>
+{/block}
+
+{block name="js"}
+	{include file="../application/home/view/frontTpl/diy/filepath_js.html" /}
+	<script src="__JS__/dist/home/Item/add_step3.js"></script>
+{/block}
+
+{block name="content"}
+	<ul class="wizard">  
+	    <li class="wizard-item complete">  
+	        <dl class="wizard-item-content">  
+	            <dt class="wizard-ic-step">  
+	                <span class="wizard-icstp-num">1</span>  
+	                <span class="wizard-icstp-title">选择商品类目</span>  
+	            </dt>  
+	            <dd class="wizard-ic-desc"></dd>
+	        </dl>  
+	    </li>  
+	    <li class="wizard-item complete">  
+	        <dl class="wizard-item-content">  
+	            <dt class="wizard-ic-step">  
+	                <span class="wizard-icstp-num">2</span>  
+	                <span class="wizard-icstp-title">编辑商品信息</span>  
+	            </dt>  
+	            <dd class="wizard-ic-desc"></dd>  
+	        </dl>  
+	    </li>  
+	    <li class="wizard-item process">  
+	        <dl class="wizard-item-content">  
+	            <dt class="wizard-ic-step">  
+	                <span class="wizard-icstp-num">3</span>  
+	                <span class="wizard-icstp-title">编辑商品详情</span>  
+	            </dt>  
+	        </dl>  
+	    </li>   
+	</ul>
+
+	<input type="hidden" name="content" value='{$content?$content:""}' id="j-initdata">
+	
+	<input type="hidden" name="template_id" value='{$id}' id="j-pageID">
+
+	<div class="diy clearfix mgt20">
+		<div id="diy-phone">
+			<div class="diy-phone-header">
+				<i class="diy-phone-receiver"></i>
+				<div class="diy-phone-title j-pagetitle">商品详情</div>
+			</div>
+			<div class="diy-phone-contain" id="diy-contain">
+				<div class="goods-details-block">
+                    <h4>基本信息区</h4>
+                    <p>固定样式，显示商品主图、价格等信息</p>
+                </div>
+				<div class="nodrag"></div>
+				<div class="drag"></div>
+			</div>
+			<i class="diy-phone-footer"></i>
+		</div>
+
+		<div id="diy-ctrl"></div>
+	</div>
+
+	<div class="diy-actions">
+		<div class="diy-actions-addModules clearfix">
+				<a href="javascript:;" class="j-diy-addModule" data-type="1"><i class="gicon-plus"></i>富文本</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="2"><i class="gicon-plus"></i>标题</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="3"><i class="gicon-plus"></i>自定义模块</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="4"><i class="gicon-plus"></i>商品</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="5"><i class="gicon-plus"></i>商品列表</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="6"><i class="gicon-plus"></i>商品搜索</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="7"><i class="gicon-plus"></i>文本导航</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="8"><i class="gicon-plus"></i>图片导航</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="9"><i class="gicon-plus"></i>图片广告</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="10"><i class="gicon-plus"></i>分割线</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="11"><i class="gicon-plus"></i>辅助空白</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="12"><i class="gicon-plus"></i>顶部菜单</a>
+				<!-- <a href="javascript:;" class="j-diy-addModule" data-type="13"><i class="gicon-plus"></i>橱窗</a> -->
+				<a href="javascript:;" class="j-diy-addModule" data-type="14"><i class="gicon-plus"></i>视频</a>
+				<a href="javascript:;" class="j-diy-addModule" data-type="15"><i class="gicon-plus"></i>音频</a>
+		</div>
+		<div class="diy-actions-submit">
+			<a href="/Item/add_step2/id/{$id}//Is/update" class="btn">上一步</a>
+			<a href="javascript:;" class="btn btn-primary" id="j-savePage">保存</a>
+			<a href="javascript:;" class="btn btn-primary" id="j-saveAndPrvPage">保存并预览</a>
+		</div>
+	</div>
+{/block}
+
+{block name="tpl"}
+	{include file="../application/home/view/frontTpl/diy/diy.html" /}
+	{include file="../application/home/view/frontTpl/popbox.html" /}
+	{include file="../application/home/view/frontTpl/icon_img.html" /}
+	{include file="../application/home/view/frontTpl/PubMarketing/materialPicker.html" /}
+{/block}

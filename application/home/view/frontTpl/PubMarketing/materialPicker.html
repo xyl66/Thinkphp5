@@ -1,0 +1,514 @@
+<!--图文素材弹窗选择器 -->
+<!-- start 本文图文 -->
+<script type="text/j-template" id="tpl_materialPicker_text_pre">
+	<dl class="materialPrePanel mgt20">
+		<dt>
+			<div class="single-summary pd10"><%= summary %></div>
+		</dt>
+	</dl>
+</script>
+<!-- end 本文图文 -->
+
+<!-- start 单条图文选择器 -->
+<script type="text/j-template" id="tpl_materialPicker_single_table">
+	<div style="text-align:right;"><a href="/MaterialOne/add" class="btn btn-success btn-small" target="_blank">添加单条图文</a></div>
+	<table class="wxtables mgt15" style="width:650px;">
+        <thead>
+            <tr>
+                <td>标题</td>
+                <td>创建时间</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+	        <% if(list.length){ %>
+	        	<% _.each(list,function(item){ %>
+		            <tr>
+		            	<td>
+		            		<div class="ng ng_single">
+							    <div class="ng_item">
+							        <div class="td_cont with_label">
+							            <span class="label label-success">图文</span>
+							            <div class="text">
+							                <a href="<%= item.link %>" target="_blank" class="part new_window" title="<%= item.title %>"><%= item.title %></a>
+							            </div>
+							        </div>
+							    </div>
+							    <div class="ng_item view_more">
+							        <a href="<%= item.link %>" class="td_cont clearfix new_window">
+							            <span class="pull-left">阅读全文</span>
+							            <span class="pull-right">&gt;</span>
+							        </a>
+							    </div>
+							</div>
+		            	</td>
+		            	<td><%= item.datetime %></td>
+		            	<td><a href="javascript:;" class="btn btn-small btn-primary j-select">选择</a></td>
+		            </tr>
+	            <% }) %>
+	        <% }else{ %>
+				<tr><td colspan="4" class="txtCenter">暂无数据</td></tr>
+        	<% } %>
+        </tbody>
+    </table>
+
+    <div class="clearfix mgt15">
+        <div class="paginate fr"><%= page %></div>
+    </div>
+</script>
+
+<script type="text/j-template" id="tpl_materialPicker_single_pre">
+	<dl class="materialPrePanel mgt20" style="border: 1px solid #E7E7EB;">
+		<dt>
+			<h1 class="single-title first-t"><%= title %></h1>
+			<p class="single-datetime first-d"><%= datetime %></p>
+			<div class="cover-wrap">
+				<img src="<%= coverimg %>" >
+			</div>
+			<p class="single-summary first-p"><%= summary %></p>
+			<a href="<%= link %>" target="_blank" class="single-link clearfix first-a">
+				<span class="fl">阅读全文</span>
+				<span class="fr symbol">&gt;</span>
+			</a>
+		</dt>
+	</dl>
+</script>
+<!-- end 单条图文选择器 -->
+
+<!-- start 多条图文选择器 -->
+<script type="text/j-template" id="tpl_materialPicker_mutil_table">
+	<div style="text-align:right;"><a href="/MaterialMore/add" class="btn btn-success btn-small" target="_blank">添加多条图文</a></div>
+	<table class="wxtables mgt15" style="width:650px;">
+        <thead>
+            <tr>
+                <td>标题</td>
+                <td>创建时间</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+        	<% if(list.length){ %>
+	        	<% _.each(list,function(item){ %>
+		            <tr>
+		            	<td>
+		            		<div class="ng ng_multiple">
+							    <div class="ng_item">
+							        <div class="td_cont with_label">
+							            <span class="label label-success">图文1</span>
+							            <div class="text">
+							                <a href="<%= item.link %>" target="_blank" class="part new_window" title="<%= item.title %>"><%= item.title %></a>
+							            </div>
+							        </div>
+							    </div>
+							    <% _.each(item.dataset,function(subitem){ %>
+								    <div class="ng_item">
+								        <div class="td_cont with_label">
+								            <span class="label label-success">图文2</span>
+								            <div class="text">
+								                <a href="<%= subitem.link %>" target="_blank" class="part new_window" title="<%= subitem.title %>"><%= subitem.title %></a>
+								            </div>
+								        </div>
+								    </div>
+							    <% }) %>
+							</div>
+		            	</td>
+		            	<td><%= item.datetime %></td>
+		            	<td><a href="javascript:;" class="btn btn-small btn-primary j-select">选择</a></td>
+		            </tr>
+	            <% }) %>
+            <% }else{ %>
+				<tr><td colspan="4" class="txtCenter">暂无数据</td></tr>
+        	<% } %>
+        </tbody>
+    </table>
+
+    <div class="clearfix mgt15">
+        <div class="paginate fr"><%= page %></div>
+    </div>
+</script>
+
+<script type="text/j-template" id="tpl_materialPicker_mutil_pre">
+	<dl class="materialPrePanel mgt20 bgcfff border">
+		<dt class="mb10 mt10">
+			<a href="<%= redirect %>" target="_blank">
+				<div class="cover-wrap">
+					<img src="<%= coverimg %>" class="img-cover">
+				</div>
+				<h2 class="w262"><%= title %></h2>
+			</a>
+		</dt>
+		<% _.each(dataset,function(item){ %>
+			<dd class="newWidth">
+				<a class="border-top_1 p" href="<%= item.link %>" target="_blank">
+					<h3><%= item.title %></h3>
+					<div class="pic"><img src="<%= item.img %>" alt=""></div>
+				</a>
+			</dd>
+		<% }) %>
+	</dl>
+</script>
+<!-- end 多条图文选择器 -->
+
+<!-- 自定义菜单 营销活动选项卡 -->
+<script type="text/j-template" id="tpl_menu_tab">
+	<% _.each(list,function(item){ %>
+		<li class="clearfix">
+			<a href="<%= item.urlview%><%=item.link%>" class="fl a_hover" target="_blank" title="<%= item.title %>"><%= item.title %></a>
+			<a href="javascript:;" data-link_id="<%= item.link_id%>" class="btn fr j-select">选取</a>
+		</li>
+	<% }) %>
+
+	
+
+</script>
+
+
+<script type="text/j-template" id="tpl_menu_ump">
+<div id="GamePicker">
+		<div class="tabs clearfix">
+			<%for (var i in gamelist){%>
+				<a href="javascript:void(0)" class="tabs_a j-tab-game fl " title="<%= gamelist[i] %>"  data-keys="<%=i%>"><%= gamelist[i] %></a>
+			<% } %>	
+		</div>
+		<div class="tabs-content" data-origin="GamePicker"> 
+			<div class="tc" data-index="1">
+				 <ul class="game-list game-list-panel1">
+				 	
+				 </ul>
+				 <div class="clearfix mgt10">
+					<div class="paginate fr"><%= page %></div>
+				</div>
+			</div>  
+		</div>
+	</div>
+	
+</script>
+<!-- 自定义菜单 活动页面 -->
+ <script type="text/j-template" id="tpl_menu_ump">
+// 	<div>
+// 		<table class="wxtables mgt15">
+// 			<thead>
+// 				<tr>
+// 					<td>标题</td>
+// 					<td width="60">操作</td>
+// 				</tr>
+// 			</thead>
+// 			<tbody>
+// 				<% _.each(list,function(item){ %>
+// 				<tr>
+// 					<td><%= item.title %><input data-link_id="<%= item.link_id%>" type="hidden" value="<%= item.urlview%><%=item.link%>"></td>
+// 					<td><input type="button" class="btn btn-primary j-select-link" name="" value="选择"></td>
+// 				</tr>
+// 				<% }) %>
+// 			</tbody>
+// 		</table>
+// 		<div class="clearfix mgt15">
+//             <div class="paginate fr"><%= page %></div>
+//         </div>
+// 	</div>
+ </script>
+
+<!-- 自定义菜单 选择商品 -->
+<script type="text/j-template" id="tpl_menu_detail">
+	
+	<div id="GoodsAndGroupPicker">
+		<ul class="gagp-goodslist">
+			<% _.each(list,function(data){%>
+				<li class="clearfix">
+					<a href="<%= data.link %><%= data.urlview %>" class="fl" target="_blank" title="<%= data.title %>">
+					    <div class="table-item-img">
+					        <img src="<%= data.file_path %>" alt="<%= data.title %>">
+					    </div>
+					    <div class="table-item-info">
+					        <p><%= data.title %></p>
+					        <span class="price">&yen;<%= data.price %></span>
+					    </div>
+					</a>
+					<a href="javascript:;" data-link_id="<%= data.link_id%>" class="btn fr j-select mgt10">选取</a>
+				</li>
+			<% }) %>
+		</ul>
+		<div class="clearfix mgt15">
+        	<div class="paginate fr"><%= page %></div>
+    	</div>
+	</div>
+</script>
+<script type="text/j-template" id="tpl_menu_page">
+	<div class="clearfix mgt10">
+		<div class="paginate fr"><%= page %></div>
+	</div>
+</script>
+<!-- 选择自定义链接 -->
+<script type="text/j-template" id="tpl_menu_lst">
+	<div id="GoodsAndGroupPicker">
+		<ul class="gagp-goodslist">
+		<% _.each(list,function(data){%>
+			<li class="clearfix">
+				<a href="<%= data.link %><%= data.urlview %>" class="fl a_hover lh30" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+				<a href="javascript:;" data-link_id="<%= data.link_id%>" class="btn fr j-select">选取</a>
+			</li>
+		<% }) %>
+		</ul>
+        <div class="clearfix mgt15">
+            <div class="paginate fr"><%= page %></div>
+        </div>
+	</div>
+
+</script>
+
+<!-- 自定义菜单 商品分组 -->
+<script type="text/j-template" id="tpl_menu_group">
+	<div id="GoodsAndGroupPicker">
+		<div class="tabs-content" data-origin="goodsandgroup">  
+            <div class="tc" data-index="1">  
+                <ul class="gagp-goodslist">
+				<% _.each(list,function(data){%>
+					<li class="clearfix" >
+						<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+						<a href="javascript:;" class="btn fr j-select">选取</a>
+					</li>
+				<% }) %>
+				</ul>
+            </div>  
+        </div>
+	</div>
+	<div class="clearfix mgt15">
+        <div class="paginate fr"><%= page %></div>
+    </div>
+</script>
+
+<!-- 自定义菜单 专题页面 -->
+<script type="text/j-template" id="tpl_menu_magazine">
+	
+	
+	<div id="GoodsAndGroupPicker">
+		<div class="tabs-content" data-origin="goodsandgroup">  
+            <div class="tc" data-index="1">  
+                <ul class="gagp-goodslist">
+				<% _.each(list,function(data){%>
+					<li class="clearfix" >
+						<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+						<a href="javascript:;" class="btn fr j-select">选取</a>
+					</li>
+				<% }) %>
+				</ul>
+            </div>  
+        </div>
+        <div class="clearfix mgt15">
+            <div class="paginate fr"><%= page %></div>
+        </div>
+	</div>
+
+</script>
+
+<!-- 自定义菜单 专题分类 -->
+<script type="text/j-template" id="tpl_menu_sort">
+	
+	<div id="GoodsAndGroupPicker">
+		<div class="tabs-content" data-origin="goodsandgroup">  
+            <div class="tc" data-index="1">  
+                <ul class="gagp-goodslist">
+				<% _.each(list,function(data){%>
+					<li class="clearfix" >
+						<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+						<a href="javascript:;" class="btn fr j-select">选取</a>
+					</li>
+				<% }) %>
+				</ul>
+            </div>  
+        </div>
+        <div class="clearfix mgt15">
+            <div class="paginate fr"><%= page %></div>
+        </div>
+	</div>
+
+</script>
+
+<!-- start ImgPicker -->
+<script type="text/j-template" id="tpl_popbox_ImgPicker">
+	<div id="ImgPicker">
+		<div class="tabs clearfix">    
+		    <a href="javascript:;" class="active tabs_a fl" data-origin="imgpicker" data-index="1">选择图片</a>    
+		    <a href="javascript:;" class="tabs_a fl j-initupload" data-origin="imgpicker" data-index="2">上传新图片</a>       
+		</div>  
+		<!-- end tabs-->
+		<div class="tabs-content" data-origin="imgpicker">    
+		    <div class="tc" data-index="1">    
+		        <ul class="img-list imgpicker-list clearfix"></ul>
+				<!-- end img-list -->
+				<div class="imgpicker-actionPanel clearfix">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary" id="j-btn-listuse">使用选中图片</a>
+					</div>
+					<div class="fr">
+						<div class="paginate"></div>
+					</div>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>    
+
+		    <div class="tc hide" data-index="2">
+				<div class="uploadifyPanel clearfix">
+					<ul class="img-list imgpicker-upload-preview"></ul>
+					<input type="file" name="imgpicker_upload_input" id="imgpicker_upload_input">
+				</div>
+
+				<div class="imgpicker-actionPanel">
+					<a href="javascript:;" class="btn btn-primary" id="j-btn-uploaduse">使用上传的图片</a>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>      
+		</div>
+		<!-- end tabs-content -->
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_ImgPicker_listItem">
+	<% _.each(dataset,function(url){ %>
+		<li>
+			<span class="img-list-overlay"><i class="img-list-overlay-check"></i></span>
+			<img src="<%= url %>">
+		</li>
+	<% }) %>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_ImgPicker_uploadPrvItem">
+	<li>
+		<span class="img-list-btndel j-imgpicker-upload-btndel"><i class="gicon-trash white"></i></span>
+		<span class="img-list-overlay"></span>
+		<img src="<%= url %>">
+	</li>
+</script>
+<!-- 自定义菜单中的单张图片 -->
+<script type="text/j-template" id="tpl_popbox_ImgPicker_listItem2">
+	<% _.each(dataset,function(item){ %>
+		<li>
+			<span class="img-list-overlay"><i class="img-list-overlay-check"></i></span>
+			<img src="<%= item.file_path %>" data-id="<%=item.file_id%>">
+		</li>
+	<% }) %>
+</script>
+<script type="text/j-template" id="tpl_popbox_ImgPicker_uploadPrvItem2">
+	<li>
+		<span class="img-list-btndel j-imgpicker-upload-btndel"><i class="gicon-trash white"></i></span>
+		<span class="img-list-overlay"></span>
+		<img src="<%= url %>" data-id="<%=id%>">
+	</li>
+</script>
+<!-- end ImgPicker-->
+<!-- start audio -->
+<script type="text/j-template" id="tpl_popbox_Audio">
+	<div id="ImgPicker">
+		<div class="tabs clearfix">    
+		    <a href="javascript:;" class="active tabs_a fl" data-origin="imgpicker" data-index="1">选择音频</a>    
+		    <a href="javascript:;" class="tabs_a fl j-initupload" data-origin="imgpicker" data-index="2">上传新音频</a>       
+		</div>  
+		<!-- end tabs-->
+		<div class="tabs-content" data-origin="imgpicker">    
+		    <div class="tc" data-index="1">    
+		        <ul class="img-list imgpicker-list clearfix"></ul>
+				<!-- end img-list -->
+				<div class="imgpicker-actionPanel clearfix">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary" id="j-btn-listuse">使用选中音频</a>
+						<a href="javascript:;" class="btn btn-default" id="j-btn-listdel">删除选中音频</a>
+					</div>
+					<div class="fr">
+						<div class="paginate"></div>
+					</div>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>    
+
+		    <div class="tc hide" data-index="2">
+				<div class="uploadifyPanel clearfix">
+					<ul class="img-list imgpicker-upload-preview"></ul>
+					<input type="file" name="imgpicker_upload_input" id="imgpicker_upload_input">
+				</div>
+
+				<div class="imgpicker-actionPanel">
+					<a href="javascript:;" class="btn btn-primary" id="j-btn-uploaduse">使用上传的音频</a>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>      
+		</div>
+		<!-- end tabs-content -->
+	</div>
+</script>
+<!-- 自定义菜单中的音频 -->
+<script type="text/j-template" id="tpl_popbox_ImgPicker_audio">
+	<% _.each(dataset,function(item){ %>
+		<li>
+			<span class="img-list-overlay"><i class="img-list-overlay-check"></i></span>
+			<div class="audio-flag" data-src="<%= item.file_path %>" data-id="<%=item.file_id%>"><i></i></div>
+			<div class="audio-name">
+				<b class="j-curname"><%= item.file_name %></b>
+				<div class="j-edit-name">
+					<input type="text" name="audioName" value="<%= item.file_name %>">
+					<a href="javascript:;" class="btn btn-primary j-getAudioName" data-id="<%=item.file_id%>" title="确定保存">确定</a>
+				</div>
+				<p class="j-get-edit-name"><i class="gicon-pencil edit-img-name"></i></p>
+			</div>
+		</li>
+	<% }) %>
+</script>
+<script type="text/j-template" id="tpl_popbox_ImgPicker_audio2">
+	<li>
+		<span class="img-list-btndel j-imgpicker-upload-btndel"><i class="gicon-trash white"></i></span>
+		<span class="img-list-overlay"></span>
+		<div data-src="<%= url %>" data-id="<%=id%>" width="64" height="64"><i></i></div>
+	</li>
+</script>
+<!-- start video -->
+<script type="text/j-template" id="tpl_popbox_Video">
+	<div id="ImgPicker">
+		<div class="tabs clearfix">    
+		    <a href="javascript:;" class="active tabs_a fl" data-origin="videolst" data-index="1">选择视频</a>    
+		    <a href="javascript:;" class="tabs_a fl j-initupload" data-origin="video" data-index="2">上传新视频</a>       
+		</div>  
+		<!-- end tabs-->
+		<div class="tabs-content" data-origin="video">    
+		    <div class="tc" data-index="1">    
+		        <ul class="img-list imgpicker-list clearfix"></ul>
+				<!-- end img-list -->
+				<div class="imgpicker-actionPanel clearfix">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary" id="j-btn-listuse">使用选中视频</a>
+					</div>
+					<div class="fr">
+						<div class="paginate"></div>
+					</div>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>    
+
+		    <div class="tc hide" data-index="2">
+				<div class="uploadifyPanel clearfix">
+					<ul class="img-list imgpicker-upload-preview"></ul>
+					<input type="file" name="imgpicker_upload_input" id="imgpicker_upload_input">
+				</div>
+				<div class="imgpicker-actionPanel">
+					<a href="javascript:;" class="btn btn-primary" id="j-btn-uploaduse">使用上传的视频</a>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>      
+		</div>
+		<!-- end tabs-content -->
+	</div>
+</script>
+<!-- 自定义菜单中的视频 -->
+<script type="text/j-template" id="tpl_popbox_ImgPicker_video">
+	<% _.each(dataset,function(item){ %>
+		<li>
+			<span class="img-list-overlay"><i class="img-list-overlay-check"></i></span>
+			<div class="video" data-src="<%= item.file_path %>" data-id="<%=item.file_id%>" width="64" height="64"><i></i></div>
+		</li>
+	<% }) %>
+</script>
+<script type="text/j-template" id="tpl_popbox_ImgPicker_video2">
+	<li>
+		<span class="img-list-btndel j-imgpicker-upload-btndel"><i class="gicon-trash white"></i></span>
+		<span class="img-list-overlay"></span>
+		<div class="video" data-src="<%= url %>" data-id="<%= id %>" width="64" height="64"><i></i></div>
+	</li>
+</script>

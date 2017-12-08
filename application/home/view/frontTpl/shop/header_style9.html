@@ -1,0 +1,87 @@
+<!-- Header_style7 tpl start-->
+<script type="text/j-template" id="tpl_diy_con_typeHeader_style9">
+<div class="membersbox">
+	<section class="mobile9_headertop">
+		<img src="<%= content.bg %>">
+        <section class="mobile9_headerbot_le">
+            <img src="<%= content.photo %>" width="68" height="68">
+        </section>
+        <section class="mobile9_headerbot_lenox">
+            {$seller_title}
+        </section>
+    </section>
+
+	<section class="mobile9_headerbot">
+		<ul>
+			<li>
+				<span>300</span>
+				<a href="">全部商品</a>
+			</li>
+			<li>
+				<span>30</span>
+				<a href="">上新商品</a>
+			</li>
+			<li>
+				<span><img src="__MOBIMG__/index7-2.png" width="18" height="18"></span>
+				<a href="">我的订单</a>
+			</li>
+			<li>
+				<span><img src="__MOBIMG__/index7-3.png" width="18" height="16"></span>
+				<a href="">会员签到</a>
+			</li>
+		</ul>
+	</section>
+</div>
+</script>
+
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_style9">
+	<div class="formitems">  
+		<label class="fi-name">背景图片：</label>
+		<div class="form-controls">
+			<div class="homepage-header-bg">
+				<img src="<%= content.bg %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-bg">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">最佳尺寸：640 x 200 像素。</span>
+			<p class="colorGray">尺寸不匹配时，图片将被压缩或拉伸以铺满画面。</p>
+		</div>
+	</div>
+	<div class="formitems">  
+		<label class="fi-name">商城头像：</label>
+		<div class="form-controls">
+			<div class="homepage-header-photo">
+				<img src="<%= content.photo %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-photo">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">建议尺寸：130 x 130 像素</span>
+		</div>
+	</div>
+</script>
+
+
+<script type="text/j-template" id="tpl_diy_con_typeHeader_style9_news">
+<section class="newsbox">
+	<section class="mobile9_newtit">
+		<a href=""><%= content.showtitle%></a>
+	</section>
+</section>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_style9_news">
+	<div class="formitems">  
+		<label class="fi-name">标题名：</label>
+		<div class="form-controls">
+			<input type="text" name="title" class="input" value="<%= content.showtitle %>">
+		</div>
+	</div>
+</script>
+
+
+
+
+
+
+
+
+<!-- Header_style7 tpl end-->

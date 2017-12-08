@@ -1,0 +1,339 @@
+<!-- start ImgPicker -->
+<script type="text/j-template" id="tpl_popbox_ImgPicker">
+	<div id="ImgPicker">
+		<div class="tabs clearfix">    
+		    <a href="javascript:;" class="active tabs_a fl" data-origin="imgpicker" data-index="1">选择图片</a>    
+		    <a href="javascript:;" class="tabs_a fl j-initupload" data-origin="imgpicker" data-index="2">上传新图片</a>       
+		</div>  
+		<!-- end tabs-->
+		<div class="tabs-content" data-origin="imgpicker">    
+		    <div class="tc" data-index="1">    
+		        <ul class="img-list imgpicker-list clearfix"></ul>
+				<!-- end img-list -->
+				<div class="imgpicker-actionPanel clearfix">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary" id="j-btn-listuse">使用选中图片</a>
+					</div>
+					<div class="fr">
+						<div class="paginate"></div>
+					</div>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>    
+
+		    <div class="tc hide" data-index="2">
+				<div class="uploadifyPanel clearfix">
+					<ul class="img-list imgpicker-upload-preview"></ul>
+					<input type="file" name="imgpicker_upload_input" id="imgpicker_upload_input">
+				</div>
+
+				<div class="imgpicker-actionPanel">
+					<a href="javascript:;" class="btn btn-primary" id="j-btn-uploaduse">使用上传的图片</a>
+				</div>
+				<!-- end imgpicker-actionPanel -->
+		    </div>      
+		</div>
+		<!-- end tabs-content -->
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_ImgPicker_listItem">
+	<% _.each(dataset,function(url){ %>
+		<li>
+			<span class="img-list-overlay"><i class="img-list-overlay-check"></i></span>
+			<img src="<%= url %>">
+		</li>
+	<% }) %>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_ImgPicker_uploadPrvItem">
+	<li>
+		<span class="img-list-btndel j-imgpicker-upload-btndel"><i class="gicon-trash white"></i></span>
+		<span class="img-list-overlay"></span>
+		<img src="<%= url %>">
+	</li>
+</script>
+<!-- end ImgPicker -->
+
+<!-- start ModulePicker -->
+<script type="text/j-template" id="tpl_popbox_ModulePicker">
+	<div id="ModulePicker">
+		<ul class="modulePicker-list"></ul>
+		<div class="clearfix mgt10">
+			<div class="paginate fr"></div>
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_ModulePicker_item">
+	<% _.each(dataset,function(data){%>
+		<li class="clearfix">
+			<a href="<%= data.link %>" target="_blank" class="modulePicker-list-title fl ovfEps a_hover" title="<%= data.title %>"><%= data.title %></a>
+			<a href="javascript:;" class="btn btn-primary btn-small fr j-select">选取</a>
+		</li>
+	<% }) %>
+</script>
+<!-- end ModulePicker -->
+
+<!-- start GoodsAndGroupPicker -->
+<script type="text/j-template" id="tpl_popbox_GoodsAndGroupPicker">
+	<div id="GoodsAndGroupPicker">
+        <div class="tabs clearfix">  
+            <a href="javascript:;" class="active tabs_a fl" data-origin="goodsandgroup" data-index="1">商品</a>  
+            <a href="javascript:;" class="tabs_a fl j-tab-group" data-origin="goodsandgroup" data-index="2">商品分组</a>  
+        </div>
+        <!-- end tabs -->  
+        <div class="tabs-content" data-origin="goodsandgroup">  
+            <div class="tc" data-index="1">  
+                <ul class="gagp-goodslist"></ul>
+				<div class="clearfix mgt10">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary j-btn-goodsuse">确定使用</a>
+					</div>
+					<div class="paginate fr"></div>
+				</div>
+            </div>  
+            <div class="tc hide" data-index="2">  
+                <ul class="gagp-grouplist"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>  
+            </div>  
+        </div>
+	</div>	
+</script>
+
+<script type="text/j-template" id="tpl_popbox_GoodsAndGroupPicker_goodsitem">
+	<% _.each(dataset,function(data){%>
+		<li class="clearfix" data-item="<%= data.item_id %>">
+			<a href="<%= data.link %>" class="fl" target="_blank" title="<%= data.title %>">
+			    <div class="table-item-img">
+			    	<% if(data.is_compress){ %>
+			        	<img src="<%= data.pic %>80x80" alt="<%= data.title %>">
+			        <% }else{ %>
+			        	<img src="<%= data.pic %>" alt="<%= data.title %>">
+			        <% } %>
+			    </div>
+			    <div class="table-item-info">
+			        <p><%= data.title %></p>
+			        <span class="price">&yen;<%= data.price %></span>
+			    </div>
+			</a>
+			<a href="javascript:;" class="btn fr j-select mgt15 mgr15">选取</a>
+		</li>
+	<% }) %>
+</script>
+
+<script type="text/j-template" id="tpl_popbox_GoodsAndGroupPicker_groupitem">
+	<% _.each(dataset,function(data){%>
+		<li class="clearfix" data-group="<%= data.group_id %>">
+			<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+			<a href="javascript:;" class="btn fr j-select">选取</a>
+		</li>
+	<% }) %>
+</script>
+<!-- end GoodsAndGroupPicker -->
+
+<!-- start MgzAndMgzCate -->
+<script type="text/j-template" id="tpl_popbox_MgzAndMgzCate">
+	<div id="MgzAndMgzCate">
+        <div class="tabs clearfix">  
+            <a href="javascript:;" class="active tabs_a fl" data-origin="MgzAndMgzCate" data-index="1">专题页面</a>
+            <a href="javascript:;" class="tabs_a fl j-tab-mgzcate" data-origin="MgzAndMgzCate" data-index="2">页面分类</a>  
+        </div>
+        <!-- end tabs -->  
+        <div class="tabs-content" data-origin="MgzAndMgzCate">  
+            <div class="tc" data-index="1">  
+                <ul class="mgz-list mgz-list-panel1"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+            <div class="tc hide" data-index="2">  
+                <ul class="mgz-list mgz-list-panel2"></ul>
+				<div class="clearfix mgt10">
+					<div class="fl">
+						<a href="javascript:;" class="btn btn-primary j-btn-use">确定使用</a>
+					</div>
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+        </div>
+	</div>	
+</script>
+
+<script type="text/j-template" id="tpl_popbox_MgzAndMgzCate_item">
+	<% _.each(dataset,function(data){%>
+		<li class="clearfix">
+			<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+			<a href="javascript:;" class="btn fr j-select">选取</a>
+		</li>
+	<% }) %>
+</script>
+<!-- end MgzAndMgzCate -->
+
+<!-- start GamePicker -->
+<script type="text/j-template" id="tpl_popbox_GamePicker">
+	<div id="GamePicker">
+        <div class="tabs clearfix">  
+            <a href="javascript:;" class="active tabs_a fl" data-origin="GamePicker" data-index="1">幸运大抽奖</a>  
+            <a href="javascript:;" class="tabs_a fl j-tab-game" data-origin="GamePicker" data-index="2">疯狂砸金蛋</a>  
+            <a href="javascript:;" class="tabs_a fl j-tab-game" data-origin="GamePicker" data-index="3">好运翻翻看</a>  
+            <a href="javascript:;" class="tabs_a fl j-tab-game" data-origin="GamePicker" data-index="4">骰子大王</a>  
+        </div>
+        <!-- end tabs -->  
+        <div class="tabs-content" data-origin="GamePicker">  
+            <div class="tc" data-index="1">  
+                <ul class="game-list game-list-panel1"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+            <div class="tc hide" data-index="2">  
+                <ul class="game-list game-list-panel2"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+            <div class="tc hide" data-index="3">  
+                <ul class="game-list game-list-panel3"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+            <div class="tc hide" data-index="4">  
+                <ul class="game-list game-list-panel4"></ul>
+				<div class="clearfix mgt10">
+					<div class="paginate fr"></div>
+				</div>
+            </div>
+        </div>
+	</div>	
+</script>
+
+<script type="text/j-template" id="tpl_popbox_GamePicker_item">
+	<% _.each(dataset,function(data){%>
+		<li class="clearfix">
+			<a href="<%= data.link %>" class="fl a_hover" target="_blank" title="<%= data.title %>"><%= data.title %></a>
+			<a href="javascript:;" class="btn fr j-select">选取</a>
+		</li>
+	<% }) %>
+</script>
+<!-- end GamePicker -->
+
+<script type="text/j-template" id="tpl_albums_main">
+	<div id="albums">
+		<div class="albums-title clearfix">
+			<span class="fl">我的图库</span>
+			<a href="javascript:;" class="fr" id="j-close" title="关闭"><i class="gicon-remove"></i></a>
+		</div>
+		<div class="albums-container clearfix">
+			<div class="albums-cl fl">
+				<div class="albums-cl-actions">
+					<a href="javascript:;" id="j-addFolder"><i class="gicon-plus"></i><span>添加</span></a>
+					<a href="javascript:;" id="j-renameFolder"><i class="gicon-pencil"></i><span>重命名</span></a>
+					<a href="javascript:;" id="j-delFolder"><i class="gicon-trash"></i><span>删除</span></a>
+				</div>
+				<div class="albums-cl-tree" id="j-panelTree">
+					<p class="txtCenter pdt10 loading j-loading"><i class="icon-loading"></i></p>
+				</div>
+			</div>
+			<div class="albums-cr fl">
+				<div class="albums-cr-actions">
+					<input type="file" name="imgpicker_upload_input" id="j-addImg">
+					<a href="javascript:;" id="j-moveImg" class="btn btn-primary mgl10">移动图片到</a>
+                    <a href="javascript:;" id="j-cateImg" class="btn btn-primary mgl5">移动分类图片到</a>
+					<a href="javascript:;" id="j-delImg" class="btn btn-danger mgl5">删除所选图片</a>
+					<input type="text" placeholder="请输入图片名称" style="width: 210px;padding:6px;vertical-align: 0;border-radius: 2px;border: 1px solid #ccc;"><a href="javascript:;" id="j-delImg" class="btn btn-primary mgl10 searchImg">搜索</a>
+				</div>
+				<div class="albums-cr-imgs" id="j-panelImgs">
+					<p class="txtCenter pdt10 loading j-loading"><i class="icon-loading"></i></p>
+				</div>
+				<div class="albums-cr-ctrls clearfix">
+					<a href="javascript:;" id="j-useImg" class="btn btn-primary fl">使用选中的图片</a>
+					<div class="paginate fr" id="j-panelPaginate"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<!-- end tpl_albums_main -->
+
+<script type="text/j-template" id="tpl_albums_overlay">
+	<div id="albums-overlay"></div>
+</script>
+<!-- end tpl_albums_overlay -->
+
+<script type="text/j-template" id="tpl_albums_tree">
+	<dl class="j-albumsNodes">
+		<dt data-id="-1" data-add="1" data-rename="0" data-del="0">
+		<i class="icon-folder open"></i>
+		<span class="j-treeShowTxt"><em class="j-name">所有图片</em>(<em class="j-num"><%=dataset.total%></em>)</span>
+		</dt>
+		<dd><%=nodes%></dd>
+	</dl>
+</script>
+<!-- end tpl_albums_tree -->
+
+<script type="text/j-template" id="tpl_albums_tree_fn">
+	<% _.each(dataset,function(item){%>
+		<dl>
+			<%if(item.id==0){%>
+				<dt data-id="<%=item.id%>" data-add="0" data-rename="0" data-del="0">
+			<%}else{%>
+				<dt data-id="<%=item.id%>" data-add="1" data-rename="1" data-del="1">
+			<%}%>
+				<%if(item.subFolder && item.subFolder.length){%>
+					<i class="icon-folder open"></i>
+				<%}else{%>
+					<i class="icon-folder"></i>
+				<%}%>
+				<span class="j-treeShowTxt"><em class="j-name"><%=item.name%></em>(<em class="j-num"><%=item.picNum%></em>)</span>
+				<%if(item.id!=0){%>
+					<input type="text" class="ipt j-ip" maxlength="10" value="<%=item.name%>"><i class="icon-loading j-loading"></i>
+				<%}%>
+			</dt>
+			<dd>
+				<%if(item.subFolder && item.subFolder.length){%>
+					<%= templateFn({dataset:item.subFolder, templateFn:templateFn}) %>
+				<%}%>
+			</dd>
+		</dl>
+	<%})%>
+</script>
+
+<script type="text/j-template" id="tpl_albums_delFolder">
+	<div>
+		<p class="ftsize14 bold">删除该文件夹同时会删除其子文件夹，是否继续？</p>
+		<div class="radio-group mgt5">
+			<label><input type="radio" name="isDelImgs" value="1" checked>不删除图片</label>
+			<label><input type="radio" name="isDelImgs" value="2">同时删除图片</label>
+		</div>
+	</div>
+</script>
+<!-- end tpl_albums_delFolder -->
+
+<script type="text/j-template" id="tpl_albums_imgs">
+	<%if(dataset){%>
+	<ul class="clearfix">
+		
+		<% _.each(dataset,function(item,index){ %>
+			<li class="fl" data-id="<%=item.id%>">
+				<img src="<%=item.file%>">
+				<div class="albums-cr-imgs-selected"><i></i></div>
+				<div class="albums-edit">
+					<span><i class="gicon-pencil edit-img-name"></span></i>
+					<p><%=item.name%></p>
+					<div class="img-name-edit">
+						<input type="text" value="<%=item.name%>" style="width:60%;" name="rename" class="file_name"/>
+						<a href="javascript:;" class="renameImg">确定</a>
+					</div>
+				</div>
+			</li>
+		<% }) %>
+	</ul>
+	<%}else{%>
+		<p class="albums-cr-imgs-noPic j-noPic">暂无图片</p>
+	<%}%>
+</script>
+<!-- end tpl_albums_imgs -->

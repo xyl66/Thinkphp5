@@ -137,8 +137,10 @@ class Index extends \think\Controller
                 ->setErrorCorrection('high')
                 ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
                 ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
-                ->setLabel('Scan the code')
+                ->setLabel('scan the code')
                 ->setLabelFontSize(16)
+                ->setLogo(ROOT_PATH.'/public/static/images/code_logo.png')
+                ->setLogoSize(150)
                 ->setImageType($qrCode::IMAGE_TYPE_PNG);
 
             // now we can directly output the qrcode

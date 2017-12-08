@@ -131,7 +131,7 @@ return [
     ],
 
     // 视图输出字符串内容替换
-    'view_replace_str'       => ['__JS__' => $root.'/static/js','__CSS__' =>$root.'/static/css','__IMG__' => $root.'/static/images','__FONT__'=>$root.'/static/images/fonts','__LOD__' =>$root.'/Upload',],
+    'view_replace_str'       => ['__JS__' => $root.'/static/js','__CSS__' =>$root.'/static/css','__IMG__' => $root.'/static/images','__FONT__'=>$root.'/static/images/fonts','__LOD__' =>$root.'/Upload','__PLG__' =>$root.'/plugins','__PM__' =>$root.'/mobile','__MODJS__' =>$root.'/modulesJs'],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

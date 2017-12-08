@@ -1,0 +1,98 @@
+<!-- Header_style14 tpl start-->
+<script type="text/j-template" id="tpl_diy_con_typeHeader_style18">
+	<div class="Header_style_panel" style="background-image:url(<%= content.bg %>)">
+		<div class="mobile18_nav" style="position:absolute;">
+			<% if(content.dataset.length){%>
+			<div class="mobile18_navbox">
+				<ul>
+					<% _.each(content.dataset,function(item){ %>
+					<li>
+						<i></i><a href="<%= item.link %>"><%= item.showtitle %></a>
+					</li>
+					<% }) %>				
+				</ul>
+			</div>
+			<% } %>
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_style18">
+	<div class="formitems">  
+		<label class="fi-name">背景图片：</label>
+		<div class="form-controls">
+			<div class="homepage-header-bg style2">
+				<img src="<%= content.bg %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-bg">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">最佳尺寸：640 x 1080 像素。</span>
+			<p class="colorGray">尺寸不匹配时，图片将被压缩或拉伸以铺满画面。</p>
+		</div>
+	</div>
+
+	
+	<h3 class="cst_h3 mgt15">导航链接</h3>
+	<ul class="ctrl-item-list mgt10">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+			    <label class="fi-name">链接到：</label>  
+			    <div class="form-controls">
+			    	<% if(item.linkType && item.linkType!=11){ %>
+				    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+				    		<span><%= HYD.linkType[item.linkType] %></span>
+				    		<em class="badge-link ovfEps"><%= item.title %></em>
+				    	</a>
+			    	<%}%>
+
+			    	<% if(item.linkType==11){ %>
+			    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+			    	<% } %>
+			    	
+			    	<div class="droplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+					<input type="hidden" class="j-verify" name="item_id" value="">
+			    	<% if(item.linkType==11){ %>
+			    		<span class="fi-help-text">外链请加上 http:// 前缀</span>
+			    	<% } %>
+			    	<span class="fi-help-text j-verify-linkType"></span>
+			    </div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">导航名称：</label>
+				<div class="form-controls">
+					<input type="text" name="navtitle" class="input xlarge" value="<%= item.showtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+			</div>
+		</li>
+		<% }) %>
+	</ul>
+</script>
+<!-- Header_style18 tpl end-->

@@ -1,0 +1,40 @@
+<!-- Header_style1 tpl start-->
+<script type="text/j-template" id="tpl_diy_con_typeHeader_fx_card1">
+	<header class="members_head">
+		<section class="members_head_top">
+			<img src="<%= content.bg %>">
+			<b>邻家小铺</b>
+		</section>
+		<section class="members_head_nav">
+			<section class="members_head_nav_le"><img src="<%= content.photo %>" width="65" height="65"></section>
+			<section class="members_head_nav_ri">
+				
+			</section>
+		</section>
+	</header>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_fx_card1">
+	<div class="formitems">  
+		<label class="fi-name">背景图片：</label>
+		<div class="form-controls">
+			<div class="homepage-header-bg">
+				<img src="<%= content.bg %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-bg">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">最佳尺寸：640 x 1080 像素。</span>
+			<p class="colorGray">尺寸不匹配时，图片将被压缩或拉伸以铺满画面。</p>
+		</div>
+	</div>
+	<div class="formitems">  
+		<label class="fi-name">LOGO：</label>
+		<div class="form-controls">
+			<div class="homepage-header-photo">
+				<img src="<%= content.photo %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-photo">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">建议尺寸：130 x 130 像素</span>
+		</div>
+	</div>
+</script>
+<!-- Header_style1 tpl end-->

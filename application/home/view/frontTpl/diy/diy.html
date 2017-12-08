@@ -1,0 +1,1560 @@
+<!-- diy common start -->
+<script type="text/j-template" id="tpl_diy_conitem">
+	<div class="diy-conitem">
+		<%= html %>
+		<div class="diy-conitem-action">
+			<div class="diy-conitem-action-btns">
+				<a href="javascript:;" class="diy-conitem-btn diy-edit j-edit">编辑</a>
+				<a href="javascript:;" class="diy-conitem-btn diy-del j-del">删除</a>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl">
+	<div class="diy-ctrl-item" data-origin="item">
+		<%= html %>
+	</div>
+</script>
+<!-- diy common end -->
+
+<!-- type1 fulltext start-->
+<script type="text/j-template" id="tpl_diy_con_type1">
+	<div class="members_con">
+		<div class="fulltext"><%= HYD.DIY.Unit.html_decode(content.fulltext) %></div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type1">
+	<textarea id="editor<%= id %>" style="width:100%;min-height:485px;"></textarea>
+</script>
+<!-- type1 fulltext end-->
+
+<!-- type2 title start-->
+<script type="text/j-template" id="tpl_diy_con_type2">
+	<div class="members_con">
+		<section class="members_special <%= content.direction %> <% if(content.style=="0" ||content.style == undefined){ %>titlestyle0<% }else if(content.style=="1"){ %>titlestyle1<% }else if(content.style=="2"){ %>titlestyle2<% }else{ %>titlestyle3<% } %>">
+			<h2 class="j-title"><%= content.title %></h2>
+			<!--<p class="j-subtitle"><%= content.subtitle %></p>-->
+			<!--<% if(content.style!="2"){ %>
+	        	<b>更多</b>
+	        <% } %>-->
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type2">
+	<div class="formitems">  
+	    <label class="fi-name">标题：</label>  
+	    <div class="form-controls">  
+	        <input type="text" name="title" class="input" value="<%= content.title %>">
+	        <span class="fi-help-text"></span>
+	    </div>  
+	</div>
+	<!--<div class="formitems">  
+	    <label class="fi-name">副标题：</label>  
+	    <div class="form-controls">  
+	        <input type="text" name="subtitle" class="input" value="<%= content.subtitle %>">
+	        <span class="fi-help-text"></span> 
+	    </div>  
+	</div>-->
+	<div class="formitems">
+		<label class="fi-name">显示类型：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="titlestyle" value="0" <% if(content.style=="0" ||content.style == undefined){ %>checked<% } %> >样式一</label>
+				<label><input type="radio" name="titlestyle" value="1" <% if(content.style=="1"){ %>checked<% } %> >样式二</label>
+				<label><input type="radio" name="titlestyle" value="2" <% if(content.style=="2"){ %>checked<% } %> >样式三</label>
+				<label><input type="radio" name="titlestyle" value="3" <% if(content.style=="3"){ %>checked<% } %> >样式四</label>
+			</div>
+		</div>
+	</div>
+	<div class="formitems">
+		<label class="fi-name">显示方式：</label>
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="direction" value="left" <% if(content.direction=="left"){ %>checked<% } %> >居左</label>
+				<label><input type="radio" name="direction" value="center" <% if(content.direction=="center"){ %>checked<% } %> >居中</label>
+				<label><input type="radio" name="direction" value="right" <% if(content.direction=="right"){ %>checked<% } %> >居右</label>
+			</div>
+		</div>
+	</div>
+</script>
+<!-- type2 title end-->
+
+<!-- type3 custModule start-->
+<script type="text/j-template" id="tpl_diy_con_type3">
+	<% if(content){ %>
+		<div class="type3_custModule">自定义模块：<%= content.title %></div>
+	<% } else { %>
+		<div class="type3_custModule">『编辑自定义模块』</div>
+	<% }%>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type3">
+	<div class="formitems">  
+	    <label class="fi-name">自定义模块：</label>  
+	    <div class="form-controls pdt3">
+	    	<% if(content){ %>
+				<a href="<%= content.link %>" target="_blank" class="badge badge-success mgt3 type3_custModule_ctrl"><%= content.title %></a>
+	    		<a href="javascript:;" class="btn btn-primary btn-mini j-btn-modify">修改</a>
+			<% } else { %>
+				<a href="javascript:;" class="btn btn-primary btn-mini j-btn-add">添加</a>
+			<% }%>
+			<input type="hidden" class="j-verify"><span class="fi-help-text"></span>
+	    </div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type3_modify">
+	<a href="<%= content.link %>" target="_blank" class="badge badge-success mgt3 type3_custModule_ctrl"><%= content.title %></a>
+	<a href="javascript:;" class="btn btn-primary btn-mini j-btn-modify">修改</a>
+</script>
+<!-- type3 custModule end-->
+
+<!-- type4 goods start-->
+<script type="text/j-template" id="tpl_diy_con_type4">
+	<div class="members_con">
+		<% if(content.layout==1){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="mingoods">
+							<div class="b_mingoods_wrapper">
+								<a href="<%= goods.link %>">
+									<% if(goods.is_compress){ %>
+										<img src="<%= goods.pic %>300x300" width="100%">
+									<% }else{ %>
+										<img src="<%= goods.pic %>" width="100%">
+									<% } %>
+								</a>
+								<% if(content.showIco || content.showPrice){ %>
+									<span class="replace">
+										<% if(content.showIco){ %>
+											<i></i>
+										<% } %>
+										<% if(content.showPrice){ %>
+											&yen;<%= goods.price%>
+											<span class="original_price"><s>&yen;<%= goods.original_price%></s></span>
+										<% } %>
+									</span>
+								<% } %>
+							</div>
+						</li>
+					<% }) %>
+				<% } else { %>
+					<li class="mingoods">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView1.jpg" width="100%" ></a>
+							<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+						</div>
+					</li>
+					<li class="mingoods">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView2.jpg" width="100%" ></a>
+							<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+						</div>
+					</li>
+					<li class="mingoods">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView3.jpg" width="100%" ></a>
+							<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+						</div>
+					</li>
+					<li class="mingoods">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView4.jpg" width="100%" ></a>
+							<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+						</div>
+					</li>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==2){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="biggoods">
+							<a class="goodsimg" href="<%= goods.link %>">
+								<% if(goods.is_compress){ %>
+									<img src="<%= goods.pic %>300x300" width="100%" >
+								<% }else{ %>
+									<img src="<%= goods.pic %>" width="100%" >
+								<% } %>
+							</a>
+							<section class="members_goodsimg_name rename">
+								<% if(content.showName){ %>
+									<a href="<%= goods.link %>"><%= goods.title %></a>
+								<% } %>
+								<span>
+									<% if(content.showIco){ %>
+										<i><a href="<%= goods.link %>"></a></i>
+									<% } %>
+									<% if(content.showPrice){ %>
+										&yen;<%= goods.price%>
+										<span class="original_price">原价：<s>&yen;<%= goods.original_price%></s></span>
+									<% } %>
+								</span>
+							</section>
+						</li>
+					<% }) %>
+				<% } else { %>
+					<li class="biggoods">
+						<a class="goodsimg" href=""><img src="/Public/images/diy/goodsView1.jpg" width="100%" ></a>
+						<section class="members_goodsimg_name rename">
+							<% if(content.showName == 1||content.showName === undefined){ %>
+							<a href="">大图商品名称</a>
+							<% } %>
+							<span><i></i> 780.00<span class="original_price">原价：<s>&yen;999</s></span></span>
+						</section>
+					</li>
+					<li class="biggoods">
+						<a class="goodsimg" href=""><img src="/Public/images/diy/goodsView2.jpg" width="100%" ></a>
+						<section class="members_goodsimg_name rename">
+							<% if(content.showName == 1||content.showName === undefined){ %>
+							<a href="">大图商品名称</a>
+							<% } %>
+							<span><i></i> 780.00<span class="original_price">原价：<s>&yen;999</s></span></span>
+						</section>
+					</li>
+					<li class="biggoods">
+						<a class="goodsimg" href=""><img src="/Public/images/diy/goodsView3.jpg" width="100%" ></a>
+						<section class="members_goodsimg_name rename">
+							<% if(content.showName == 1||content.showName === undefined){ %>
+							<a href="">大图商品名称</a>
+							<% } %>
+							<span><i></i> 780.00<span class="original_price">原价：<s>&yen;999</s></span></span>
+						</section>
+					</li>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==3){ %>
+			<section class="members_goodspic big_small">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods,index){ %>
+
+						<% if(index%3==0){ %>
+							<li class="biggoods">
+								<a class="goodsimg" href="<%= goods.link %>">
+									<% if(goods.is_compress){ %>
+										<img src="<%= goods.pic %>300x300" width="100%" >
+									<% }else{ %>
+										<img src="<%= goods.pic %>" width="100%" >
+									<% } %>
+								</a>
+								<% if(content.showName || content.showPrice){ %>
+									<section class="members_goodsimg_name rename">
+										<% if(content.showName){ %>
+											<a href="<%= goods.link %>"><%= goods.title %></a>
+										<% } %>
+										<span>
+											<% if(content.showIco){ %>
+												<i><a href="<%= goods.link %>"></a></i>
+											<% } %>
+											<% if(content.showPrice){ %>
+												&yen;<%= goods.price%>
+												<span class="original_price">原价：<s>&yen;<%= goods.original_price%></s></span>
+											<% } %>
+										</span>
+									</section>
+								<% } %>
+							</li>
+						<% } else { %>
+							<li class="b_mingoods <% if(index%3==1){ %>goods_even<% } %><% if(index%3==2){ %>goods_odd<% } %>">
+								<div class="b_mingoods_wrapper">
+									<a href="<%= goods.link %>">
+										<% if(goods.is_compress){ %>
+											<img src="<%= goods.pic %>300x300" width="100%">
+										<% }else{ %>
+											<img src="<%= goods.pic %>" width="100%">
+										<% } %>
+									</a>
+									<section style="height:44px;">
+					                    <p class="title"><%= goods.title %></p>
+					                    <p class="pic_box"><span class="pirce"><span class="yen">&yen;</span><%= goods.price%></span><span class="yj">&yen;<%= goods.original_price%></span></p>
+					                </section>
+									
+								</div>
+							</li>
+						<% } %>
+
+					<% }) %>
+				<% } else { %>
+					<li class="biggoods">
+						<a class="goodsimg" href=""><img src="/Public/images/diy/goodsView1.jpg" width="100%" ></a>
+						<section class="members_goodsimg_name rename">
+							<a href="">大图商品名称</a>
+							<span><i></i> 780.00<span class="original_price">原价：<s>&yen;999</s></span></span>
+						</section>
+					</li>
+					<li class="mingoods">
+						<a href=""><img src="/Public/images/diy/goodsView4.jpg" width="100%" ></a>
+						<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+					</li>
+					<li class="mingoods">
+						<a href=""><img src="/Public/images/diy/goodsView4.jpg" width="100%" ></a>
+						<span class="replace"><i></i> &yen;78.00<span class="original_price"><s>&yen;99.00</s></span></span>
+					</li>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==4){ %>
+			<section class="members_goodslist">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="g-box por rebox">
+							<section>
+								<a href="<%= goods.link %>">
+									<% if(goods.is_compress){ %>
+										<img src="<%= goods.pic %>300x300" width="88" height="88" >
+									<% }else{ %>
+										<img src="<%= goods.pic %>" width="88" height="88" >
+									<% } %>
+								</a>
+							</section>
+							<section class="g-flex">
+								<a href=""><%= goods.title %></a>
+								<p>&yen;<%= goods.price %></p>
+							</section>
+							<i class="icon_buy"><a href="<%= goods.link %>" title="">购买</a></i>
+						</li>
+					<% }) %>
+				<% } else { %>
+					<li class="g-box por rebox">
+						<section><a href=""><img src="/Public/images/diy/goodsView1.jpg" width="88" height="88" ></a></section>
+						<section class="g-flex">
+							<a href="">此处显示商品名称</a>
+							<p>&yen;32434.00</p>
+						</section>
+						<i class="icon_buy"><a href="#" title="">购买</a></i>
+					</li>
+					<li class="g-box por rebox">
+						<section><a href=""><img src="/Public/images/diy/goodsView2.jpg" width="88" height="88" ></a></section>
+						<section class="g-flex">
+							<a href="">此处显示商品名称</a>
+							<p>&yen;32434.00</p>
+						</section>
+						<i class="icon_buy"><a href="#" title="">购买</a></i>
+					</li>
+					<li class="g-box por rebox">
+						<section><a href=""><img src="/Public/images/diy/goodsView3.jpg" width="88" height="88" ></a></section>
+						<section class="g-flex">
+							<a href="">此处显示商品名称</a>
+							<p>&yen;32434.00</p>
+						</section>
+						<i class="icon_buy"><a href="#" title="">购买</a></i>
+					</li>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==5){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods,index){ %>
+						<li class="b_mingoods <% if(index%2==0){ %>goods_even<% }else{ %>goods_odd<% } %>">
+							<div class="b_mingoods_wrapper">
+								<a href="<%= goods.link %>">
+									<% if(goods.is_compress){ %>
+										<img src="<%= goods.pic %>300x300" width="100%">
+									<% }else{ %>
+										<img src="<%= goods.pic %>" width="100%">
+									<% } %>
+								</a>
+								<% if(content.showIco || content.showPrice){ %>
+									<a class="title" style="
+									   color:black;
+										overflow: hidden;
+										text-overflow: ellipsis;
+										display: -webkit-box !important;
+										-webkit-line-clamp: 2;
+										-webkit-box-orient: vertical;"><%= goods.title %></a>
+									<p class="pic_box"><span class="pirce">&yen;<%= goods.price%></span><span class="yj">&yen;<%= goods.original_price%></span></p>
+								<% } %>
+								<!--<p class="b_mingoods_btn"><a href="<%= goods.link %>" title="立即购买">立即<br>购买</a></p>-->
+							</div>
+						</li>
+					<% }) %>
+				<% } else { %>
+					<li class="b_mingoods goods_even">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView1.jpg" width="100%" ></a>
+							<p class="title">商品标题</p>
+							<p class="pic_box"><span class="pirce">&yen;1.00</span><span class="yj">&yen;1.0</span></p>
+							<!--<p class="b_mingoods_btn"><a href="#" title="立即购买">立即<br>购买</a></p>-->
+						</div>
+					</li>
+					<li class="b_mingoods goods_odd">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView2.jpg" width="100%" ></a>
+							<p class="title">商品标题</p>
+							<p class="pic_box"><span class="pirce">&yen;1.00</span><span class="yj">&yen;1.0</span></p>
+							<!--<p class="b_mingoods_btn"><a href="#" title="立即购买">立即<br>购买</a></p>-->
+						</div>
+					</li>
+					<li class="b_mingoods goods_even">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView3.jpg" width="100%" ></a>
+							<p class="title">商品标题</p>
+							<p class="pic_box"><span class="pirce">&yen;1.00</span><span class="yj">&yen;1.0</span></p>
+							<!--<p class="b_mingoods_btn"><a href="#" title="立即购买">立即<br>购买</a></p>-->
+						</div>
+					</li>
+					<li class="b_mingoods goods_odd">
+						<div class="b_mingoods_wrapper">
+							<a href=""><img src="/Public/images/diy/goodsView4.jpg" width="100%" ></a>
+							<p class="title">商品标题</p>
+							<p class="pic_box"><span class="pirce">&yen;1.00</span><span class="yj">&yen;1.0</span></p>
+							<!--<p class="b_mingoods_btn"><a href="#" title="立即购买">立即<br>购买</a></p>-->
+						</div>
+					</li>
+				<% } %>
+				</ul>
+			</section>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type4">
+	<div class="formitems">
+		<label class="fi-name">布局方式：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="layout" value="1" <% if(content.layout==1){ %>checked<% } %> >小图</label>
+				<label><input type="radio" name="layout" value="2" <% if(content.layout==2){ %>checked<% } %> >大图</label>
+				<label><input type="radio" name="layout" value="3" <% if(content.layout==3){ %>checked<% } %> >一大两小</label>
+				<label><input type="radio" name="layout" value="4" <% if(content.layout==4){ %>checked<% } %> >列表</label>
+				<label><input type="radio" name="layout" value="5" <% if(content.layout==5){ %>checked<% } %> >双列有标题</label>
+			</div>
+		</div>
+	</div>
+	<% if(content.layout==2){ %>
+	<div class="formitems">
+		<label class="fi-name">是否显示标题：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="showName" value='1' <% if(content.showName == 1||content.showName===true){ %>checked<% } %> >显示</label>
+				<label><input type="radio" name="showName" value='0' <% if(content.showName == 0||content.showName===false){ %>checked<% } %> >不显示</label>
+			</div>
+		</div>
+	</div>
+	<% } %>
+	<div class="formitems">
+		<label class="fi-name">选择商品：</label> 
+		<div class="form-controls pdt5">
+			<ul class="img-list clearfix">
+				<% if (content.goodslist){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li data-item="<%= goods.item_id %>">
+							<a href="<%= goods.link %>" target="_blank">
+								<span class="img-list-btndel j-delgoods"><i class="gicon-trash white"></i></span>
+								<span class="img-list-overlay"></span>
+								<% if(goods.is_compress){ %>
+									<img src="<%= goods.pic %>80x80">
+								<% }else{ %>
+									<img src="<%= goods.pic %>">
+								<% } %>
+							</a>
+						</li>
+					<% }) %>
+				<% } %>
+				<li class="img-list-add j-addgoods">+</li>
+			</ul>
+			<input type="hidden" value="" class="j-verify"><span class="fi-help-text"></span>
+		</div>
+	</div>
+</script>
+<!-- type4 goods end-->
+
+<!-- type5 group start-->
+<script type="text/j-template" id="tpl_diy_con_type5">
+	<div class="members_con">
+		<% if(content.layout==1){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="mingoods">
+							<a href="<%= goods.link %>"><img src="<%= goods.pic %>" width="100%"></a>
+							<% if(content.showIco || content.showPrice){ %>
+								<span class="replace">
+									<% if(content.showIco){ %>
+										<i></i>
+									<% } %>
+									<% if(content.showPrice){ %>
+										&yen;<%= goods.price%>
+										<span class="original_price"><s>&yen;<%= goods.original_price%></s></span>
+									<% } %>
+								</span>
+							<% } %>
+
+						</li>
+					<% }) %>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==2){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="biggoods">
+							<a class="goodsimg" href="<%= goods.link %>"><img src="<%= goods.pic %>" width="100%" ></a>
+							<% if(content.showName || content.showPrice){ %>
+								<section class="members_goodsimg_name rename">
+									<% if(content.showName){ %>
+										<a href="<%= goods.link %>"><%= goods.title %></a>
+									<% } %>
+									<span>
+										<% if(content.showIco){ %>
+											<i><a href="<%= goods.link %>"></a></i>
+										<% } %>
+										<% if(content.showPrice){ %>
+											&yen;<%= goods.price%>
+											<span class="original_price">原价：<s>&yen;<%= goods.original_price%></s></span>
+										<% } %>
+									</span>
+								</section>
+							<% } %>
+						</li>
+					<% }) %>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==3){ %>
+			<section class="members_goodspic">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods,index){ %>
+
+						<% if(index%3==0){ %>
+							<li class="biggoods">
+								<a class="goodsimg" href="<%= goods.link %>"><img src="<%= goods.pic %>" width="100%" ></a>
+								<% if(content.showName || content.showPrice){ %>
+									<section class="members_goodsimg_name rename">
+										<% if(content.showName){ %>
+											<a href="<%= goods.link %>"><%= goods.title %></a>
+										<% } %>
+										<span>
+											<% if(content.showIco){ %>
+												<i><a href="<%= goods.link %>"></a></i>
+											<% } %>
+											<% if(content.showPrice){ %>
+												&yen;<%= goods.price%>
+												<span class="original_price"><s>&yen;<%= goods.original_price%></s></span>
+											<% } %>
+										</span>
+									</section>
+								<% } %>
+							</li>
+						<% } else { %>
+							<li class="mingoods <% if(index%3==2){ %>goods_odd<% }%><% if(index%3==1){ %>goods_even<% } %>">
+								<a href="<%= goods.link %>"><img src="<%= goods.pic %>" width="100%"></a>
+								<% if(content.showIco || content.showPrice){ %>
+									<span class="replace">
+										<% if(content.showIco){ %>
+											<i></i>
+										<% } %>
+										<% if(content.showPrice){ %>
+											&yen;<%= goods.price%>
+											<span class="original_price"><s>&yen;<%= goods.original_price%></s></span>
+										<% } %>
+									</span>
+								<% } %>
+							</li>
+						<% } %>
+
+					<% }) %>
+				<% } %>
+				</ul>
+			</section>
+		<% } else if(content.layout==4){ %>
+			<section class="members_goodslist">
+				<ul>
+				<% if (content.goodslist.length){ %>
+					<% _.each(content.goodslist,function(goods){ %>
+						<li class="g-box por rebox">
+							<section><a href="<%= goods.link %>"><img src="<%= goods.pic %>" width="88" height="88" ></a></section>
+							<section class="g-flex">
+								<a href=""><%= goods.title %></a>
+								<p>&yen;<%= goods.price %></p>
+							</section>
+							<i class="icon_buy"><a href="<%= goods.link %>" title="">购买</a></i>
+						</li>
+					<% }) %>
+				<% } %>
+				</ul>
+			</section>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type5">
+	<div class="formitems">
+		<label class="fi-name">布局方式：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="layout" value="1" <% if(content.layout==1){ %>checked<% } %> >小图</label>
+				<label><input type="radio" name="layout" value="2" <% if(content.layout==2){ %>checked<% } %> >大图</label>
+				<label><input type="radio" name="layout" value="3" <% if(content.layout==3){ %>checked<% } %> >一大两小</label>
+				<label><input type="radio" name="layout" value="4" <% if(content.layout==4){ %>checked<% } %> >列表</label>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div class="formitems j-showplg" style="display:none;">
+		<label class="fi-name">显示组件：</label> 
+		<div class="form-controls">
+			<div class="checkbox-group" style="display:none;">
+				<label><input type="checkbox" name="showName" <% if(content.showName && content.layout!=1){ %>checked<% } %> <% if(content.layout==1){ %>disabled<% } %> >显示商品名</label>
+				<span>(布局方式为小图的时候不会显示)</span>
+			</div>
+			<div class="checkbox-group">
+				<label><input type="checkbox" name="showIco" <% if(content.showIco){ %>checked<% } %> >显示购物车图标</label>
+				<label><input type="checkbox" name="showPrice" <% if(content.showPrice){ %>checked<% } %> >显示价格</label>
+			</div>
+		</div>
+	</div>
+	-->
+	<div class="formitems">  
+		<label class="fi-name">选择商品分组：</label>
+		<div class="form-controls pdt3">
+			<% if(content.group){ %>
+				<a href="<%= content.group.link %>" data-group="<%= content.group.group_id %>" target="_blank" class="badge badge-success mgt3"><%= content.group.title %></a>
+	    		<a href="javascript:;" class="btn btn-primary btn-mini j-btn-modify">修改分组</a>
+			<% } else { %>
+				<a href="javascript:;" class="btn btn-primary btn-mini j-btn-add mgt3">选择分组</a>
+			<% }%>
+			<input type="hidden" class="j-verify">
+			<span class="fi-help-text">选择商品分组后，左侧实时预览暂不支持显示其包含的商品数据</span>
+		</div>
+	</div>
+	<div class="formitems">
+		<label class="fi-name">显示商品个数：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="goodsize" value="6" <% if(content.goodsize==6){ %>checked<% } %> >6个</label>
+				<label><input type="radio" name="goodsize" value="12" <% if(content.goodsize==12){ %>checked<% } %> >12个</label>
+				<label><input type="radio" name="goodsize" value="18" <% if(content.goodsize==18){ %>checked<% } %> >18个</label>
+			</div>
+			<span class="fi-help-text"></span>
+		</div>
+	</div>
+</script>
+<!-- type5 group end-->
+
+<!-- type6 goodSearch start-->
+<script type="text/j-template" id="tpl_diy_con_type6">
+	<div class="members_con">
+		<section class="members_search">
+			<input type="text" name="" id="" value="" placeholder="商品搜索：请输入商品关键字"  >
+			<button type="submit"></button>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type6">
+	<div class="formitems pdt5"><p>可随意插入任何页面和位置，方便会员快速搜索商品。</p></div>
+</script>
+<!-- type6 goodSearch end-->
+
+<!-- type7 txtNav start-->
+<script type="text/j-template" id="tpl_diy_con_type7">
+	<div class="members_con">
+		<section class="members_nav2">
+			<ul>
+			<% if(content.dataset.length){ %>
+				<% _.each(content.dataset,function(item){ %>
+					<% if(item.linkType){ %>
+						<li><a href="<%= item.link %>"><%= item.showtitle %></a><b></b></li>
+					<%}else{%>
+						<li><a href="#">请添加导航链接</a><b></b></li>
+					<%}%>
+				<% }) %>
+			<% }else{ %>
+				<li><a href="#">请添加导航链接</a><b></b></li>
+			<% } %>
+			</ul>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type7">
+	<ul class="ctrl-item-list">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+			    <label class="fi-name">链接到：</label>  
+			    <div class="form-controls">
+			    	<% if(item.linkType && item.linkType!=11){ %>
+				    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+				    		<span><%= HYD.linkType[item.linkType] %></span>
+				    		<em class="badge-link ovfEps"><%= item.title %></em>
+				    	</a>
+			    	<%}%>
+
+			    	<% if(item.linkType==11){ %>
+			    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+			    	<% } %>
+			    	
+			    	<div class="droplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+					<input type="hidden" class="j-verify" name="item_id" value="">
+			    	<span class="fi-help-text j-verify-linkType"></span>
+			    </div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">导航名称：</label>
+				<div class="form-controls">
+					<input type="text" name="title" class="input xlarge" value="<%= item.showtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+	</ul>
+	<span class="fi-help-text mgt15 j-verify-least"></span>
+</script>
+<!-- type7 txtNav end-->
+
+<!-- type8 imgNav start-->
+<script type="text/j-template" id="tpl_diy_con_type8">
+	<div class="members_con">
+		<section class="members_nav1">
+			<ul>
+				<% if(content.dataset.length){ %>
+					<% _.each(content.dataset,function(item){ %>
+						<li class="lisw<%= content.dataset.length %>">
+							<span><a href="<%= item.link %>"><img src="<%= item.pic %>" width="70"></a></span>
+							<a class="members_nav1_name" href="<%= item.link %>"><%= item.showtitle %></a>
+						</li>
+					<% }) %>
+				<% }else{ %>
+					<li>
+						<span><a href=""><img src="/Public/images/diy/waitupload.png" width="70" height="70"></a></span>
+						<a class="members_nav1_name" href="">导航文字</a>
+					</li>
+					<li>
+						<span><a href=""><img src="/Public/images/diy/waitupload.png" width="70" height="70"></a></span>
+						<a class="members_nav1_name" href="">导航文字</a>
+					</li>
+					<li>
+						<span><a href=""><img src="/Public/images/diy/waitupload.png" width="70" height="70"></a></span>
+						<a class="members_nav1_name" href="">导航文字</a>
+					</li>
+					<li>
+						<span><a href=""><img src="/Public/images/diy/waitupload.png" width="70" height="70"></a></span>
+						<a class="members_nav1_name" href="">导航文字</a>
+					</li>
+				<% } %>
+			</ul>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type8">
+	<ul class="ctrl-item-list">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li clearfix">
+			<div class="fl">
+				<div class="imgnav j-selectimg">
+					<% if(item.pic && item.pic!=""){ %>
+						<img src="<%= item.pic %>">
+						<span class="imgnav-reselect">重新选择</span>
+					<% }else{ %>
+						<p class="imgnav-select">选择图片</p>
+					<% } %>
+				</div>
+				<span class="fi-help-text txtCenter mgt5 j-verify-pic"></span>
+			</div>
+
+			<div class="fl imgnav-info">
+				<div class="formitems">  
+				    <label class="fi-name">链接到：</label>  
+				    <div class="form-controls">
+				    	<% if(item.linkType && item.linkType!=11){ %>
+					    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+					    		<span><%= HYD.linkType[item.linkType] %></span>
+					    		<em class="badge-link ovfEps"><%= item.title %></em>
+					    	</a>
+				    	<%}%>
+
+				    	<% if(item.linkType==11){ %>
+				    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+				    	<% } %>
+				    	
+				    	<div class="droplist">
+							<a href="javascript:;" class="droplist-title j-droplist-toggle">
+								<% if(item.linkType==0){ %>
+									<span>请选择</span>
+								<%}else{%>
+									<span>修改</span>
+								<%}%>
+								<i class="gicon-chevron-down mgl5"></i>
+							</a>
+							<ul class="droplist-menu">
+								<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+								<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+								<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+								<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+								<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+								<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+								<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+								<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+								<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+								<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+								<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+								<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+							</ul>
+						</div>
+				    	<input type="hidden" class="j-verify" name="item_id" value="">
+				    	<span class="fi-help-text j-verify-linkType"></span>
+				    </div>
+				</div>
+				<div class="formitems">  
+					<label class="fi-name">导航名称：</label>
+					<div class="form-controls">
+						<input type="text" name="title" class="input xlarge" value="<%= item.showtitle %>">
+						<span class="fi-help-text"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<% if(content.dataset.length<4){ %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+		<% } %>
+	</ul>
+	<span class="fi-help-text mgt15 j-verify-least"></span>
+</script>
+<!-- type8 imgNav end-->
+
+<!-- type9 imgAd start-->
+<script type="text/j-template" id="tpl_diy_con_type9">
+	<div class="members_con" style="margin:<% if(content.space == 1){ %>10px auto<% }else{ %>0 auto<% } %>">
+		<% if(content.showType==1){ %>
+			<section class="members_flash" id="mySwipe">
+				<ul class="clearfix">
+					<% if(content.dataset.length){ %>
+						<li>
+							<a href="<%= content.dataset[0].link %>" title="<%= content.dataset[0].showtitle %>">
+								<% if(content.dataset[0].pic!=""){ %>
+									<% if(content.is_compress){ %>
+										<img src="<%= content.dataset[0].pic %>300x300" width="100%" />
+									<% }else{ %>
+										<img src="<%= content.dataset[0].pic %>" width="100%" />
+									<% } %>
+								<% }else{ %>
+									<img src="/Public/images/diy/imgad.jpg" width="100%" />
+								<% } %>
+							</a>
+						</li>
+					<% }else{ %>
+						<li><a href="" title=""><img src="/Public/images/diy/imgad.jpg" width="100%" /></a></li>
+					<% } %>
+				</ul>
+				<section class="members_flash_time">
+					<% if(content.dataset.length>1){ %>
+						<% _.each(content.dataset,function(item,index){ %>
+							<span <% if(index==0){ %>class="cur"<% } %> ></span>
+						<% }) %>
+					<% } %>
+				</section>
+			</section>
+		<% }else{ %>
+			<section class="members_imgad">
+				<ul class="clearfix">
+					<% if(content.dataset.length){ %>
+						<% _.each(content.dataset,function(item){ %>
+							<li style="margin-bottom:<% if(!content.margin){ %>0<% }else{ %><%= content.margin %><% } %>px">
+								<a href="<%= item.link %>" title="<%= item.showtitle %>">
+									<% if(item.pic!=""){ %>
+										<% if(item.is_compress){ %>
+											<img src="<%= item.pic %>300x300" width="100%" />
+										<% }else{ %>
+											<img src="<%= item.pic %>" width="100%" />
+										<% } %>
+									<% }else{ %>
+										<img src="/Public/images/diy/imgad.jpg" width="100%" />
+									<% } %>
+								</a>
+							</li>
+						<% }) %>
+					<% }else{ %>
+						<li><a href="" title=""><img src="/Public/images/diy/imgad.jpg" width="100%" /></a></li>
+					<% } %>
+				</ul>
+			</section>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type9">
+	<div class="formitems mgb10">
+		<label class="fi-name">显示方式：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="showType" value="1" <% if(content.showType==1){ %>checked<% } %> >折叠轮播</label>
+				<label><input type="radio" name="showType" value="2" <% if(content.showType==2){ %>checked<% } %>>分开显示</label>
+			</div>
+		</div>
+	</div>
+	<div class="formitems">
+		<label class="fi-name">整体上下留白：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="space" value="1" <% if(content.space==1 || content.space == undefined){ %>checked<% } %> >是</label>
+				<label><input type="radio" name="space" value="0" <% if(content.space==0){ %>checked<% } %> >否</label>
+			</div>
+		</div>
+	</div>
+	<% if(content.showType==2){ %>
+		<div class="formitems inline">  
+			<label class="fi-name">每张图片上下距离：</label>
+			<div class="form-controls">
+				<div id="slider" class="fl"></div>
+				<span class="fl mgl10 mgt5 ftsize14 j-ctrl-showheight"><% if(content.margin){ %><%= content.margin %><% }else{ %>0<% } %>px</span>
+			</div>
+		</div>	
+	<% } %>
+	<ul class="ctrl-item-list">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li clearfix">
+			<div class="fl">
+				<div class="imgnav j-selectimg">
+					<% if(item.pic && item.pic!=""){ %>
+						<img src="<%= item.pic %>">
+						<span class="imgnav-reselect">重新选择</span>
+					<% }else{ %>
+						<p class="imgnav-select">选择图片</p>
+					<% } %>
+				</div>
+				<span class="fi-help-text txtCenter mgt5 j-verify-pic"></span>
+			</div>
+			<div class="fl imgnav-info">
+				<div class="formitems">  
+				    <label class="fi-name">链接到：</label>  
+				    <div class="form-controls">
+				    	<% if(item.linkType && item.linkType!=11){ %>
+					    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+					    		<span><%= HYD.linkType[item.linkType] %></span>
+					    		<em class="badge-link ovfEps"><%= item.title %></em>
+					    	</a>
+				    	<%}%>
+
+				    	<% if(item.linkType==11){ %>
+				    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+				    	<% } %>
+				    	
+				    	<div class="droplist">
+							<a href="javascript:;" class="droplist-title j-droplist-toggle">
+								<% if(item.linkType==0){ %>
+									<span>请选择</span>
+								<%}else{%>
+									<span>修改</span>
+								<%}%>
+								<i class="gicon-chevron-down mgl5"></i>
+							</a>
+							<ul class="droplist-menu">
+								<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+								<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+								<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+								<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+								<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+								<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+								<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+								<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+								<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+								<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+								<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+								<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+							</ul>
+						</div>
+				    	<input type="hidden" class="j-verify" name="item_id" value="">
+				    	<span class="fi-help-text j-verify-linkType"></span>
+				    </div>
+				</div>
+				<div class="formitems">  
+					<label class="fi-name">标题：</label>
+					<div class="form-controls">
+						<input type="text" name="title" class="input xlarge" value="<%= item.showtitle %>">
+						<span class="fi-help-text"></span>
+					</div>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<% if(content.dataset.length<6){ %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+		<% } %>
+	</ul>
+	<span class="fi-help-text mgt15 j-verify-least"></span>
+</script>
+<!-- type9 imgAd end-->
+
+<!-- type10 customLine start-->
+<script type="text/j-template" id="tpl_diy_con_type10">
+	<div class="members_con">
+		<section class="custom-line-wrap"><hr class="custom-line"></section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type10">
+	<div class="formitems pdt5"><p>分割线</p></div>
+</script>
+<!-- type10 customLine end-->
+
+<!-- type11 customSpace start-->
+<script type="text/j-template" id="tpl_diy_con_type11">
+	<div class="members_con">
+		<section class="custom-space" style="height:<%= content.height %>px;"></section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type11">
+	<div class="formitems inline">  
+		<label class="fi-name">高度：</label>
+		<div class="form-controls">
+			<div id="slider" class="fl"></div>
+			<span class="fl mgl10 mgt5 ftsize14 j-ctrl-showheight"><%= content.height %>px</span>
+		</div>
+	</div>	
+</script>
+<!-- type11 customSpace end-->
+<!-- type12 imgNav start-->
+
+<script type="text/j-template" id="tpl_diy_con_type12">
+	<div class="Header_style12_panel" style="<% if(content.style == 1){ %>height:50px;<% }else{ %>height:44px;<% } %>">
+		<div class="membersbox" style="<% if(content.style == 1){ %>height:50px;<% }else{ %>height:44px;<% } %>">
+			<% if(content.dataset.length&&content.style == 1){ %>
+				<div class="homeCnav">
+					<div class="homeCnavbox swiper-container">
+						<ul class="swiper-wrapper topnav clearfix">
+							<% _.each(content.dataset,function(item){ %>
+								<li class="swiper-slide liwid<%=content.dataset.length %>">
+									<a href="<%= item.link %>" class="colblue" style="background-color:<%= item.bgColor %>;margin-right:<%= content.marginstyle%>px">
+										<img src="<%= item.pic %>">
+										<h3 style="color:<%=item.fotColor%>"><%= item.showtitle %></h3>
+									</a>
+								</li>
+							<% }) %>				
+						</ul>
+					</div>
+				</div>
+			<% }else if(content.dataset.length&&content.style == 0){ %>
+				<div class="homeCnav" style="height:44px;line-height:44px;">
+					<div class="homeCnavbox swiper-container" style="height:44px;line-height:44px;">
+						<ul class="swiper-wrapper topnav clearfix" style="height:44px;line-height:44px;">
+							<% _.each(content.dataset,function(item){ %>
+								<li class="swiper-slide liwid<%=content.dataset.length %>" style="height:44px;line-height:44px;">
+									<a href="<%= item.link %>" class="colblue" style="background-color:<%= item.bgColor %>;height:44px;line-height:44px;margin-right:<%= content.marginstyle%>px">
+										<h3 style="color:<%=item.fotColor%>;height:44px;line-height:44px;"><%= item.showtitle %></h3>
+									</a>
+								</li>
+							<% }) %>				
+						</ul>
+					</div>
+				</div>
+			<% }else{ %>
+				<div class="homeCnav" style="height:44px;line-height:44px;">
+					<div class="homeCnavbox swiper-container" style="height:44px;line-height:44px;">
+						<ul class="swiper-wrapper topnav clearfix" style="height:44px;line-height:44px;">
+							<% _.each(content.dataset,function(item){ %>
+								<li class="swiper-slide liwid<%=content.dataset.length %>" style="height:44px;line-height:44px;">
+									<a href="<%= item.link %>" class="colblue" style="background-color:<%= item.bgColor %>;height:44px;line-height:44px;margin-right:<%= content.marginstyle %>px">
+										<h3 style="color:<%=item.fotColor%>;height:44px;line-height:44px;"><%= item.showtitle %></h3>
+									</a>
+								</li>
+							<% }) %>				
+						</ul>
+					</div>
+				</div>
+			<% } %>	
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type12">
+	<h3 class="cst_h3 mgt15">导航链接</h3>
+	<div class="navCtrlPanel pdd10 mgt10">
+		<p>在以下页面显示导航类型：</p>
+		<div class="checkbox-group mgt10">
+			<label><input type="radio" name="showstyle" value="0" <% if(content.style == 0||!content.style){ %>checked<% } %> >纯文字导航</label>
+			<label><input type="radio" name="showstyle" value="1" <% if(content.style == 1){ %>checked<% } %> >小图标导航</label>
+		</div>
+	</div>
+	<div class="navCtrlPanel pdd10 mgt10">
+		<p>是否显示边距</p>
+		<div class="checkbox-group mgt10">
+			<label><input type="radio" name="marginstyle" value="0" <% if(content.marginstyle == 0||!content.marginstyle){ %>checked<% } %> >无边距</label>
+			<label><input type="radio" name="marginstyle" value="1" <% if(content.marginstyle == 1){ %>checked<% } %> >有边距</label>
+		</div>
+	</div>
+	<ul class="ctrl-item-list mgt10">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+			    <label class="fi-name">链接到：</label>  
+			    <div class="form-controls">
+			    	<% if(item.linkType && item.linkType!=11){ %>
+				    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+				    		<span><%= HYD.linkType[item.linkType] %></span>
+				    		<em class="badge-link ovfEps"><%= item.title %></em>
+				    	</a>
+			    	<%}%>
+
+			    	<% if(item.linkType==11){ %>
+			    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+			    	<% } %>
+			    	
+			    	<div class="droplist j-navDplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+					<input type="hidden" class="j-verify" name="item_id" value="">
+			    	<% if(item.linkType==9){ %>
+			    		<span class="fi-help-text">外链请加上 http:// 前缀</span>
+			    	<% } %>
+			    	<span class="fi-help-text j-verify-linkType"></span>
+			    </div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">导航名称：</label>
+				<div class="form-controls">
+					<input type="text" name="navtitle" class="input xlarge" value="<%= item.showtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<% if(content.style == 1){ %>
+			<div class="formitems">  
+				<label class="fi-name">小图标：</label>
+				<div class="form-controls">
+					<div class="header_style2_dataset_pic inline-block">
+						<img src="<%= item.pic %>">
+					</div>
+					<a href="javascript:;" class="btn btn-primary btn-small j-navModifyIcon">修改</a>
+					<a href="javascript:;" class="btn btn-primary btn-small j-uploadIcon">上传</a>
+					<span class="fi-help-text">建议尺寸：60 * 60 像素</span>
+				</div>
+			</div>
+			<% } %>
+			<div class="formitems">  
+				<label class="fi-name">背景颜色：</label>
+				<div class="form-controls">
+					<div class="colorPicker" id="#j_clp_col_<%= item.cloPicker %>" data-name="col_<%= item.cloPicker %>" data-color="<%= item.bgColor %>" style="background-color:<%= item.bgColor %>">颜色选择</div>
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">文字颜色：</label>
+				<div class="form-controls">
+					<div class="colorPicker" id="#j_clp_col_<%= item.cloPicker %>" data-name="col_<%= item.cloPicker %>" data-color="<%= item.fotColor %>" style="background-color:<%= item.fotColor %>">颜色选择</div>
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+	</ul>
+</script>
+<!-- type12 topNav end-->
+<!-- type 13 board start -->
+<script type="text/j-template" id="tpl_diy_con_type13">
+	<div class="members_con">
+		<section class="members_nav1">
+			<ul class="clearfix">
+				<% if(content.dataset.length){ %>
+					<% _.each(content.dataset,function(item,e){ %>
+						<% if(content.layout == 0){ %>
+							<li class="board<%= content.dataset.length %> <% if(content.layout == 0&&e == 0){ %>big_board<% } %> <% if(content.layout == 0&&e != 0){ %>small_board<% } %>">
+								<span>
+									<a href="<%= item.link %>">
+									<% if(item.is_compress){ %>
+										<img src="<%= item.pic %>_80x80">
+									<% }else{ %>
+										<img src="<%= item.pic %>">
+									<% } %>
+									</a>
+								</span>
+							</li>
+						<% }else{ %>
+							<li class="board<%= content.dataset.length %>">
+								<span>
+								<a href="<%= item.link %>">
+									<% if(item.is_compress){ %>
+										<img src="<%= item.pic %>_80x80">
+									<% }else{ %>
+										<img src="<%= item.pic %>">
+									<% } %>
+								</a>
+								</span>
+							</li>
+						<% } %>
+					<% }) %>
+				<% }else{ %>
+					<li class="board3 <% if(content.layout == 0){ %>big_board<% } %>">
+						<span><a href=""><img src="/Public/images/diy/waitupload2.png"></a></span>
+					</li>
+					<li class="board3 <% if(content.layout == 0){ %>small_board<% } %>">
+						<span><a href=""><img src="/Public/images/diy/waitupload.png"></a></span>
+					</li>
+					<li class="board3 <% if(content.layout == 0){ %>small_board<% } %>">
+						<span><a href=""><img src="/Public/images/diy/waitupload.png"></a></span>
+					</li>
+				<% } %>
+			</ul>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type13">
+	<div class="formitems">
+		<label class="fi-name">布局方式：</label> 
+		<div class="form-controls">
+			<div class="radio-group">
+				<label><input type="radio" name="layout" value="0" <% if(content.layout==0){ %>checked<% } %>>2列</label>
+				<label><input type="radio" name="layout" value="1" <% if(content.layout==1){ %>checked<% } %>>3列</label>
+			</div>
+		</div>
+	</div>
+	<ul class="ctrl-item-list">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li clearfix">
+			<div class="fl">
+				<div class="imgnav j-selectimg">
+					<% if(item.pic && item.pic!=""){ %>
+						<% if(item.is_compress){ %>
+							<img src="<%= item.pic %>_80x80">
+						<% }else{ %>
+							<img src="<%= item.pic %>">
+						<% } %>
+						<span class="imgnav-reselect">重新选择</span>
+					<% }else{ %>
+						<p class="imgnav-select">选择图片</p>
+					<% } %>
+				</div>
+				<span class="fi-help-text txtCenter mgt5 j-verify-pic"></span>
+			</div>
+
+			<div class="fl imgnav-info">
+				<div class="formitems">  
+				    <label class="fi-name">链接到：</label>  
+				    <div class="form-controls">
+				    	<% if(item.linkType && item.linkType!=11){ %>
+					    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+					    		<span><%= HYD.linkType[item.linkType] %></span>
+					    		<em class="badge-link ovfEps"><%= item.title %></em>
+					    	</a>
+				    	<%}%>
+
+				    	<% if(item.linkType==11){ %>
+				    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+				    	<% } %>
+				    	
+				    	<div class="droplist">
+							<a href="javascript:;" class="droplist-title j-droplist-toggle">
+								<% if(item.linkType==0){ %>
+									<span>请选择</span>
+								<%}else{%>
+									<span>修改</span>
+								<%}%>
+								<i class="gicon-chevron-down mgl5"></i>
+							</a>
+							<ul class="droplist-menu">
+								<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+								<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+								<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+								<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+								<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+								<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+								<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+								<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+								<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+								<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+								<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+								<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+							</ul>
+						</div>
+				    	<input type="hidden" class="j-verify" name="item_id" value="">
+				    	<span class="fi-help-text j-verify-linkType"></span>
+				    </div>
+				</div>
+				<div class="formitems" style="line-height:28px;"> 
+					<label class="fi-name">大图尺寸：</label> 
+					<div class="form-controls">300*610</div>
+				</div>
+				<div class="formitems" style="line-height:28px;"> 
+					<label class="fi-name">小图尺寸：</label> 
+					<div class="form-controls">300*300</div>
+				</div>
+			</div>
+			
+		</li>
+		<% }) %>
+	</ul>
+	<span class="fi-help-text mgt15 j-verify-least"></span>
+</script>
+<!-- type 13 board end -->
+<!-- type14 video start-->
+<script type="text/j-template" id="tpl_diy_con_type14">
+	<div class="members_con">
+		<iframe class="diy-video" src="/Public/images/video.jpg" width="100%" height="220" wmode="transparen" allowfullscreen="true" style="border:0;"></iframe>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type14">
+	<div class="formitems inline">  
+		<label class="fi-name">视频地址：</label>
+		<div class="form-controls">
+			<div class="diy-videowebsite"><input type="text" name="" value="<%= content.website%>" placeholder=""><a href="javascript:;" title="确定视频地址" class="btn btn-primary j-getvideo">确定</a></div>
+			<span class="diy-node">目前只支持腾讯视频，一定要填写带有vid或者sid的视频地址</span>
+		</div>
+	</div>	
+</script>
+<!-- type14 video end-->
+<!-- type15 video start-->
+<script type="text/j-template" id="tpl_diy_con_type15">
+	<div class="members_con">
+		<div class="diy-audio clearfix" data-src="<%= content.audiosrc %>">
+			<img class="fr" <% if(content.imgsrc && content.imgsrc!=""){ %>src="<%= content.imgsrc %>"<% }else{ %>src="/PublicMob/images/people.png"<% } %> width="40" alt="">
+			<div style="margin-right:45px;height:40px;line-height: 40px;background: url(/PublicMob/images/wxaudio.png) right center no-repeat;background-size: auto 100%;padding-right: 45px; text-align: right;color: #fff;font-size: 14px;">缓冲完成后音频才可播放！</div>
+			<sub></sub>
+			<b></b>
+		</div>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type15">
+	<div class="formitems inline">  
+		<label class="fi-name">显示头像：</label>
+		<div class="form-controls">
+			<!-- <div class="header_style2_dataset_pic inline-block">
+				<img src="<%= content.imgsrc %>">
+			</div>-->
+			<div class="imgnav j-selectimg">
+				<% if(content.imgsrc && content.imgsrc!=""){ %>
+					<img src="<%= content.imgsrc %>">
+					<span class="imgnav-reselect">重新选择</span>
+				<% }else{ %>
+					<p class="imgnav-select">选择图片</p>
+				<% } %>
+			</div>
+			<span class="fi-help-text">建议尺寸：100 * 100 像素</span>
+		</div>
+	</div>	
+	<div class="formitems inline">  
+		<label class="fi-name">选择/修改语音：</label>
+		<div class="form-controls">
+			<div class="imgnav j-audioselect" style="height:30px;">
+				<% if(content.audiosrc && content.audiosrc!=""){ %>
+					<img src="/PublicMob/images/wxaudio_small.png" data-src="<%= content.audiosrc %>">
+					<span class="imgnav-reselect">重新选择</span>
+				<% }else{ %>
+					<p class="imgnav-select" style="padding:0;line-height:30px;">选择语音</p>
+				<% } %>
+			</div>
+			<span class="fi-help-text">音频支持格式：mp3、wma、wav、amr</span>
+		</div>
+	</div>	
+</script>
+<!-- type15 video end-->
+
+<!-- type16 notice start-->
+<script type="text/j-template" id="tpl_diy_con_type16">
+	<div class="members_con">
+		<section class="members_notice">
+			<% if(content.strLength > 18){ %>
+ 				<marquee class="j-notice notice-con" scrollamount='5'>公告：<%= content.showtitle %></marquee>
+ 			<% }else{ %>
+ 				<h2 class="j-notice notice-con">公告：<%= content.showtitle %></h2>
+ 			<% } %>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type16">
+	<div class="formitems">  
+		<label class="fi-name">公告：</label>
+		<div class="form-controls">
+			<input type="text" name="notice" class="input xlarge" value="<%= content.showtitle %>">
+		</div>
+	</div>
+</script>
+
+<!-- type16 notice end-->
+
+<!-- type17 classify start-->
+<script type="text/j-template" id="tpl_diy_con_type17">
+	<div class="members_con">
+		<section class="members_classify mgt10 <%= content.layout %> <% if(content.layout=="0" ||content.layout == undefined){ %>layoutstyle0<% }else if(content.layout=="1"){ %>layoutstyle1<% } %>">
+			<div class="swiper-container" >
+				<ul class="clearfix">
+					<% _.each(content.dataset,function(item){ %>
+					<li class="swiper-slide">
+						<a href="<%= item.link %>" class="colblue" style="background-color:<%= item.bgColor %>;">
+							<h3 style="color:<%=item.fotColor%>;"><%= item.showtitle %></h3>
+						</a>
+					</li>
+					<% }) %>				
+				</ul>
+			</div>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_type17">
+	<div class="navCtrlPanel">
+		<label>显示方式：</label>
+		<div class="checkbox-group">
+			<div class="radio-group">
+				<label><input type="radio" name="layout" value="0" <% if(content.layout=="0"||content.style == undefined){ %>checked<% } %> >瀑布流</label>
+				<label><input type="radio" name="layout" value="1" <% if(content.layout=="1"){ %>checked<% } %> >对齐</label>
+			</div>
+		</div>
+	</div> 
+	<ul class="ctrl-item-list mgt10">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+				<label class="fi-name">链接到：</label>  
+				<div class="form-controls">
+				    <% if(item.linkType && item.linkType!=11){ %>
+					    <a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+					    	<span><%= HYD.linkType[item.linkType] %></span>
+					    	<em class="badge-link ovfEps"><%= item.title %></em>
+					    </a>
+				    <%}%>
+
+				    <% if(item.linkType==11){ %>
+				    	<input type="text" name="customlink" class="input" value="<%= item.link %>">
+				    <% } %>
+				    	
+				    <div class="droplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+				    <input type="hidden" class="j-verify" name="item_id" value="">
+				    <span class="fi-help-text j-verify-linkType"></span>
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">分类名称：</label>
+				<div class="form-controls">
+					<input type="text" name="classify" class="input xlarge" value="<%= item.showtitle %>">
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">背景颜色：</label>
+				<div class="form-controls">
+					<div class="colorPicker1" id="#j_clp_col_<%= item.cloPicker %>" data-name="col_<%= item.cloPicker %>" data-color="<%= item.bgColor %>" style="background-color:<%= item.bgColor %>">颜色选择</div>
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">文字颜色：</label>
+				<div class="form-controls">
+					<div class="colorPicker1" id="#j_clp_col_<%= item.cloPicker %>" data-name="col_<%= item.cloPicker %>" data-color="<%= item.fotColor %>" style="background-color:<%= item.fotColor %>">颜色选择</div>
+					<span class="fi-help-text"></span>
+				</div>
+			</div> 
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+	</ul>  
+</script>
+
+<!-- type17 classify end-->

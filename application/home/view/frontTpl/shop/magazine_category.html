@@ -1,0 +1,49 @@
+<!-- diy tpl start -->
+<script type="text/j-template" id="tpl_diy_con_typeMgzCate">
+	<div class="members_con">
+		<!--<section class="members_special">
+			<h2 class="showtitle"><%= content.showtitle %></h2>
+		</section>-->
+		<section class="fulltext j-fulltext">
+			<%= HYD.DIY.Unit.html_decode(content.fulltext) %>
+		</section>
+		<section class="members_nav2">
+			<ul>
+				<li><a href="#">第一条专题页面链接</a><b></b></li>
+				<li><a href="#">第二条专题页面链接</a><b></b></li>
+				<li><a href="#">第三条专题页面链接</a><b></b></li>
+			</ul>
+		</section>
+	</div>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeMgzCate">
+	<div class="formitems">  
+		<label class="fi-name">分类名：</label>
+		<div class="form-controls">
+			<input type="text" name="showtitle" class="input" value="<%= content.showtitle %>">
+		</div>
+	</div>
+	<div class="formitems">
+		<label class="fi-name">第一优先级：</label> 
+		<div class="form-controls">
+			<select name="firstPriority" class="j-priority select"> 
+				<option value="1" <% if(content.firstPriority==1){%>selected<%}%> >序号越大越靠前</option>
+				<option value="2" <% if(content.firstPriority==2){%>selected<%}%> >最热的排在前面</option>
+			</select>
+		</div> 
+	</div>
+	<div class="formitems">
+		<label class="fi-name">第二优先级：</label> 
+		<div class="form-controls">
+			<select name="secondPriority" class="j-priority select"> 
+				<option value="3" <% if(content.secondPriority==3){%>selected<%}%> >创建时间越晚越靠前</option>
+				<option value="4" <% if(content.secondPriority==4){%>selected<%}%> >创建时间越早越靠前</option>
+			</select>
+		</div> 
+	</div>
+	<div class="mgt10">
+		<textarea id="editor<%= id %>" style="width:100%;min-height:485px;"></textarea>
+	</div>
+</script>
+<!-- diy tpl end -->

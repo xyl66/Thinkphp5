@@ -1,0 +1,68 @@
+<script type="text/j-template" id="tpl_order_lists_modify">
+	<div class="modifyPanel">
+		<ul class="goodsList">
+			<% _.each(dataset,function(data){ %>
+				<li>
+					<a href="<%= data.href %>" target="_blank" title="<%= data.title %>">
+						<div class="goodsList-img">
+							<img src="<%= data.img %>" alt="<%= data.title %>">
+						</div>
+						<div class="goodsList-info">
+							<p><%= data.title %></p>
+							<span>&yen;<%= data.price %></span>
+							<span class="colorGray"><%= data.sku %></span>
+							<span class="colorGray">数量：<%= data.num %></span>
+						</div>
+					</a>
+				</li>
+			<% }); %>
+		</ul>
+		<ul class="orderInfo pdt20">
+			<% if(coupon){ %>
+			<li class="formitems inline">
+				<label class="fi-name">使用优惠券：</label>  
+			    <div class="form-controls pdt3"><%= coupon.title %> 抵现<%= coupon.money %>元</div> 
+			</li>
+			<% } %>
+			<li class="formitems inline">
+				<label class="fi-name">涨价或减价：</label>  
+			    <div class="form-controls">
+					<input type="text" class="input mini j-modify-riseOrDrop" value="<%= riseOrDrop %>">
+			    </div> 
+			</li>
+			<li class="formitems inline">
+				<label class="fi-name">运费：</label>  
+			    <div class="form-controls">
+					<div class="radio-group">  
+			            <label><input type="radio" name="freight" class="j-modify-freight" value="0" <% if(freight==0){ %> checked <% } %> >免运费</label>
+			            <label><input type="radio" name="freight" class="j-modify-freight" value="1" <% if(freight>0){ %> checked <% } %>>自定义</label>
+			        </div>
+			        <div class="custom_yunfei inline-block">
+		            	<input type="text" class="input j-modify-freightipt" value="<%= freight %>" style="width:50px;" <% if(freight==0){ %> disabled <% } %>>
+		            	<span>元</span>
+		            </div>
+			    </div> 
+			</li>
+			<li class="formitems inline">
+				<label class="fi-name">商品总价：</label>  
+			    <div class="form-controls pdt3 ftsize20">
+			    	&yen;<span><%= orderPrice %></span>
+			    </div> 
+			</li>
+			<li class="formitems inline">
+				<label class="fi-name">实际支付：</label>  
+			    <div class="form-controls pdt3 ftsize20 colorRed">
+			    	&yen;<span class="j-modify-ptout-realPrice"><%= realPrice %></span>
+			    	<span class="j-modify-ptout-freight ftsize12 colorGray">
+			    		<% if(freight==0){ %>
+				    		(包邮)
+				    	<% } else { %>
+				    		(包含<%= freight %>元邮费)
+				    	<% }%>
+			    	</span>
+			    </div> 
+			</li>
+		</ul>
+	</div>
+</script>
+<!-- end tpl_order_lists_modify -->

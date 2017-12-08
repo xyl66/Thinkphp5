@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{block name="head_title"}{/block}</title>
+        <link rel="stylesheet" href="__CSS__/dist/component-min.css">
+    <link rel="stylesheet" href="__PLG__/jbox/jbox-min.css">
+    {block name="css"}{/block}
+    <script src="__JS__/dist/jquery-1.4.2.min.js"></script>
+</head>
+<body class="cp-bodybox">
+<!--[if lt IE 9]>
+<![endif]-->
+<!--
+<div class="alert alert-danger disable-del txtCenter" id="tipLowIEVer">
+    <h4>系统检测到您使用的浏览器版本过低，为达到更好的体验效果请升级您的浏览器，我们为您推荐：</h4>
+    <p>
+        <a href="https://www.google.com.hk/chrome/" target="_blank">Chrome浏览器</a>
+        <a href="http://www.firefox.com.cn/download/" target="_blank">Firefox浏览器</a>
+        <a href="http://www.maxthon.cn/" target="_blank">遨游浏览器</a>
+        <a href="http://se.360.cn/" target="_blank">360浏览器</a>
+        <a href="http://www.liebao.cn/" target="_blank">猎豹浏览器</a>
+    </p>
+</div>
+-->
+<div class="header">
+    <div class="inner clearfix">
+        <div class="fl">
+            <a href="/" class="header-logo"><img src="__IMG__/logo.png"></a>
+        </div>
+        <!-- end logo -->
+
+        <div class="header-nav fl">
+            <ul class="header-nav-list clearfix">
+
+                
+            </ul>
+        </div>
+        <!-- end header-nav -->
+
+        <div class="fr">
+            <ul class="header-ctrl clearfix">
+                <li class="header-ctrl-item fl">
+                    <a href="javascript:;" class="header-ctrl-item-parent">
+                        <i class="gicon-user white"></i>
+                        <i class="gicon-user"></i>账户</a>
+                    <ul class="header-ctrl-item-children">
+						<li><a href={:Url("Home/Login/updateAccount","","")} >修改密码</a></li>
+                        <li><a href={:Url("Home/Login/creatAccount","","")}>新建账号</a></li>
+                        <li><a href={:Url("Home/Login/logout","","")}>退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<div class="container">
+<div class="inner clearfix">
+<div class="content-left fl">
+    <dl class="left-menu">
+        <dt>
+            <i class="icon-menu home"></i>
+            <span id="" data-id="">产品管理</span>
+        </dt>
+        <dd><a href={:Url("Home/Index/index")}><i class="fa fa-indent fa-fw nav_icon"></i>课程列表</a></dd>
+        <dd><a href={:Url("Home/Index/creatcourse")}><i class="fa fa-table nav_icon"></i>新建课程</a></dd>
+    </dl>
+</div>
+<!-- end content-left -->
+
+<div class="content-right fl">
+ 
+
+    <h1 class="content-right-title">{block name="title"}{/block}</h1>
+    {block name="alerts"}{/block}
+    {block name="content"}{/block}
+</div>
+<!-- end content-right -->
+</div>
+</div>
+<!-- end container -->
+
+<!--gonggao-->
+<!--<notempty name="notice">
+<div id="gonggao">
+	<div class="gonggao_tt"><i class="gicon_gg_up"></i>系统公告<a href="#" class="fr gound_close"></a></div>
+    <div class="gonggao_href"><a href="javascript:;" class="fl btn-notice">我知道了</a><a href="__APP__/System/notice_list">查看更多>></a></div>
+</div>
+</notempty>-->
+<div class="footer">&copy; {:date('Y')} , Inc. All rights reserved.</div>
+<!-- end footer -->
+
+{include file="../application/home/view/frontTpl/common.html" /}
+{block name="tpl"}{/block}
+<!--end front template  -->
+
+
+<script src="__JS__/dist/lib-min.js"></script>
+<script src="__PLG__/jbox/jquery.jbox-min.js"></script>
+<script src="__PLG__/zclip/jquery.zclip-min.js"></script>
+<if condition="IS_WIN"><!-- 本地环境 -->
+    <script src="__MODJS__/main.js"></script>
+    <script src="__MODJS__/tables.js"></script>
+    <script src="__MODJS__/tabs.js"></script>
+    <script src="__MODJS__/alerts.js"></script>
+    <script src="__MODJS__/tooltips.js"></script>
+    <script src="__MODJS__/droplist.js"></script>
+    <script src="__MODJS__/albums.js"></script>
+    <script src="__MODJS__/scroll.js"></script>
+    <script src="__MODJS__/jquery.similar.msgbox.js"></script>
+    <else/><!-- 线上环境 -->
+    <script src="__JS__/dist/component-min.js"></script>
+    <script src="__MODJS__/scroll.js"></script>
+</if>
+
+<!--[if lt IE 10]>
+<script src="__JQ__/jquery.placeholder-min.js"></script>
+<script>
+    $(function(){
+        //修复IE下的placeholder
+        $('.input,.textarea').placeholder();
+    });
+</script>
+<![endif]-->
+
+{block name="js"}{/block}
+
+<script>
+    $(function(){
+        $(".j-copy").zclip({
+            path: '__PUBLIC__/plugins/zclip/ZeroClipboard.swf',
+            copy: function(){
+                return $(this).data('copy');
+            },
+            afterCopy:function(){
+                HYD.hint("success","内容已成功复制到您的剪贴板中");
+            }
+        });
+        $(".btn-notice").click(function(){
+            // $.post('/System/readAllNotice',{},function(){
+            //     window.location.reload();
+            // })
+            $.ajax({
+                url: '__APP__/System/readAllNotice',
+                type: 'POST',
+                success:function(data){
+                    if(data.status == 1){
+                        window.location.reload();
+                    }else{
+                         HYD.hint("danger",data.msg);
+                    }
+                    
+                }
+            })
+        });
+        
+        
+        ;(function(){
+            // 首页竖线到底
+            var height1=$(".content-right").height();
+            var height2=$(".content-left").height();
+            if(parseInt(height1) < parseInt(height2)){
+                $(".content-right").css({'min-height': height2});
+            };
+
+        })();
+       
+    });
+</script>
+<!-- end session hint -->
+<script>
+	$(function () {
+		setTimeout(gggoup(),5000);
+		$('.gound_close').click(function(){
+			$('#gonggao').animate({bottom:"-270px"},1000);
+		});
+	});
+	function gggoup(){
+		$('#gonggao').animate({bottom:"3px"},1000);
+	};
+</script>
+
+</body>
+</html>

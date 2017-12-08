@@ -1,0 +1,60 @@
+<script type="text/j-template" id="tpl_taskqueue_progress">
+	<li class="header-tasks-queue task-progress" data-id="<%= id %>" data-status="progress">
+		<div class="header-tasks-queue-title" title="正在同步:<%= title %>">正在同步:<%= title %></div>
+		<div class="header-tasks-queue-percent"><%= percent %>%</div>
+		<div class="hd-tskque-item-progress">
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" style="width: <%= percent %>%"></div>
+			</div>
+		</div>
+	</li>
+</script>
+<!-- end 任务列表-进行中 -->
+
+<script type="text/j-template" id="tpl_taskqueue_success">
+	<li class="header-tasks-queue task-success" data-id="<%= id %>" data-status="success">
+		<div class="header-tasks-queue-title" title="同步:<%= title %>[已完成]">同步:<%= title %>[已完成]</div>
+		<div class="header-tasks-queue-percent">
+			<a href="javascript:;" title="清除已完成" data-ctrl="remove" data-id="<%= id %>"><i class="gicon-remove white"></i></a>
+		</div>
+		<div class="hd-tskque-item-progress">
+			<div class="progress">
+				<div class="progress-bar progress-bar-success"></div>
+			</div>
+		</div>
+	</li>
+</script>
+<!-- end 任务列表-已完成 -->
+
+<script type="text/j-template" id="tpl_taskqueue_danger">
+	<li class="header-tasks-queue task-danger" data-id="<%= id %>" data-status="danger">
+		<div class="header-tasks-queue-title" title="同步:<%= title %>[失败]">同步:<%= title %>[失败]</div>
+		<div class="header-tasks-queue-percent">
+			<a href="javascript:;" title="重新执行" data-ctrl="repeat" data-id="<%= id %>"><i class="gicon-repeat white"></i></a>
+		</div>
+		<div class="hd-tskque-item-progress">
+			<div class="progress">
+				<div class="progress-bar progress-bar-danger"></div>
+			</div>
+		</div>
+	</li>
+</script>
+<!-- end 任务列表-失败 -->
+
+<script type="text/j-template" id="tpl_tooltips">
+	<div class="tooltips" style="display:none;">
+	    <span class="tooltips-arrow tooltips-arrow-<%= placement %>"><em>◆</em><i>◆</i></span>
+	    <%= content %>
+	</div>
+</script>
+<!-- end tooltips -->
+
+<script type="text/j-template" id="tpl_hint">
+	<div class="hint hint-<%= type %>"><%= content %></div>
+</script>
+<!-- end hint -->
+
+<script type="text/j-template" id="tpl_jbox_simple">
+	<div class="mgt30"><%= content %></div>
+</script>
+<!-- end tpl_jbox_simple -->

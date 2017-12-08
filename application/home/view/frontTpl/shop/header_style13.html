@@ -1,0 +1,189 @@
+<!-- Header_style7 tpl start-->
+<!-- 头部 -->
+<script type="text/j-template" id="tpl_diy_con_typeHeader_style13">
+<header class="members_head">	
+	<section class="mobile13_headertop">
+		<img src="<%= content.bg %>" width="100%">
+		<b>{$seller_title}</b>
+	</section>
+	<section class="mobile13_headerbot">
+		<section class="mobile13_headerbot_le"><img src="<%= content.photo %>" width="65" height="65"></section>
+		<section class="mobile13_headerbot_ri">
+			<ul>
+				<li>
+					<span>300</span>
+					<a href="">全部商品</a>
+				</li>
+				<li>
+					<span>30</span>
+					<a href="">上新商品</a>
+				</li>
+				<li>
+					<span><img src="__MOBIMG__/hui1.png" width="18" height="18"></span>
+					<a href="">我的订单</a>
+				</li>
+				<li>
+					<span><img src="__MOBIMG__/hui2.png" width="18" height="16"></span>
+					<a href="">会员签到</a>
+				</li>
+			</ul>
+		</section>
+	</section>
+
+	<% if(content.dataset.length){ %>
+	<section class="mobile13_nav">
+		<ul>
+			<% _.each(content.dataset,function(item){ %>
+			<li class="g-box">
+				<a href="<%= item.link %>" class="mobile13_navle"  style="background-color:<%= item.bgColor %>">
+					<span><%= item.subtitle %></span>
+					<p><%= item.showtitle %><b></b></p>
+				</a>
+				<a href="<%= item.link %>" class="mobile13_navri g-flex">
+					<img src="<%= item.pic %>" width="100%">
+					<strong><%= item.picname %></strong>
+				</a>
+			</li>
+			<% }) %>
+		</ul>
+	</section>
+	<% } %>
+</header>
+</script>
+
+<script type="text/j-template" id="tpl_diy_ctrl_typeHeader_style13">
+	<div class="formitems">  
+		<label class="fi-name">背景图片：</label>
+		<div class="form-controls">
+			<div class="homepage-header-bg">
+				<img src="<%= content.bg %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-bg">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">最佳尺寸：640 x 200 像素。</span>
+			<p class="colorGray">尺寸不匹配时，图片将被压缩或拉伸以铺满画面。</p>
+		</div>
+	</div>
+	<div class="formitems">  
+		<label class="fi-name">商城头像：</label>
+		<div class="form-controls">
+			<div class="homepage-header-photo">
+				<img src="<%= content.photo %>">
+				<a href="javascript:;" class="btn btn-primary btn-mini j-modify-photo">修改</a>
+			</div>
+			<span class="fi-help-text mgt5">建议尺寸：65 x 65 像素</span>
+		</div>
+	</div>
+
+
+	<h3 class="cst_h3 mgt15">导航链接</h3>
+	<ul class="ctrl-item-list mgt10">
+		<% _.each(content.dataset,function(item){ %>
+		<li class="ctrl-item-list-li">
+			<div class="formitems">  
+			    <label class="fi-name">链接到：</label>  
+			    <div class="form-controls">
+			    	<% if(item.linkType && item.linkType!=11){ %>
+				    	<a href="<%= item.link %>" target="_blank" class="badge badge-success" title="<%= item.title %>">
+				    		<span><%= HYD.linkType[item.linkType] %></span>
+				    		<em class="badge-link ovfEps"><%= item.title %></em>
+				    	</a>
+			    	<%}%>
+
+			    	<% if(item.linkType==11){ %>
+			    		<input type="text" name="customlink" class="input" value="<%= item.link %>">
+			    	<% } %>
+			    	
+			    	<div class="droplist">
+						<a href="javascript:;" class="droplist-title j-droplist-toggle">
+							<% if(item.linkType==0){ %>
+								<span>请选择</span>
+							<%}else{%>
+								<span>修改</span>
+							<%}%>
+							<i class="gicon-chevron-down mgl5"></i>
+						</a>
+						<ul class="droplist-menu">
+							<li data-val="1"><a href="javascript:;"><%= HYD.linkType[1] %></a></li>
+							<li data-val="2"><a href="javascript:;"><%= HYD.linkType[2] %></a></li>
+							<li data-val="3"><a href="javascript:;"><%= HYD.linkType[3] %></a></li>
+							<li data-val="4"><a href="javascript:;"><%= HYD.linkType[4] %></a></li>
+							<li data-val="5"><a href="javascript:;"><%= HYD.linkType[5] %></a></li>
+							<li data-val="6"><a href="javascript:;"><%= HYD.linkType[6] %></a></li>
+							<li data-val="7"><a href="javascript:;"><%= HYD.linkType[7] %></a></li>
+							<li data-val="8"><a href="javascript:;"><%= HYD.linkType[8] %></a></li>
+							<li data-val="10"><a href="javascript:;"><%= HYD.linkType[10] %></a></li>
+							<li data-val="9"><a href="javascript:;"><%= HYD.linkType[9] %></a></li>
+							<li data-val="12"><a href="javascript:;"><%= HYD.linkType[12] %></a></li>
+							<li data-val="11"><a href="javascript:;"><%= HYD.linkType[11] %></a></li>
+						</ul>
+					</div>
+					<input type="hidden" class="j-verify" name="item_id" value="">
+			    	<% if(item.linkType==11){ %>
+			    		<span class="fi-help-text">外链请加上 http:// 前缀</span>
+			    	<% } %>
+			    	<span class="fi-help-text j-verify-linkType"></span>
+			    </div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">导航名称：：</label>
+				<div class="form-controls">
+					<input type="text" name="subtitle" class="input xlarge" value="<%= item.subtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+
+			<div class="formitems">  
+				<label class="fi-name">小标题：</label>
+				<div class="form-controls">
+					<input type="text" name="showtitle" class="input xlarge" value="<%= item.showtitle %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+
+			<div class="formitems">  
+				<label class="fi-name">背景颜色：</label>
+				<div class="form-controls">
+					<select name="navbgColor" class="select mini" style="background-color:<%= item.bgColor %>"> 
+						<option value="#ffba00" <% if(item.bgColor=="#ffba00"){%>selected<%}%> style="background-color:#ffba00">橙色</option>
+						<option value="#ed5a5a" <% if(item.bgColor=="#ed5a5a"){%>selected<%}%> style="background-color:#ed5a5a">暗红色</option>
+						<option value="#00a5e7" <% if(item.bgColor=="#00a5e7"){%>selected<%}%> style="background-color:#00a5e7">蓝色</option>
+						<option value="#fe5a00" <% if(item.bgColor=="#fe5a00"){%>selected<%}%> style="background-color:#fe5a00">红色</option>
+					</select>
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			
+			<div class="formitems">  
+				<label class="fi-name">广告图片：</label>
+				<div class="form-controls">
+					<div class="header_style2_dataset_pic inline-block">
+						<img src="<%= item.pic %>">
+					</div>
+					<a href="javascript:;" class="btn btn-primary btn-small j-navModifyIcon">修改</a>
+					<span class="fi-help-text">建议尺寸：410 * 185 像素</span>
+				</div>
+			</div>
+			<div class="formitems">  
+				<label class="fi-name">广告标题：</label>
+				<div class="form-controls">
+					<input type="text" name="picname" class="input xlarge" value="<%= item.picname %>">
+					<span class="fi-help-text"></span>
+				</div>
+			</div>
+			<div class="ctrl-item-list-actions">
+				<a href="javascript:;" title="上移" class="j-moveup"><i class="gicon-arrow-up"></i></a>
+				<a href="javascript:;" title="下移" class="j-movedown"><i class="gicon-arrow-down"></i></a>
+				<a href="javascript:;" title="删除" class="j-del"><i class="gicon-remove"></i></a>
+			</div>
+		</li>
+		<% }) %>
+		<li class="ctrl-item-list-add" title="添加">+</li>
+	</ul>
+</script>
+
+
+
+
+
+
+<!-- Header_style13 tpl end-->
